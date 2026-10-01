@@ -245,8 +245,8 @@
 
         // 提取模型名称
         function getModelName(filename) {
-            // GPT 模型合并 (以 6 或 6.1 开头)
-            if (/^6(\.1)?\s/.test(filename)) {
+            // GPT 模型合并 (以 6、6.1 或 5.6 开头)
+            if (/^(6(\.1)?|5\.6)\s/.test(filename)) {
                 return 'GPT';
             }
             
