@@ -27,16 +27,35 @@
         
         .disclaimer {
             max-width: 800px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
             background: #e8f0fe;
             color: #1a73e8;
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 12px;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.5;
+            text-align: center;
         }
         .disclaimer p {
-            margin: 5px 0;
+            margin: 0;
+        }
+        
+        .ad-banner {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ad-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+        .ad-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
         
         /* 过滤器样式 */
@@ -205,9 +224,13 @@
     <h1>AI模型 SVG 动画生成评测：熊猫骑自行车</h1>
     
     <div class="disclaimer">
-        <p><strong>说明：</strong>本页面旨在通过“熊猫骑自行车”这一统一提示词，直观展示并对比各大 AI 模型的 SVG 代码及动画生成能力。</p>
-        <p>受限于测试条件，部分模型使用的是免费额度或中转 API 服务，实际输出质量可能因并发、上下文配置等客观条件而有所差异。另外，部分带记忆功能的平台可能在多轮对话中产生了上下文依赖，导致相似结果。</p>
-        <p>因此，请大家更多地<strong>关注生成图片在布局、动画和色彩等层面的整体细节表现</strong>。本结果全为个人电脑实机运行收集，仅供参考交流，<strong>不含任何广告或商业推广</strong>。</p>
+        <p><strong>说明：</strong>通过统一提示词对比各 AI 模型的 SVG 生成能力。受客观条件（如免费额度、API中转、记忆功能等）影响，结果可能会有偏差，请主要关注布局与细节表现。所有结果均由个人实测，仅供参考，不含广告推广。</p>
+    </div>
+
+    <div class="ad-banner">
+        <a href="http://www.cduyzh.top" target="_blank">
+            <img src="ad_banner.png" alt="cduyzh.top - 个人网站">
+        </a>
     </div>
     
     <div class="filters" id="filters"></div>
