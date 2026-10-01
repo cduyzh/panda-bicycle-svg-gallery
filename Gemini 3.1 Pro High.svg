@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Wheel Definition -->
+    <g id="wheel">
+      <!-- Tire -->
+      <circle cx="0" cy="0" r="60" fill="none" stroke="#2c3e50" stroke-width="12"/>
+      <!-- Rim -->
+      <circle cx="0" cy="0" r="53" fill="none" stroke="#bdc3c7" stroke-width="4"/>
+      <!-- Spokes -->
+      <g stroke="#7f8c8d" stroke-width="2">
+        <line x1="-53" y1="0" x2="53" y2="0"/>
+        <line x1="0" y1="-53" x2="0" y2="53"/>
+        <line x1="-37.5" y1="-37.5" x2="37.5" y2="37.5"/>
+        <line x1="-37.5" y1="37.5" x2="37.5" y2="-37.5"/>
+        <line x1="-20.3" y1="-49" x2="20.3" y2="49"/>
+        <line x1="-20.3" y1="49" x2="20.3" y2="-49"/>
+        <line x1="-49" y1="-20.3" x2="49" y2="20.3"/>
+        <line x1="-49" y1="20.3" x2="49" y2="-20.3"/>
+      </g>
+      <!-- Hub -->
+      <circle cx="0" cy="0" r="10" fill="#2c3e50"/>
+      <circle cx="0" cy="0" r="4" fill="#ecf0f1"/>
+    </g>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="800" height="600" fill="#87CEEB"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="100" r="40" fill="#f1c40f"/>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.8">
+    <path d="M 150 150 Q 170 120 200 150 Q 230 130 250 150 Q 280 150 260 180 L 140 180 Q 120 150 150 150">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-400 0" dur="20s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 550 200 Q 570 170 600 200 Q 630 180 650 200 Q 680 200 660 230 L 540 230 Q 520 200 550 200">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-800 0" dur="25s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 300 100 Q 315 80 340 100 Q 360 85 375 100 Q 400 100 380 120 L 290 120 Q 275 100 300 100">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-600 0" dur="15s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Wind lines -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6">
+    <line x1="0" y1="200" x2="100" y2="200">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-200 0" dur="1s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="300" x2="150" y2="300">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-300 0" dur="0.7s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="100" x2="50" y2="100">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-100 0" dur="1.3s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- Ground -->
+  <rect x="0" y="480" width="800" height="120" fill="#2ecc71"/>
+  <!-- Road -->
+  <rect x="0" y="480" width="800" height="50" fill="#95a5a6"/>
+  <line x1="0" y1="480" x2="800" y2="480" stroke="#7f8c8d" stroke-width="6"/>
+  <line x1="0" y1="530" x2="800" y2="530" stroke="#7f8c8d" stroke-width="6"/>
+
+  <!-- Speed lines on the road -->
+  <g stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.7">
+    <line x1="0" y1="490" x2="100" y2="490">
+      <animateTransform attributeName="transform" type="translate" from="800 0" to="-200 0" dur="0.6s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="510" x2="150" y2="510">
+      <animateTransform attributeName="transform" type="translate" from="900 0" to="-300 0" dur="0.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="520" x2="50" y2="520">
+      <animateTransform attributeName="transform" type="translate" from="850 0" to="-100 0" dur="0.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- Main Animation Group -->
+  <g>
+    <!-- Bouncing effect -->
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="0.4s" repeatCount="indefinite"/>
+    
+    <!-- LAYER 1: Left Side -->
+    <!-- Left Leg -->
+    <path fill="none" stroke="#2d3436" stroke-width="35" stroke-linecap="round">
+      <animate attributeName="d" 
+               values="M 355 310 Q 360 350 400 380;
+                       M 355 310 Q 390 370 440 420;
+                       M 355 310 Q 360 380 400 460;
+                       M 355 310 Q 340 370 360 420;
+                       M 355 310 Q 360 350 400 380"
+               dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    <!-- Left Crank and Pedal -->
+    <g transform="translate(400, 420)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.8s" repeatCount="indefinite"/>
+        <line x1="0" y1="0" x2="0" y2="-40" stroke="#95a5a6" stroke-width="8" stroke-linecap="round"/>
+        <g transform="translate(0, -40)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="0.8s" repeatCount="indefinite"/>
+            <rect x="-15" y="-5" width="30" height="10" rx="3" fill="#2c3e50"/>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- LAYER 2: Bicycle Frame and Wheels -->
+    <g id="bicycle_frame">
+      <!-- Frame -->
+      <g stroke="#e74c3c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <polygon points="400,420 370,350 480,330" />
+        <line x1="400" y1="420" x2="250" y2="420" />
+        <line x1="370" y1="350" x2="250" y2="420" />
+        <line x1="480" y1="330" x2="550" y2="420" stroke="#f39c12"/>
+      </g>
+      
+      <!-- Wheels -->
+      <g transform="translate(250, 420)">
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.8s" repeatCount="indefinite"/>
+          <use href="#wheel"/>
+        </g>
+      </g>
+      <g transform="translate(550, 420)">
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.8s" repeatCount="indefinite"/>
+          <use href="#wheel"/>
+        </g>
+      </g>
+
+      <!-- Chain and Chainring -->
+      <line x1="250" y1="420" x2="400" y2="420" stroke="#7f8c8d" stroke-width="4"/>
+      <circle cx="400" cy="420" r="25" fill="#ecf0f1" stroke="#34495e" stroke-width="6"/>
+      <circle cx="400" cy="420" r="10" fill="#34495e"/>
+
+      <!-- Seat Post and Seat -->
+      <line x1="370" y1="350" x2="360" y2="330" stroke="#bdc3c7" stroke-width="8" stroke-linecap="round"/>
+      <path d="M 330 330 Q 360 310 390 330 C 390 340 330 340 330 330 Z" fill="#2c3e50"/>
+      
+      <!-- Handlebar Stem and Handlebars -->
+      <line x1="480" y1="330" x2="470" y2="280" stroke="#bdc3c7" stroke-width="8" stroke-linecap="round"/>
+      <path d="M 450 280 Q 470 250 500 250 Q 510 270 490 270" fill="none" stroke="#2c3e50" stroke-width="10" stroke-linecap="round"/>
+    </g>
+
+    <!-- LAYER 3: Panda Body -->
+    <g id="panda_body">
+      <!-- Tail -->
+      <circle cx="280" cy="300" r="18" fill="#2d3436"/>
+      
+      <!-- Torso -->
+      <path d="M 320 220 C 290 280 300 340 340 340 C 380 340 400 300 390 240 Z" fill="#ffffff" stroke="#2d3436" stroke-width="6"/>
+      <!-- Black chest/shoulders -->
+      <path d="M 315 230 C 310 250 380 280 390 240 C 380 200 330 200 315 230 Z" fill="#2d3436"/>
+
+      <!-- Right Arm -->
+      <path d="M 360 230 Q 420 220 470 250" fill="none" stroke="#2d3436" stroke-width="26" stroke-linecap="round"/>
+
+      <!-- Head -->
+      <g transform="translate(410, 160)">
+        <!-- Left Ear -->
+        <circle cx="-35" cy="-35" r="22" fill="#2d3436"/>
+        <!-- Right Ear -->
+        <circle cx="35" cy="-35" r="22" fill="#2d3436"/>
+        
+        <!-- Helmet -->
+        <g transform="translate(0, -42)">
+          <path d="M -30 0 C -30 -30 30 -30 30 0 Z" fill="#e74c3c" stroke="#2d3436" stroke-width="6"/>
+          <path d="M -25 0 Q 0 70 25 0" fill="none" stroke="#2d3436" stroke-width="3"/>
+          <circle cx="0" cy="35" r="3" fill="#2d3436"/>
+        </g>
+
+        <!-- Face Outline -->
+        <ellipse cx="0" cy="0" rx="55" ry="48" fill="#ffffff" stroke="#2d3436" stroke-width="6"/>
+        
+        <!-- Left Eye -->
+        <g transform="translate(-20, -5)">
+          <g>
+            <animateTransform attributeName="transform" type="scale" values="1,1; 1,1; 1,0.1; 1,1" keyTimes="0; 0.9; 0.95; 1" dur="4s" repeatCount="indefinite"/>
+            <g transform="rotate(-25)">
+              <ellipse cx="0" cy="0" rx="15" ry="22" fill="#2d3436"/>
+              <circle cx="0" cy="-8" r="5" fill="#ffffff"/>
+            </g>
+          </g>
+        </g>
+        <!-- Right Eye -->
+        <g transform="translate(20, -5)">
+          <g>
+            <animateTransform attributeName="transform" type="scale" values="1,1; 1,1; 1,0.1; 1,1" keyTimes="0; 0.9; 0.95; 1" dur="4s" repeatCount="indefinite"/>
+            <g transform="rotate(25)">
+              <ellipse cx="0" cy="0" rx="15" ry="22" fill="#2d3436"/>
+              <circle cx="0" cy="-8" r="5" fill="#ffffff"/>
+            </g>
+          </g>
+        </g>
+        
+        <!-- Nose -->
+        <ellipse cx="0" cy="15" rx="10" ry="6" fill="#2d3436"/>
+        
+        <!-- Mouth -->
+        <path d="M -12 28 Q 0 38 12 28" fill="none" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- LAYER 4: Right Leg and Right Pedal -->
+    <!-- Right Leg -->
+    <path fill="none" stroke="#2d3436" stroke-width="35" stroke-linecap="round">
+      <animate attributeName="d" 
+               values="M 345 320 Q 360 380 400 460;
+                       M 345 320 Q 340 370 360 420;
+                       M 345 320 Q 360 350 400 380;
+                       M 345 320 Q 390 380 440 420;
+                       M 345 320 Q 360 380 400 460"
+               dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Right Crank and Pedal -->
+    <g transform="translate(400, 420)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.8s" repeatCount="indefinite"/>
+        <line x1="0" y1="0" x2="0" y2="40" stroke="#7f8c8d" stroke-width="8" stroke-linecap="round"/>
+        <g transform="translate(0, 40)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="0.8s" repeatCount="indefinite"/>
+            <rect x="-15" y="-5" width="30" height="10" rx="3" fill="#34495e"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-labelledby="title desc">
+  <title id="title">6.1 Sol高 · 熊猫骑自行车 SVG 动画</title>
+  <desc id="desc">一只戴黄色头盔的熊猫骑着红色自行车穿过竹林。车轮、脚踏、云朵和路面标线持续循环运动。</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8bd7f2"/>
+      <stop offset="0.62" stop-color="#d7f3fb"/>
+      <stop offset="1" stop-color="#fff0c4"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#96d59c"/>
+      <stop offset="1" stop-color="#4b9d6a"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#68727d"/>
+      <stop offset="1" stop-color="#343b46"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6654"/>
+      <stop offset="1" stop-color="#ca2f39"/>
+    </linearGradient>
+    <linearGradient id="helmet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe878"/>
+      <stop offset="1" stop-color="#f4b72f"/>
+    </linearGradient>
+    <radialGradient id="fur" cx="35%" cy="25%" r="80%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.72" stop-color="#f3f5f3"/>
+      <stop offset="1" stop-color="#d8dfe0"/>
+    </radialGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff6b3" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#fff6b3" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+
+    <!-- seamless background tiles -->
+    <g id="cloudTile" fill="#fff" opacity=".76">
+      <g transform="translate(20 0)"><ellipse cx="58" cy="92" rx="42" ry="22"/><ellipse cx="93" cy="82" rx="32" ry="28"/><ellipse cx="126" cy="94" rx="45" ry="20"/></g>
+      <g transform="translate(430 0) scale(.78)"><ellipse cx="58" cy="146" rx="42" ry="22"/><ellipse cx="93" cy="136" rx="32" ry="28"/><ellipse cx="126" cy="148" rx="45" ry="20"/></g>
+      <g transform="translate(760 -20) scale(.66)"><ellipse cx="58" cy="92" rx="42" ry="22"/><ellipse cx="93" cy="82" rx="32" ry="28"/><ellipse cx="126" cy="94" rx="45" ry="20"/></g>
+    </g>
+    <g id="bambooTile">
+      <g stroke-linecap="round" fill="none">
+        <path d="M38 438 C32 380 44 335 38 278" stroke="#328051" stroke-width="14"/>
+        <path d="M132 438 C140 380 124 342 136 296" stroke="#4b9b5e" stroke-width="12"/>
+        <path d="M238 438 C228 382 246 346 236 288" stroke="#348554" stroke-width="15"/>
+        <path d="M340 438 C348 383 334 348 344 310" stroke="#56a665" stroke-width="11"/>
+      </g>
+      <g stroke="#8bca79" stroke-width="3" opacity=".75">
+        <path d="M25 356h25M26 321h24M123 370h26M124 333h25M222 365h28M223 329h25M330 380h26M331 344h25"/>
+      </g>
+      <g fill="#2d7543">
+        <path d="M38 304q24-18 50-6q-24 22-50 6Z"/><path d="M38 304q-24-18-48-7q22-18 48 7Z"/>
+        <path d="M136 318q26-17 48-4q-22 20-48 4Z"/><path d="M236 311q-24-19-48-8q22-17 48 8Z"/>
+        <path d="M344 332q24-18 48-6q-20 20-48 6Z"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- sky and sun -->
+  <rect width="1000" height="620" fill="url(#sky)"/>
+  <circle cx="828" cy="116" r="105" fill="url(#sun)">
+    <animate attributeName="r" values="105;118;105" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="828" cy="116" r="43" fill="#fff4a9"/>
+
+  <!-- drifting clouds -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;-1000 0" dur="42s" repeatCount="indefinite"/>
+    <use href="#cloudTile"/><use href="#cloudTile" x="1000"/>
+  </g>
+
+  <!-- rolling hills -->
+  <path d="M0 362 Q130 250 270 350T540 338T820 352T1100 332V450H0Z" fill="url(#hill)" opacity=".9"/>
+  <path d="M0 388 Q150 300 300 376T580 368T860 378T1100 360V454H0Z" fill="#69b979" opacity=".78"/>
+
+  <!-- bamboo parallax -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;-400 0" dur="8s" repeatCount="indefinite"/>
+    <use href="#bambooTile"/><use href="#bambooTile" x="400"/><use href="#bambooTile" x="800"/>
+  </g>
+
+  <!-- ground and road -->
+  <rect y="438" width="1000" height="182" fill="#8bc66e"/>
+  <rect y="476" width="1000" height="144" fill="url(#road)"/>
+  <path d="M0 480H1000" stroke="#9ba6ae" stroke-width="6" opacity=".75"/>
+  <g stroke="#f5d45c" stroke-width="10" stroke-linecap="round" stroke-dasharray="90 72">
+    <path d="M-120 566H1120">
+      <animate attributeName="stroke-dashoffset" values="0;-162" dur=".52s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  <ellipse cx="505" cy="499" rx="240" ry="22" fill="#202732" opacity=".28" filter="url(#soft)">
+    <animate attributeName="rx" values="240;255;240" dur="1.4s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- bicycle and panda group -->
+  <g transform="translate(70 8)">
+    <!-- body bob for a lively ride -->
+    <animateTransform attributeName="transform" type="translate" additive="sum" values="0 8;0 0;0 8" dur="1.05s" repeatCount="indefinite"/>
+
+    <!-- bike wheels -->
+    <g fill="none" stroke="#202a35" stroke-width="12">
+      <circle cx="245" cy="448" r="82" fill="#eef2f3" stroke="#26313b"/>
+      <circle cx="675" cy="448" r="82" fill="#eef2f3" stroke="#26313b"/>
+    </g>
+    <g fill="none" stroke="#8795a0" stroke-width="2.4" opacity=".9">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 245 448" to="360 245 448" dur="1.2s" repeatCount="indefinite"/>
+        <path d="M245 366V530M163 448H327M187 390L303 506M303 390L187 506"/>
+      </g>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 675 448" to="360 675 448" dur="1.2s" repeatCount="indefinite"/>
+        <path d="M675 366V530M593 448H757M617 390L733 506M733 390L617 506"/>
+      </g>
+    </g>
+
+    <!-- bike frame -->
+    <g fill="none" stroke="url(#frame)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M245 448L380 326L500 448L675 448L380 326L292 448"/>
+      <path d="M500 448L558 306L596 306"/>
+      <path d="M558 306L640 276"/>
+      <path d="M373 327L353 282L407 282"/>
+    </g>
+    <path d="M354 274h58" stroke="#242d36" stroke-width="10" stroke-linecap="round"/>
+    <path d="M630 273h42" stroke="#242d36" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="500" cy="448" r="18" fill="#f7bf36" stroke="#7f4f2b" stroke-width="5"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 500 448" to="360 500 448" dur="1.2s" repeatCount="indefinite"/>
+      <path d="M500 448l-34-22M500 448l34 22" stroke="#7f4f2b" stroke-width="7" stroke-linecap="round"/>
+      <rect x="457" y="417" width="28" height="9" rx="4" fill="#252d36"/>
+      <rect x="526" y="470" width="28" height="9" rx="4" fill="#252d36"/>
+    </g>
+
+    <!-- panda torso -->
+    <ellipse cx="452" cy="224" rx="78" ry="91" fill="url(#fur)" stroke="#25303a" stroke-width="7"/>
+    <ellipse cx="449" cy="250" rx="47" ry="50" fill="#202932" opacity=".9"/>
+    <path d="M419 296L388 358L432 368L469 304Z" fill="#f5f7f6" stroke="#25303a" stroke-width="6"/>
+    <path d="M482 300L541 350L514 379L452 327Z" fill="#f5f7f6" stroke="#25303a" stroke-width="6"/>
+
+    <!-- panda head and ears -->
+    <circle cx="442" cy="126" r="73" fill="url(#fur)" stroke="#25303a" stroke-width="7"/>
+    <circle cx="388" cy="74" r="25" fill="#1f2830"/><circle cx="495" cy="72" r="25" fill="#1f2830"/>
+    <ellipse cx="413" cy="124" rx="25" ry="34" fill="#252d35" transform="rotate(26 413 124)"/>
+    <ellipse cx="470" cy="124" rx="25" ry="34" fill="#252d35" transform="rotate(-26 470 124)"/>
+    <circle cx="416" cy="120" r="9" fill="#fff"/><circle cx="468" cy="120" r="9" fill="#fff"/>
+    <circle cx="418" cy="121" r="4" fill="#27313a"/><circle cx="466" cy="121" r="4" fill="#27313a"/>
+    <path d="M435 143q9-9 18 0q-7 12-18 0Z" fill="#1f2830"/>
+    <path d="M442 149q-8 13-22 6M442 149q8 13 22 6" fill="none" stroke="#1f2830" stroke-width="4" stroke-linecap="round"/>
+    <!-- helmet -->
+    <path d="M377 88Q391 20 448 20Q506 20 521 88L502 96Q493 57 449 53Q405 56 396 96Z" fill="url(#helmet)" stroke="#25303a" stroke-width="7"/>
+    <path d="M384 90Q450 105 516 90" fill="none" stroke="#e09c27" stroke-width="8" stroke-linecap="round"/>
+    <path d="M445 30v26" stroke="#fff3a2" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+
+    <!-- arms to handlebar -->
+    <path d="M493 202Q535 236 570 280" fill="none" stroke="#202932" stroke-width="22" stroke-linecap="round"/>
+    <path d="M570 280L596 278" fill="none" stroke="#202932" stroke-width="16" stroke-linecap="round"/>
+    <path d="M410 204Q373 245 383 282" fill="none" stroke="#202932" stroke-width="22" stroke-linecap="round"/>
+    <path d="M383 282L357 282" fill="none" stroke="#202932" stroke-width="16" stroke-linecap="round"/>
+
+    <!-- legs in alternating pedaling motion -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="-18 452 307;22 452 307;-18 452 307" dur="1.2s" repeatCount="indefinite"/>
+      <path d="M432 298L472 377L500 448" fill="none" stroke="#202932" stroke-width="24" stroke-linecap="round"/>
+      <circle cx="501" cy="448" r="10" fill="#e3b07c"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="22 452 307;-18 452 307;22 452 307" dur="1.2s" repeatCount="indefinite"/>
+      <path d="M469 298L432 374L397 416" fill="none" stroke="#202932" stroke-width="24" stroke-linecap="round"/>
+      <circle cx="397" cy="416" r="10" fill="#e3b07c"/>
+    </g>
+
+    <!-- small motion accents -->
+    <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8">
+      <path d="M120 372h42"><animate attributeName="x1" values="120;80;120" dur="1.5s" repeatCount="indefinite"/><animate attributeName="x2" values="162;122;162" dur="1.5s" repeatCount="indefinite"/></path>
+      <path d="M748 337h35"><animate attributeName="x1" values="748;720;748" dur="1.1s" repeatCount="indefinite"/><animate attributeName="x2" values="783;755;783" dur="1.1s" repeatCount="indefinite"/></path>
+    </g>
+  </g>
+
+  <!-- title badge -->
+  <g transform="translate(32 30)">
+    <rect x="0" y="0" width="210" height="52" rx="26" fill="#1e3940" opacity=".86"/>
+    <text x="25" y="34" fill="#fff8d6" font-family="system-ui, sans-serif" font-size="22" font-weight="700">6.1 Sol高</text>
+  </g>
+</svg>

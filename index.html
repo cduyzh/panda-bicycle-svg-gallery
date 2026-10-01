@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG 图片预览</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-sub: #86868b;
+            --accent: #0066cc;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        /* 过滤器样式 */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .filter-btn {
+            background: #e8e8ed;
+            border: 1px solid transparent;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-main);
+        }
+        .filter-btn:hover {
+            background: #d2d2d7;
+        }
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* 画廊和卡片样式 */
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; 
+            padding: 10px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card { 
+            background: var(--card-bg);
+            border-radius: 18px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+        .card.hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .svg-container {
+            padding: 30px;
+            background-color: #fafafc;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 220px;
+            pointer-events: none; /* 防止图片影响鼠标事件 */
+        }
+        .svg-container img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+        }
+        .info { 
+            padding: 20px;
+            text-align: center;
+            pointer-events: none;
+        }
+        .title { 
+            font-weight: 600; 
+            font-size: 16px;
+            margin-bottom: 6px;
+            word-break: break-word;
+        }
+        .date {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        /* 状态提示 */
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(29, 29, 31, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2000;
+        }
+        .status.show { opacity: 1; }
+
+        /* 灯箱样式 */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox img {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .lightbox-close, .lightbox-prev, .lightbox-next {
+            position: absolute;
+            color: rgba(255,255,255,0.7);
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+        }
+        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+        .lightbox-close { top: 20px; right: 30px; font-size: 50px; }
+        .lightbox-prev { left: 30px; }
+        .lightbox-next { right: 30px; }
+        .lightbox-info {
+            position: absolute;
+            bottom: 30px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG 模型画廊</h1>
+    
+    <div class="filters" id="filters"></div>
+    
+    <div id="status" class="status">正在更新...</div>
+    <div class="gallery" id="gallery"></div>
+
+    <!-- 灯箱 -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-close" id="lb-close">&times;</div>
+        <div class="lightbox-prev" id="lb-prev">&#10094;</div>
+        <img id="lb-img" src="" alt="">
+        <div class="lightbox-next" id="lb-next">&#10095;</div>
+        <div class="lightbox-info" id="lb-info"></div>
+    </div>
+
+    <script>
+        let allSvgs = [];         // 所有从服务器获取的数据
+        let displayedSvgs = [];   // 当前过滤后展示的数据
+        let selectedModels = new Set();
+        let currentLbIndex = 0;
+
+        const gallery = document.getElementById('gallery');
+        const filtersContainer = document.getElementById('filters');
+        const statusEl = document.getElementById('status');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbInfo = document.getElementById('lb-info');
+
+        function showStatus(text) {
+            statusEl.textContent = text;
+            statusEl.classList.add('show');
+            setTimeout(() => statusEl.classList.remove('show'), 3000);
+        }
+
+        // 提取模型名称
+        function getModelName(filename) {
+            // GPT 模型合并 (以 6 或 6.1 开头)
+            if (/^6(\.1)?\s/.test(filename)) {
+                return 'GPT';
+            }
+            
+            // MiniMax 模型合并 (以 M3 或 MiniMax 开头)
+            if (/^(M3(\.1)?|MiniMax)/i.test(filename)) {
+                return 'MiniMax';
+            }
+
+            let match = filename.match(/^([a-zA-Z0-9.]+)/);
+            if (match) {
+                let base = match[1];
+                if (base.match(/^[0-9.]+$/)) {
+                    match = filename.match(/^([0-9.]+\s+[a-zA-Z]+)/);
+                    if (match) return match[1];
+                }
+                return base;
+            }
+            return '其他';
+        }
+
+        async function fetchSvgs() {
+            try {
+                const response = await fetch('/api/svgs');
+                if (!response.ok) throw new Error('网络请求失败');
+                
+                let svgs = await response.json();
+                
+                // 处理并提取模型名
+                svgs = svgs.map(item => ({
+                    ...item,
+                    model: getModelName(item.name)
+                }));
+                
+                // 排序逻辑：先按模型分组排序，模型相同则按名字排序
+                svgs.sort((a, b) => {
+                    if (a.model !== b.model) return a.model.localeCompare(b.model, 'zh-Hans-CN');
+                    return a.name.localeCompare(b.name, 'zh-Hans-CN');
+                });
+                
+                // 判断是否有数据更新
+                if (JSON.stringify(svgs) !== JSON.stringify(allSvgs)) {
+                    const isFirstLoad = allSvgs.length === 0;
+                    allSvgs = svgs;
+                    updateFilters();
+                    renderGallery();
+                    if (!isFirstLoad) showStatus('列表已更新');
+                }
+            } catch (error) {
+                console.error("获取 SVG 失败:", error);
+            }
+        }
+
+        function updateFilters() {
+            // 获取所有唯一的模型
+            const models = [...new Set(allSvgs.map(s => s.model))];
+            
+            // 如果只有一种模型，不显示筛选
+            if (models.length <= 1) {
+                filtersContainer.innerHTML = '';
+                return;
+            }
+
+            filtersContainer.innerHTML = '';
+            
+            // "全部" 按钮
+            const allBtn = document.createElement('button');
+            allBtn.className = `filter-btn ${selectedModels.size === 0 ? 'active' : ''}`;
+            allBtn.textContent = '全部';
+            allBtn.onclick = () => {
+                selectedModels.clear();
+                updateFilterUI();
+                renderGallery();
+            };
+            filtersContainer.appendChild(allBtn);
+
+            models.forEach(model => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${selectedModels.has(model) ? 'active' : ''}`;
+                btn.textContent = model;
+                btn.onclick = () => {
+                    if (selectedModels.has(model)) {
+                        selectedModels.delete(model);
+                    } else {
+                        selectedModels.add(model);
+                    }
+                    updateFilterUI();
+                    renderGallery();
+                };
+                filtersContainer.appendChild(btn);
+            });
+        }
+
+        function updateFilterUI() {
+            const btns = filtersContainer.querySelectorAll('.filter-btn');
+            btns.forEach((btn, index) => {
+                if (index === 0) { // "全部" 按钮
+                    btn.classList.toggle('active', selectedModels.size === 0);
+                } else {
+                    const modelName = btn.textContent;
+                    btn.classList.toggle('active', selectedModels.has(modelName));
+                }
+            });
+        }
+
+        function renderGallery() {
+            gallery.innerHTML = '';
+            
+            // 过滤数据
+            if (selectedModels.size === 0) {
+                displayedSvgs = [...allSvgs];
+            } else {
+                displayedSvgs = allSvgs.filter(s => selectedModels.has(s.model));
+            }
+
+            if (displayedSvgs.length === 0) {
+                gallery.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #888; padding: 50px;">当前目录下没有找到符合的图片</div>';
+                return;
+            }
+
+            displayedSvgs.forEach((svg, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.05}s`;
+                
+                const svgContainer = document.createElement('div');
+                svgContainer.className = 'svg-container';
+                
+                const img = document.createElement('img');
+                img.src = encodeURIComponent(svg.name) + '?t=' + new Date().getTime();
+                img.alt = svg.name;
+                img.loading = "lazy";
+                
+                const info = document.createElement('div');
+                info.className = 'info';
+                
+                const title = document.createElement('div');
+                title.className = 'title';
+                title.textContent = svg.name.replace(/\.svg$/i, '');
+                
+                const date = document.createElement('div');
+                date.className = 'date';
+                date.textContent = svg.date;
+                
+                svgContainer.appendChild(img);
+                info.appendChild(title);
+                info.appendChild(date);
+                card.appendChild(svgContainer);
+                card.appendChild(info);
+                
+                // 苹果卡片 3D 悬浮效果
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -8; // 最大旋转角度
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.boxShadow = `0 15px 30px rgba(0,0,0,0.1)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+
+                // 点击打开灯箱
+                card.addEventListener('click', () => openLightbox(index));
+
+                gallery.appendChild(card);
+            });
+        }
+
+        // --- 灯箱逻辑 ---
+        function openLightbox(index) {
+            currentLbIndex = index;
+            updateLightbox();
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const item = displayedSvgs[currentLbIndex];
+            // 先缩小一下实现切换动画
+            lbImg.style.transform = 'scale(0.95)';
+            lbImg.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                lbImg.src = encodeURIComponent(item.name) + '?t=' + new Date().getTime();
+                lbInfo.innerHTML = `${item.name.replace(/\.svg$/i, '')}<br><span style="font-size:14px; opacity:0.8;">${item.date}</span>`;
+                lbImg.style.transform = 'scale(1)';
+                lbImg.style.opacity = '1';
+            }, 100);
+        }
+
+        document.getElementById('lb-close').onclick = closeLightbox;
+        
+        document.getElementById('lb-prev').onclick = (e) => {
+            e.stopPropagation();
+            currentLbIndex = (currentLbIndex - 1 + displayedSvgs.length) % displayedSvgs.length;
+            updateLightbox();
+        };
+
+        document.getElementById('lb-next').onclick = (e) => {
+            e.stopPropagation();
+            currentLbIndex = (currentLbIndex + 1) % displayedSvgs.length;
+            updateLightbox();
+        };
+
+        // 点击背景关闭
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox || e.target === lbImg) {
+                closeLightbox();
+            }
+        };
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+            if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
+        });
+
+        // 首次加载和轮询
+        fetchSvgs();
+        setInterval(fetchSvgs, 3000);
+    </script>
+</body>
+</html>
