@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 700" role="img" aria-labelledby="title description">
+  <title id="title">熊猫骑自行车</title>
+  <desc id="description">一只戴着橙色围巾的熊猫骑着青绿色自行车穿过明亮的公园。车轮和脚踏转动，熊猫轻轻起伏并眨眼。</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9f2f5"/>
+      <stop offset="1" stop-color="#f4fbef"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b8df9a"/>
+      <stop offset="1" stop-color="#83c47a"/>
+    </linearGradient>
+    <radialGradient id="sunGlow">
+      <stop offset="0" stop-color="#fff7c2" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#ffe88b" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ffe88b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <!-- A quiet, sunny park -->
+  <rect width="1000" height="700" fill="url(#sky)"/>
+  <circle cx="842" cy="120" r="102" fill="url(#sunGlow)">
+    <animate attributeName="opacity" values=".76;1;.76" dur="4.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="842" cy="120" r="42" fill="#ffd66e"/>
+  <g fill="none" stroke="#f5c957" stroke-width="5" stroke-linecap="round" opacity=".85">
+    <path d="M842 57v-13"/><path d="M842 196v-13"/>
+    <path d="M779 120h-13"/><path d="M918 120h-13"/>
+    <path d="m797 75-9-9"/><path d="m896 174-9-9"/>
+    <path d="m887 75 9-9"/><path d="m788 174 9-9"/>
+  </g>
+
+  <g class="cloud" fill="#fff" opacity=".9">
+    <g transform="translate(170 116)">
+      <ellipse cx="0" cy="17" rx="56" ry="19"/>
+      <circle cx="-24" cy="8" r="25"/><circle cx="9" cy="0" r="32"/><circle cx="38" cy="12" r="22"/>
+      <animateTransform attributeName="transform" type="translate" values="170 116;190 111;170 116" dur="10s" repeatCount="indefinite"/>
+    </g>
+    <g transform="translate(718 208) scale(.72)">
+      <ellipse cx="0" cy="17" rx="56" ry="19"/>
+      <circle cx="-24" cy="8" r="25"/><circle cx="9" cy="0" r="32"/><circle cx="38" cy="12" r="22"/>
+      <animateTransform attributeName="transform" type="translate" values="718 208;694 203;718 208" dur="12s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <path d="M0 420C130 377 228 403 352 430s230 22 348-18 210-37 300-2v290H0Z" fill="#d5edbd"/>
+  <path d="M0 500c128-40 237-22 357 11 128 35 245 16 359-18 113-34 198-23 284 3v204H0Z" fill="url(#grass)"/>
+  <path d="M0 606c179-33 321-15 484 0s321-24 516-5" fill="none" stroke="#6bb36f" stroke-width="4" opacity=".48"/>
+  <ellipse cx="490" cy="615" rx="330" ry="27" fill="#355b4b" opacity=".2" filter="url(#softShadow)"/>
+
+  <!-- Small flowers along the path -->
+  <g class="flower" transform="translate(128 590)">
+    <path d="M0 13v30" stroke="#4d9a61" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 31q-11-10-17-5M0 36q10-11 17-6" fill="none" stroke="#4d9a61" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#fff5dc">
+      <circle cx="0" cy="0" r="7"/><circle cx="-9" cy="5" r="7"/><circle cx="9" cy="5" r="7"/>
+      <circle cx="-6" cy="-7" r="7"/><circle cx="6" cy="-7" r="7"/>
+    </g><circle cy="0" r="5" fill="#f6b94f"/>
+    <animateTransform attributeName="transform" type="rotate" values="-4 0 13;5 0 13;-4 0 13" dur="2.3s" repeatCount="indefinite" additive="sum"/>
+  </g>
+  <g class="flower" transform="translate(854 592) scale(.82)">
+    <path d="M0 13v30" stroke="#4d9a61" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 31q-11-10-17-5M0 36q10-11 17-6" fill="none" stroke="#4d9a61" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#fff5dc">
+      <circle cx="0" cy="0" r="7"/><circle cx="-9" cy="5" r="7"/><circle cx="9" cy="5" r="7"/>
+      <circle cx="-6" cy="-7" r="7"/><circle cx="6" cy="-7" r="7"/>
+    </g><circle cy="0" r="5" fill="#f6b94f"/>
+    <animateTransform attributeName="transform" type="rotate" values="4 0 13;-5 0 13;4 0 13" dur="2.7s" repeatCount="indefinite" additive="sum"/>
+  </g>
+  <g fill="#fff4d7" opacity=".95">
+    <circle cx="205" cy="620" r="4"/><circle cx="782" cy="628" r="5"/><circle cx="910" cy="572" r="4"/>
+    <circle cx="73" cy="550" r="4"/><circle cx="734" cy="584" r="3"/>
+  </g>
+
+  <!-- Bicycle wheels: both rotate on the same 1.6 second cycle as the crank -->
+  <g aria-label="rear wheel">
+    <animateTransform attributeName="transform" type="rotate" from="0 280 540" to="360 280 540" dur="1.6s" repeatCount="indefinite"/>
+    <circle cx="280" cy="540" r="86" fill="#f8fbf3" stroke="#263641" stroke-width="15"/>
+    <circle cx="280" cy="540" r="73" fill="none" stroke="#8a9aa0" stroke-width="3"/>
+    <g stroke="#8a9aa0" stroke-width="2.4" opacity=".9">
+      <path d="M280 467v146M207 540h146"/>
+      <path d="m228 488 104 104m0-104L228 592"/>
+      <path d="m252 470 56 140m0-140-56 140"/>
+      <path d="m210 514 140 52m0-52-140 52"/>
+    </g>
+    <circle cx="280" cy="540" r="9" fill="#e8a84c" stroke="#fff" stroke-width="3"/>
+  </g>
+  <g aria-label="front wheel">
+    <animateTransform attributeName="transform" type="rotate" from="0 690 540" to="360 690 540" dur="1.6s" repeatCount="indefinite"/>
+    <circle cx="690" cy="540" r="86" fill="#f8fbf3" stroke="#263641" stroke-width="15"/>
+    <circle cx="690" cy="540" r="73" fill="none" stroke="#8a9aa0" stroke-width="3"/>
+    <g stroke="#8a9aa0" stroke-width="2.4" opacity=".9">
+      <path d="M690 467v146M617 540h146"/>
+      <path d="m638 488 104 104m0-104L638 592"/>
+      <path d="m662 470 56 140m0-140-56 140"/>
+      <path d="m620 514 140 52m0-52-140 52"/>
+    </g>
+    <circle cx="690" cy="540" r="9" fill="#e8a84c" stroke="#fff" stroke-width="3"/>
+  </g>
+
+  <!-- Frame -->
+  <g fill="none" stroke="#168d91" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M280 540 409 408 482 540 280 540"/>
+    <path d="M409 408 619 416 482 540"/>
+    <path d="M619 416 690 540"/>
+  </g>
+  <g fill="none" stroke="#f6a94d" stroke-width="6" stroke-linecap="round">
+    <path d="M281 540 482 540"/>
+    <path d="M409 408 482 540"/>
+  </g>
+  <path d="M404 404 397 382" fill="none" stroke="#36444b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M377 379q27-9 58 0l-5 12q-27-5-53 1Z" fill="#293841"/>
+  <path d="M624 411 638 382" fill="none" stroke="#36444b" stroke-width="11" stroke-linecap="round"/>
+  <path d="M631 380 660 374q10-2 13 5" fill="none" stroke="#293841" stroke-width="9" stroke-linecap="round"/>
+  <path d="M658 375q14-7 21 2" fill="none" stroke="#f5a94b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="482" cy="540" r="22" fill="#d9efdc" stroke="#168d91" stroke-width="7"/>
+
+  <!-- Panda's legs cycle around the pedals -->
+  <path d="M426 363 Q400 402 411 453 T452 540" fill="none" stroke="#34343c" stroke-width="29" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+      values="M426 363 Q400 402 411 453 T452 540;
+              M426 363 Q404 407 432 478 T482 570;
+              M426 363 Q443 399 476 443 T512 540;
+              M426 363 Q438 415 436 465 T482 510;
+              M426 363 Q400 402 411 453 T452 540"/>
+  </path>
+  <path d="M445 363 Q480 397 494 438 T512 540" fill="none" stroke="#222831" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+      values="M445 363 Q480 397 494 438 T512 540;
+              M445 363 Q470 402 473 452 T482 510;
+              M445 363 Q454 411 454 470 T452 540;
+              M445 363 Q467 414 487 486 T482 570;
+              M445 363 Q480 397 494 438 T512 540"/>
+  </path>
+
+  <!-- Spinning crank and pedals -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 482 540" to="360 482 540" dur="1.6s" repeatCount="indefinite"/>
+    <circle cx="482" cy="540" r="25" fill="none" stroke="#e7a44c" stroke-width="5"/>
+    <path d="M482 540h31M482 540h-31" stroke="#36444b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M513 540h18M451 540h-18" stroke="#263641" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="482" cy="540" r="7" fill="#263641"/>
+  </g>
+
+  <!-- Panda, gently bobbing with the ride -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0;0 -3;0 0" dur="1.6s" repeatCount="indefinite"/>
+
+    <!-- Arms reach the handlebars -->
+    <path d="M468 293 Q510 301 548 333 T625 381" fill="none" stroke="#292a32" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M466 310 Q511 323 550 349 T625 389" fill="none" stroke="#20242d" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+    <ellipse cx="627" cy="381" rx="15" ry="12" transform="rotate(-18 627 381)" fill="#fffdf5" stroke="#e7e8df" stroke-width="2"/>
+    <ellipse cx="627" cy="390" rx="15" ry="12" transform="rotate(12 627 390)" fill="#fffdf5" stroke="#e7e8df" stroke-width="2"/>
+
+    <!-- Round, soft torso -->
+    <ellipse cx="439" cy="337" rx="58" ry="79" transform="rotate(-13 439 337)" fill="#fffdf7" stroke="#e6e9e0" stroke-width="3"/>
+    <ellipse cx="443" cy="350" rx="31" ry="47" transform="rotate(-13 443 350)" fill="#f2f1e9"/>
+    <path d="M415 290q16-18 36-14l11 30q-17 10-37 0Z" fill="#282a32"/>
+    <path d="M452 278q19 4 29 21l-18 21q-16-4-26-19Z" fill="#282a32"/>
+
+    <!-- Scarf and fluttering tail -->
+    <path d="M425 272q33 17 67 0l-6 18q-29 17-58-2Z" fill="#f28b55"/>
+    <path d="M473 285q14 7 18 18l-9 28q-13-13-12-29Z" fill="#ed7850">
+      <animateTransform attributeName="transform" type="rotate" values="0 480 290;5 480 290;0 480 290;-4 480 290;0 480 290" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="478" cy="283" r="6" fill="#ffd27a"/>
+
+    <!-- Head with ears, eye patches, and a friendly smile -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0 466 213;-2 466 213;0 466 213;2 466 213;0 466 213" dur="1.6s" repeatCount="indefinite"/>
+      <circle cx="423" cy="169" r="24" fill="#24252c"/>
+      <circle cx="509" cy="169" r="24" fill="#24252c"/>
+      <circle cx="466" cy="215" r="67" fill="#fffdf7" stroke="#e7e9e1" stroke-width="3"/>
+      <ellipse cx="441" cy="211" rx="15" ry="24" transform="rotate(20 441 211)" fill="#272832"/>
+      <ellipse cx="491" cy="211" rx="15" ry="24" transform="rotate(-20 491 211)" fill="#272832"/>
+      <ellipse cx="442" cy="210" rx="5.8" ry="8" fill="#fff">
+        <animate attributeName="ry" values="8;0.8;8;8;8" keyTimes="0;.025;.05;.08;1" dur="4.2s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="490" cy="210" rx="5.8" ry="8" fill="#fff">
+        <animate attributeName="ry" values="8;0.8;8;8;8" keyTimes="0;.025;.05;.08;1" dur="4.2s" repeatCount="indefinite"/>
+      </ellipse>
+      <circle cx="444" cy="211" r="3.2" fill="#22252b"/>
+      <circle cx="488" cy="211" r="3.2" fill="#22252b"/>
+      <ellipse cx="466" cy="234" rx="16" ry="11" fill="#fff" opacity=".96"/>
+      <path d="M456 231q10-11 20 0-2 7-10 7-8 0-10-7Z" fill="#292a32"/>
+      <path d="M466 239q-2 11-12 10m12-10q2 11 12 10" fill="none" stroke="#46434a" stroke-width="2.6" stroke-linecap="round"/>
+      <ellipse cx="423" cy="231" rx="9" ry="5" fill="#f5b3a0" opacity=".48"/>
+      <ellipse cx="509" cy="231" rx="9" ry="5" fill="#f5b3a0" opacity=".48"/>
+    </g>
+  </g>
+
+  <!-- A few drifting leaf shapes finish the sense of motion -->
+  <g fill="#86c887" opacity=".85">
+    <path d="M177 329q19-20 34-3-17 20-34 3Z">
+      <animateTransform attributeName="transform" type="translate" values="0 0;18 -8;0 0" dur="5.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M803 340q17-18 31-2-15 18-31 2Z">
+      <animateTransform attributeName="transform" type="translate" values="0 0;-14 7;0 0" dur="6.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>
