@@ -1,621 +1,2165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f8f4">
-  <title>熊猫骑行实验室 · AI 大模型生成 SVG 动画能力 PK 对比 (Claude vs OpenAI vs 国产大模型)</title>
-  <meta name="description" content="用一道“熊猫骑自行车”题目，直观对比各大 AI 模型生成 SVG 动画的代码能力。涵盖 OpenAI GPT, Anthropic Claude, Google Gemini 等海外模型，以及 DeepSeek, 通义千问 Qwen, 智谱 GLM, Kimi, MiniMax 等国产大模型的终极 PK 对比。">
-  <meta name="keywords" content="AI大模型, 大模型对比, 大模型PK, SVG动画生成, OpenAI GPT, Claude 3.5 Sonnet, Claude Opus, DeepSeek, 通义千问 Qwen, 智谱 GLM, Kimi, MiniMax, 国产大模型对比, 代码生成, AI评测">
-  <style>
-    :root {
-      color-scheme: light;
-      --canvas: #f6f8f4;
-      --surface: #fff;
-      --ink: #17251f;
-      --muted: #68756e;
-      --line: #e1e8e1;
-      --green: #176a55;
-      --green-dark: #143f33;
-      --focus: #44ac8b;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-synthesis: none;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; min-width: 320px; background: var(--canvas); color: var(--ink); }
-    body.dialog-open { overflow: hidden; }
-    button, input, select { font: inherit; }
-    button { cursor: pointer; }
-    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 3px solid var(--focus); outline-offset: 3px;
-    }
-    a { color: inherit; }
-    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-    .page-shell { max-width: 1480px; padding: 0 34px; margin: 0 auto; }
-    .site-header { display: flex; align-items: center; justify-content: space-between; height: 82px; gap: 16px; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: 15px; font-weight: 800; letter-spacing: -.02em; }
-    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--green-dark); color: white; box-shadow: 0 7px 16px rgba(18, 71, 54, .14); }
-    .brand-mark svg { width: 28px; height: 28px; }
-    .brand small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .18em; }
-    .header-note { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .03em; }
-    .header-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #39aa78; box-shadow: 0 0 0 4px #e1f3e9; }
-    .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.16fr) minmax(260px, .84fr); min-height: 320px; overflow: hidden; border-radius: 30px; background: #153e33; color: white; box-shadow: 0 19px 50px rgba(14, 57, 42, .11); }
-    .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; top: -330px; right: 11%; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 0 90px rgba(255,255,255,.025), 0 0 0 180px rgba(255,255,255,.018); }
-    .hero-copy { position: relative; z-index: 1; padding: 48px 0 40px 54px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #abdbc4; font-size: 11px; font-weight: 800; letter-spacing: .2em; }
-    .eyebrow::before { content: ""; width: 18px; height: 1px; background: currentColor; }
-    .hero h1 { max-width: 750px; margin: 18px 0 15px; font-size: clamp(31px, 3.5vw, 54px); line-height: 1.18; letter-spacing: -.055em; font-weight: 850; }
-    .hero h1 em { color: #c3ed90; font-style: normal; }
-    .hero p { max-width: 520px; margin: 0; color: #c7dcd1; line-height: 1.7; font-size: 14px; }
-    .hero-stats { display: flex; align-items: center; gap: 25px; margin-top: 31px; }
-    .hero-stat { min-width: 86px; padding-right: 25px; border-right: 1px solid rgba(255,255,255,.18); }
-    .hero-stat:last-child { border: 0; padding-right: 0; }
-    .hero-stat strong { display: block; font-size: 25px; line-height: 1; letter-spacing: -.06em; }
-    .hero-stat span { display: block; margin-top: 7px; color: #b9d4c7; font-size: 11px; }
-    .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 300px; }
-    .hero-visual::after { content: ""; position: absolute; width: 270px; height: 270px; border-radius: 50%; background: radial-gradient(circle, rgba(193,236,148,.22), transparent 67%); }
-    .hero-art { position: relative; z-index: 1; width: min(90%, 440px); overflow: visible; filter: drop-shadow(0 20px 22px rgba(0,0,0,.16)); }
-    .hero-wheel { transform-box: fill-box; transform-origin: center; animation: wheel 12s linear infinite; }
-    @keyframes wheel { to { transform: rotate(360deg); } }
-    .intro-line { display: flex; align-items: center; gap: 10px; margin: 24px 0 34px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-    .intro-line svg { width: 17px; height: 17px; flex: none; color: var(--green); }
-    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
-    .section-kicker { color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .2em; }
-    .section-top h2 { margin: 6px 0 0; font-size: 30px; letter-spacing: -.05em; }
-    .result-count { margin: 0 0 4px; color: var(--muted); font-size: 13px; }
-    .browser-controls { position: sticky; top: 10px; z-index: 20; padding: 16px; border: 1px solid #dfe8df; border-radius: 20px; background: rgba(255,255,255,.96); box-shadow: 0 10px 30px rgba(22, 50, 34, .06); backdrop-filter: blur(18px); }
-    .control-row { display: flex; align-items: center; gap: 10px; }
-    .search-field { position: relative; display: flex; align-items: center; flex: 1; min-width: 180px; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: #f8faf8; }
-    .search-field > svg { width: 18px; height: 18px; margin-left: 14px; color: #77877d; flex: none; }
-    .search-field input { width: 100%; height: 100%; min-width: 0; padding: 0 12px; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 13px; }
-    .search-field input::placeholder { color: #929e96; }
-    .search-field:focus-within { border-color: #6bad91; box-shadow: 0 0 0 3px #daf1e4; }
-    .search-field input:focus-visible { outline: 0; }
-    .search-clear { display: none; align-items: center; justify-content: center; width: 30px; height: 30px; margin-right: 7px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font-size: 20px; }
-    .search-clear.visible { display: flex; }
-    .search-clear:hover { background: #edf2ed; }
-    .sort-wrap { position: relative; flex: none; }
-    .sort-wrap::before { content: "排序"; position: absolute; top: 14px; left: 14px; pointer-events: none; color: var(--muted); font-size: 12px; }
-    .sort-wrap select { width: 155px; height: 44px; padding: 0 12px 0 46px; border: 1px solid var(--line); border-radius: 12px; appearance: none; background: #fff; color: var(--ink); font-size: 12px; font-weight: 700; cursor: pointer; }
-    .sort-wrap::after { content: "⌄"; position: absolute; top: 9px; right: 12px; pointer-events: none; color: var(--muted); font-size: 19px; }
-    .family-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 13px 1px 1px; scrollbar-width: thin; }
-    .family-tab { display: inline-flex; align-items: center; gap: 7px; flex: none; min-height: 34px; padding: 5px 10px; border: 1px solid #e6ebe5; border-radius: 10px; background: #fff; color: #5c6a61; font-size: 12px; font-weight: 700; white-space: nowrap; transition: background .18s, color .18s, border-color .18s; }
-    .family-tab:hover { background: #f1f6f1; }
-    .family-tab.active { border-color: #164f3e; background: #164f3e; color: white; }
-    .family-tab .family-icon { width: 21px; height: 21px; border-radius: 7px; }
-    .family-tab.active .family-icon { background: rgba(255,255,255,.18) !important; color: white !important; }
-    .family-tab small { color: #9daaa1; font-size: 11px; }
-    .family-tab.active small { color: #d1e7d8; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(282px, 1fr)); gap: 18px; margin: 22px 0 76px; }
-    .model-card { min-width: 0; overflow: hidden; border: 1px solid #e2e8df; border-radius: 19px; background: var(--surface); box-shadow: 0 4px 14px rgba(28, 58, 40, .035); transition: transform .22s, box-shadow .22s, border-color .22s; }
-    .model-card:hover { transform: translateY(-4px); border-color: #b9d4c2; box-shadow: 0 18px 35px rgba(29, 61, 39, .11); }
-    .card-action { display: flex; flex-direction: column; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; text-align: left; color: inherit; }
-    .card-preview { position: relative; display: grid; place-items: center; width: 100%; height: 224px; overflow: hidden; background: linear-gradient(145deg, #f2f7f1, #fafbf9 65%); }
-    .card-preview::before { content: ""; position: absolute; width: 190px; height: 190px; border: 1px solid rgba(24,105,79,.07); border-radius: 50%; box-shadow: 0 0 0 45px rgba(24,105,79,.025); }
-    .card-preview img { position: relative; max-width: 88%; max-height: 83%; object-fit: contain; filter: drop-shadow(0 7px 13px rgba(14, 45, 29, .10)); }
-    .preview-count { position: absolute; top: 14px; right: 14px; padding: 6px 9px; border: 1px solid #dfebe0; border-radius: 8px; background: rgba(255,255,255,.92); color: #385d4a; font-size: 11px; font-weight: 800; }
-    .card-content { display: flex; flex: 1; flex-direction: column; padding: 18px 18px 16px; }
-    .card-family { display: inline-flex; align-items: center; gap: 6px; width: fit-content; color: var(--family-ink, var(--green)); font-size: 10px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-    .card-family .family-icon { width: 22px; height: 22px; border-radius: 7px; }
-    .card-name-row { display: flex; align-items: start; justify-content: space-between; gap: 8px; margin-top: 9px; }
-    .card-name { margin: 0; font-size: 19px; line-height: 1.28; font-weight: 800; letter-spacing: -.035em; overflow-wrap: anywhere; }
-    .card-arrow { flex: none; display: grid; place-items: center; width: 27px; height: 27px; border-radius: 8px; background: #eef5ee; color: var(--green); font-size: 17px; transition: transform .2s; }
-    .model-card:hover .card-arrow { transform: translate(2px, -2px); }
-    .card-meta { margin-top: 9px; color: var(--muted); font-size: 11px; }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; min-height: 29px; margin-top: 14px; }
-    .card-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 7px; background: #f1f5f0; color: #45624e; font-size: 10px; font-weight: 700; }
-    .card-tag.more { background: #e8f3ec; color: #28724e; }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 17px; padding-top: 13px; border-top: 1px solid #edf1ec; color: #68776b; font-size: 11px; }
-    .card-footer strong { color: #245d47; font-size: 11px; }
-    .empty-state { grid-column: 1 / -1; padding: 80px 24px; border: 1px dashed #cddacf; border-radius: 19px; background: #fff; text-align: center; }
-    .empty-state-icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 15px; border-radius: 17px; background: #ecf4ee; color: var(--green); font-size: 28px; }
-    .empty-state h3 { margin: 0 0 8px; font-size: 19px; }
-    .empty-state p { margin: 0; color: var(--muted); font-size: 13px; }
-    .empty-state button { margin-top: 18px; padding: 9px 15px; border: 0; border-radius: 9px; background: var(--green); color: #fff; font-size: 12px; font-weight: 700; }
-    .footer { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 28px 0 50px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; line-height: 1.7; }
-    .footer strong { display: block; color: var(--ink); font-size: 13px; margin-bottom: 5px; }
-    .footer a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: #345a45; font-weight: 700; }
-    .footer a:hover { text-decoration: underline; }
-    .footer a img { width: 86px; height: 34px; object-fit: cover; object-position: center; border-radius: 6px; }
-    .toast { position: fixed; z-index: 80; right: 20px; bottom: 20px; padding: 10px 14px; border-radius: 10px; background: #193d31; color: #fff; font-size: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.16); opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .2s; }
-    .toast.visible { opacity: 1; transform: translateY(0); }
-    .detail[hidden] { display: none; }
-    .detail { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 26px; }
-    .detail-backdrop { position: absolute; inset: 0; background: rgba(12,31,22,.7); backdrop-filter: blur(8px); }
-    .detail-panel { position: relative; display: flex; flex-direction: column; width: min(1180px, 100%); height: min(850px, calc(100dvh - 52px)); overflow: hidden; border: 1px solid rgba(255,255,255,.5); border-radius: 22px; background: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.25); }
-    .detail-header { display: flex; align-items: center; gap: 13px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
-    .detail-header .family-icon { width: 42px; height: 42px; border-radius: 12px; }
-    .detail-heading { min-width: 0; flex: 1; }
-    .detail-heading h2 { margin: 0; font-size: 20px; line-height: 1.2; letter-spacing: -.03em; overflow-wrap: anywhere; }
-    .detail-heading p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
-    .detail-close { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font-size: 23px; line-height: 1; }
-    .detail-close:hover { background: #f1f5f0; }
-    .detail-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, .85fr); flex: 1; min-height: 0; overflow: hidden; }
-    .preview-pane { display: flex; flex-direction: column; min-width: 0; padding: 20px 22px 22px; overflow-y: auto; }
-    .preview-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; font-weight: 700; }
-    .preview-head strong { color: var(--green); }
-    .preview-frame { display: grid; place-items: center; flex: 1; min-height: 360px; max-height: 530px; margin-top: 12px; padding: 24px; overflow: hidden; border: 1px solid #e4ebe2; border-radius: 16px; background-color: #f5f9f3; background-image: linear-gradient(#e8efe7 1px, transparent 1px), linear-gradient(90deg, #e8efe7 1px, transparent 1px); background-size: 28px 28px; }
-    .preview-frame img { display: block; max-width: 100%; max-height: 480px; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(20,49,29,.13)); }
-    .preview-bottom { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-top: 15px; }
-    .preview-file { min-width: 0; }
-    .preview-file strong { display: block; font-size: 13px; overflow-wrap: anywhere; }
-    .preview-file span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
-    .preview-original { flex: none; display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 0 10px; border: 1px solid #c9ddcf; border-radius: 9px; color: #216b4b; text-decoration: none; font-size: 11px; font-weight: 800; }
-    .preview-original:hover { background: #edf7ef; }
-    .preview-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
-    .preview-nav button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 37px; padding: 0 13px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: #345343; font-size: 11px; font-weight: 800; }
-    .preview-nav button:hover:not(:disabled) { background: #edf5ee; }
-    .preview-nav button:disabled { opacity: .4; cursor: default; }
-    .variant-pane { min-width: 0; padding: 22px 18px; border-left: 1px solid var(--line); background: #fbfcfa; overflow-y: auto; }
-    .variant-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .variant-head h3 { margin: 0; font-size: 16px; letter-spacing: -.025em; }
-    .variant-count { padding: 5px 7px; border-radius: 7px; background: #e8f2e9; color: #39704e; font-size: 10px; font-weight: 800; }
-    .variant-note { margin: 9px 0 18px; color: var(--muted); font-size: 11px; line-height: 1.5; }
-    .variant-group { margin-top: 18px; }
-    .variant-group h4 { display: flex; align-items: center; gap: 7px; margin: 0 0 8px; color: #425a48; font-size: 11px; font-weight: 800; }
-    .variant-group h4::before { content: ""; width: 6px; height: 6px; border-radius: 2px; background: #5ca478; }
-    .variant-group h4 small { color: #9ba99d; font-weight: 700; }
-    .variant-item { display: flex; width: 100%; align-items: center; gap: 10px; padding: 10px; margin: 5px 0; border: 1px solid #e3eae2; border-radius: 10px; background: #fff; color: var(--ink); text-align: left; }
-    .variant-item:hover { border-color: #a8c7b3; }
-    .variant-item.active { border-color: #62a67c; background: #ecf7ee; box-shadow: 0 0 0 2px #d9eedf; }
-    .variant-index { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 8px; background: #eaf0e9; color: #486b51; font-size: 11px; font-weight: 800; }
-    .variant-item.active .variant-index { background: #2b7652; color: #fff; }
-    .variant-text { display: block; min-width: 0; flex: 1; }
-    .variant-text strong { display: block; overflow: hidden; color: inherit; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
-    .variant-text small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; }
-    @media (max-width: 900px) {
-      .page-shell { padding: 0 22px; }
-      .hero-copy { padding-left: 34px; }
-      .hero-art { width: 100%; }
-      .detail-layout { grid-template-columns: minmax(0, 1.3fr) minmax(260px, .9fr); }
-      .preview-frame { min-height: 300px; }
-    }
-    @media (max-width: 700px) {
-      .page-shell { padding: 0 15px; }
-      .site-header { height: 68px; }
-      .header-note { display: none; }
-      .hero { grid-template-columns: 1fr; border-radius: 20px; }
-      .hero-copy { padding: 31px 25px 0; }
-      .hero h1 { margin-top: 13px; font-size: clamp(29px, 8.5vw, 42px); }
-      .hero p { font-size: 12px; }
-      .hero-stats { margin-top: 24px; gap: 16px; }
-      .hero-stat { min-width: 65px; padding-right: 15px; }
-      .hero-stat strong { font-size: 21px; }
-      .hero-visual { min-height: 145px; height: 145px; justify-content: flex-end; padding-right: 10px; overflow: hidden; }
-      .hero-art { width: 240px; transform: translateY(-14px); }
-      .intro-line { align-items: start; margin: 16px 2px 29px; }
-      .section-top h2 { font-size: 25px; }
-      .browser-controls { position: static; padding: 12px; border-radius: 15px; }
-      .control-row { gap: 8px; }
-      .sort-wrap select { width: 114px; padding: 0 20px 0 8px; }
-      .sort-wrap::before { display: none; }
-      .gallery { grid-template-columns: repeat(auto-fill, minmax(245px, 1fr)); gap: 13px; margin-bottom: 52px; }
-      .footer { grid-template-columns: 1fr; }
-      .detail { padding: 0; }
-      .detail-panel { width: 100%; height: 100dvh; border-radius: 0; }
-      .detail-header { padding: 13px 15px; }
-      .detail-layout { display: block; overflow-y: auto; }
-      .preview-pane { padding: 14px 15px 18px; overflow: visible; }
-      .preview-frame { min-height: 260px; height: 40dvh; max-height: 380px; }
-      .preview-frame img { max-height: 100%; }
-      .variant-pane { overflow: visible; border-top: 1px solid var(--line); border-left: 0; padding: 19px 15px 30px; }
-    }
-    @media (max-width: 420px) {
-      .search-field input { font-size: 11px; }
-      .sort-wrap select { width: 94px; font-size: 11px; }
-      .hero-stats { gap: 10px; }
-      .hero-stat { padding-right: 10px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="熊猫骑行实验室，返回顶部">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none"><circle cx="7" cy="8" r="4" fill="currentColor"/><circle cx="25" cy="8" r="4" fill="currentColor"/><circle cx="16" cy="17" r="13" fill="currentColor"/><ellipse cx="10.5" cy="15" rx="3" ry="4" fill="#143f33" transform="rotate(24 10.5 15)"/><ellipse cx="21.5" cy="15" rx="3" ry="4" fill="#143f33" transform="rotate(-24 21.5 15)"/><circle cx="11" cy="15" r="1" fill="currentColor"/><circle cx="21" cy="15" r="1" fill="currentColor"/><ellipse cx="16" cy="22" rx="2.5" ry="1.8" fill="#143f33"/></svg>
-        </span>
-        <span>熊猫骑行实验室<small>PANDA / SVG LAB</small></span>
-      </a>
-      <span class="header-note">持续收录 · AI 大模型生成能力 PK</span>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <meta
+      name="theme-color"
+      content="#f6f8f4" />
+    <title>
+      熊猫骑行实验室 · AI 大模型生成 SVG 动画能力 PK 对比 (Claude vs OpenAI vs
+      国产大模型)
+    </title>
+    <link
+      rel="icon"
+      href="/favicon.ico" />
+    <meta
+      name="description"
+      content="用一道“熊猫骑自行车”题目，直观对比各大 AI 模型生成 SVG 动画的代码能力。涵盖 OpenAI GPT, Anthropic Claude, Google Gemini 等海外模型，以及 DeepSeek, 通义千问 Qwen, 智谱 GLM, Kimi, MiniMax 等国产大模型的终极 PK 对比。" />
+    <meta
+      name="keywords"
+      content="AI大模型, 大模型对比, 大模型PK, SVG动画生成, OpenAI GPT, Claude 3.5 Sonnet, Claude Opus, DeepSeek, 通义千问 Qwen, 智谱 GLM, Kimi, MiniMax, 国产大模型对比, 代码生成, AI评测" />
+    <style>
+      :root {
+        color-scheme: light;
+        --canvas: #f6f8f4;
+        --surface: #fff;
+        --ink: #17251f;
+        --muted: #68756e;
+        --line: #e1e8e1;
+        --green: #176a55;
+        --green-dark: #143f33;
+        --focus: #44ac8b;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "PingFang SC",
+          "Microsoft YaHei",
+          sans-serif;
+        font-synthesis: none;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--canvas);
+        color: var(--ink);
+      }
+      body.dialog-open {
+        overflow: hidden;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+      a {
+        color: inherit;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .page-shell {
+        max-width: 1480px;
+        padding: 0 34px;
+        margin: 0 auto;
+      }
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 82px;
+        gap: 16px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: var(--green-dark);
+        color: white;
+        box-shadow: 0 7px 16px rgba(18, 71, 54, 0.14);
+      }
+      .brand-mark svg {
+        width: 28px;
+        height: 28px;
+      }
+      .brand small {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+      }
+      .header-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+      .header-note::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #39aa78;
+        box-shadow: 0 0 0 4px #e1f3e9;
+      }
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.16fr) minmax(260px, 0.84fr);
+        min-height: 320px;
+        overflow: hidden;
+        border-radius: 30px;
+        background: #153e33;
+        color: white;
+        box-shadow: 0 19px 50px rgba(14, 57, 42, 0.11);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        top: -330px;
+        right: 11%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+          0 0 0 90px rgba(255, 255, 255, 0.025),
+          0 0 0 180px rgba(255, 255, 255, 0.018);
+      }
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        padding: 48px 0 40px 54px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: #abdbc4;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 1px;
+        background: currentColor;
+      }
+      .hero h1 {
+        max-width: 750px;
+        margin: 18px 0 15px;
+        font-size: clamp(31px, 3.5vw, 54px);
+        line-height: 1.18;
+        letter-spacing: -0.055em;
+        font-weight: 850;
+      }
+      .hero h1 em {
+        color: #c3ed90;
+        font-style: normal;
+      }
+      .hero p {
+        max-width: 520px;
+        margin: 0;
+        color: #c7dcd1;
+        line-height: 1.7;
+        font-size: 14px;
+      }
+      .hero-stats {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-top: 31px;
+      }
+      .hero-stat {
+        min-width: 86px;
+        padding-right: 25px;
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .hero-stat:last-child {
+        border: 0;
+        padding-right: 0;
+      }
+      .hero-stat strong {
+        display: block;
+        font-size: 25px;
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+      .hero-stat span {
+        display: block;
+        margin-top: 7px;
+        color: #b9d4c7;
+        font-size: 11px;
+      }
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+      }
+      .hero-visual::after {
+        content: "";
+        position: absolute;
+        width: 270px;
+        height: 270px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(193, 236, 148, 0.22),
+          transparent 67%
+        );
+      }
+      .hero-art {
+        position: relative;
+        z-index: 1;
+        width: min(90%, 440px);
+        overflow: visible;
+        filter: drop-shadow(0 20px 22px rgba(0, 0, 0, 0.16));
+      }
+      .hero-wheel {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: wheel 12s linear infinite;
+      }
+      @keyframes wheel {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .intro-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 24px 0 34px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      .intro-line svg {
+        width: 17px;
+        height: 17px;
+        flex: none;
+        color: var(--green);
+      }
+      .section-top {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 18px;
+      }
+      .section-kicker {
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+      }
+      .section-top h2 {
+        margin: 6px 0 0;
+        font-size: 30px;
+        letter-spacing: -0.05em;
+      }
+      .result-count {
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .browser-controls {
+        position: sticky;
+        top: 10px;
+        z-index: 20;
+        padding: 16px;
+        border: 1px solid #dfe8df;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 10px 30px rgba(22, 50, 34, 0.06);
+        backdrop-filter: blur(18px);
+      }
+      .control-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .search-field {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 180px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #f8faf8;
+      }
+      .search-field > svg {
+        width: 18px;
+        height: 18px;
+        margin-left: 14px;
+        color: #77877d;
+        flex: none;
+      }
+      .search-field input {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        padding: 0 12px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .search-field input::placeholder {
+        color: #929e96;
+      }
+      .search-field:focus-within {
+        border-color: #6bad91;
+        box-shadow: 0 0 0 3px #daf1e4;
+      }
+      .search-field input:focus-visible {
+        outline: 0;
+      }
+      .search-clear {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-right: 7px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 20px;
+      }
+      .search-clear.visible {
+        display: flex;
+      }
+      .search-clear:hover {
+        background: #edf2ed;
+      }
+      .sort-wrap {
+        position: relative;
+        flex: none;
+      }
+      .sort-wrap::before {
+        content: "排序";
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        pointer-events: none;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .sort-wrap select {
+        width: 155px;
+        height: 44px;
+        padding: 0 12px 0 46px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        appearance: none;
+        background: #fff;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .sort-wrap::after {
+        content: "⌄";
+        position: absolute;
+        top: 9px;
+        right: 12px;
+        pointer-events: none;
+        color: var(--muted);
+        font-size: 19px;
+      }
+      .family-tabs {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 13px 1px 1px;
+        scrollbar-width: thin;
+      }
+      .family-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        flex: none;
+        min-height: 34px;
+        padding: 5px 10px;
+        border: 1px solid #e6ebe5;
+        border-radius: 10px;
+        background: #fff;
+        color: #5c6a61;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        transition:
+          background 0.18s,
+          color 0.18s,
+          border-color 0.18s;
+      }
+      .family-tab:hover {
+        background: #f1f6f1;
+      }
+      .family-tab.active {
+        border-color: #164f3e;
+        background: #164f3e;
+        color: white;
+      }
+      .family-tab .family-icon {
+        width: 21px;
+        height: 21px;
+        border-radius: 7px;
+      }
+      .family-tab.active .family-icon {
+        background: rgba(255, 255, 255, 0.18) !important;
+        color: white !important;
+      }
+      .family-tab small {
+        color: #9daaa1;
+        font-size: 11px;
+      }
+      .family-tab.active small {
+        color: #d1e7d8;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+        gap: 18px;
+        margin: 22px 0 76px;
+      }
+      .model-card {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid #e2e8df;
+        border-radius: 19px;
+        background: var(--surface);
+        box-shadow: 0 4px 14px rgba(28, 58, 40, 0.035);
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s,
+          border-color 0.22s;
+      }
+      .model-card:hover {
+        transform: translateY(-4px);
+        border-color: #b9d4c2;
+        box-shadow: 0 18px 35px rgba(29, 61, 39, 0.11);
+      }
+      .card-action {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        text-align: left;
+        color: inherit;
+      }
+      .card-preview {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 224px;
+        overflow: hidden;
+        background: linear-gradient(145deg, #f2f7f1, #fafbf9 65%);
+      }
+      .card-preview::before {
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        border: 1px solid rgba(24, 105, 79, 0.07);
+        border-radius: 50%;
+        box-shadow: 0 0 0 45px rgba(24, 105, 79, 0.025);
+      }
+      .card-preview img {
+        position: relative;
+        max-width: 88%;
+        max-height: 83%;
+        object-fit: contain;
+        filter: drop-shadow(0 7px 13px rgba(14, 45, 29, 0.1));
+      }
+      .preview-count {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        padding: 6px 9px;
+        border: 1px solid #dfebe0;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.92);
+        color: #385d4a;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .card-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 18px 18px 16px;
+      }
+      .card-family {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        width: fit-content;
+        color: var(--family-ink, var(--green));
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .card-family .family-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+      }
+      .card-name-row {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 9px;
+      }
+      .card-name {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.28;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        overflow-wrap: anywhere;
+      }
+      .card-arrow {
+        flex: none;
+        display: grid;
+        place-items: center;
+        width: 27px;
+        height: 27px;
+        border-radius: 8px;
+        background: #eef5ee;
+        color: var(--green);
+        font-size: 17px;
+        transition: transform 0.2s;
+      }
+      .model-card:hover .card-arrow {
+        transform: translate(2px, -2px);
+      }
+      .card-meta {
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        min-height: 29px;
+        margin-top: 14px;
+      }
+      .card-tag {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        padding: 0 8px;
+        border-radius: 7px;
+        background: #f1f5f0;
+        color: #45624e;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .card-tag.more {
+        background: #e8f3ec;
+        color: #28724e;
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 17px;
+        padding-top: 13px;
+        border-top: 1px solid #edf1ec;
+        color: #68776b;
+        font-size: 11px;
+      }
+      .card-footer strong {
+        color: #245d47;
+        font-size: 11px;
+      }
+      .empty-state {
+        grid-column: 1 / -1;
+        padding: 80px 24px;
+        border: 1px dashed #cddacf;
+        border-radius: 19px;
+        background: #fff;
+        text-align: center;
+      }
+      .empty-state-icon {
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 15px;
+        border-radius: 17px;
+        background: #ecf4ee;
+        color: var(--green);
+        font-size: 28px;
+      }
+      .empty-state h3 {
+        margin: 0 0 8px;
+        font-size: 19px;
+      }
+      .empty-state p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .empty-state button {
+        margin-top: 18px;
+        padding: 9px 15px;
+        border: 0;
+        border-radius: 9px;
+        background: var(--green);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 20px;
+        padding: 28px 0 50px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      .footer strong {
+        display: block;
+        color: var(--ink);
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+      .footer a {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        color: #345a45;
+        font-weight: 700;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .footer a img {
+        width: 86px;
+        height: 34px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 6px;
+      }
+      .toast {
+        position: fixed;
+        z-index: 80;
+        right: 20px;
+        bottom: 20px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: #193d31;
+        color: #fff;
+        font-size: 12px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .toast.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .detail[hidden] {
+        display: none;
+      }
+      .detail {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        padding: 26px;
+      }
+      .detail-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(12, 31, 22, 0.7);
+        backdrop-filter: blur(8px);
+      }
+      .detail-panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: min(1180px, 100%);
+        height: min(850px, calc(100dvh - 52px));
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 22px;
+        background: #fff;
+        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.25);
+      }
+      .detail-header {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .detail-header .family-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+      }
+      .detail-heading {
+        min-width: 0;
+        flex: 1;
+      }
+      .detail-heading h2 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
+      }
+      .detail-heading p {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .detail-close {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 23px;
+        line-height: 1;
+      }
+      .detail-close:hover {
+        background: #f1f5f0;
+      }
+      .detail-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.85fr);
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .preview-pane {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 20px 22px 22px;
+        overflow-y: auto;
+      }
+      .preview-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .preview-head strong {
+        color: var(--green);
+      }
+      .preview-frame {
+        display: grid;
+        place-items: center;
+        flex: 1;
+        min-height: 360px;
+        max-height: 530px;
+        margin-top: 12px;
+        padding: 24px;
+        overflow: hidden;
+        border: 1px solid #e4ebe2;
+        border-radius: 16px;
+        background-color: #f5f9f3;
+        background-image:
+          linear-gradient(#e8efe7 1px, transparent 1px),
+          linear-gradient(90deg, #e8efe7 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+      .preview-frame img {
+        display: block;
+        max-width: 100%;
+        max-height: 480px;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(20, 49, 29, 0.13));
+      }
+      .preview-bottom {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 15px;
+      }
+      .preview-file {
+        min-width: 0;
+      }
+      .preview-file strong {
+        display: block;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
+      .preview-file span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .preview-original {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 34px;
+        padding: 0 10px;
+        border: 1px solid #c9ddcf;
+        border-radius: 9px;
+        color: #216b4b;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .preview-original:hover {
+        background: #edf7ef;
+      }
+      .preview-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .preview-nav button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 37px;
+        padding: 0 13px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        color: #345343;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .preview-nav button:hover:not(:disabled) {
+        background: #edf5ee;
+      }
+      .preview-nav button:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .variant-pane {
+        min-width: 0;
+        padding: 22px 18px;
+        border-left: 1px solid var(--line);
+        background: #fbfcfa;
+        overflow-y: auto;
+      }
+      .variant-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .variant-head h3 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: -0.025em;
+      }
+      .variant-count {
+        padding: 5px 7px;
+        border-radius: 7px;
+        background: #e8f2e9;
+        color: #39704e;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .variant-note {
+        margin: 9px 0 18px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .variant-group {
+        margin-top: 18px;
+      }
+      .variant-group h4 {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 8px;
+        color: #425a48;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .variant-group h4::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 2px;
+        background: #5ca478;
+      }
+      .variant-group h4 small {
+        color: #9ba99d;
+        font-weight: 700;
+      }
+      .variant-item {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #e3eae2;
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        text-align: left;
+      }
+      .variant-item:hover {
+        border-color: #a8c7b3;
+      }
+      .variant-item.active {
+        border-color: #62a67c;
+        background: #ecf7ee;
+        box-shadow: 0 0 0 2px #d9eedf;
+      }
+      .variant-index {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: #eaf0e9;
+        color: #486b51;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .variant-item.active .variant-index {
+        background: #2b7652;
+        color: #fff;
+      }
+      .variant-text {
+        display: block;
+        min-width: 0;
+        flex: 1;
+      }
+      .variant-text strong {
+        display: block;
+        overflow: hidden;
+        color: inherit;
+        font-size: 11px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .variant-text small {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 10px;
+      }
+      @media (max-width: 900px) {
+        .page-shell {
+          padding: 0 22px;
+        }
+        .hero-copy {
+          padding-left: 34px;
+        }
+        .hero-art {
+          width: 100%;
+        }
+        .detail-layout {
+          grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.9fr);
+        }
+        .preview-frame {
+          min-height: 300px;
+        }
+      }
+      @media (max-width: 700px) {
+        .page-shell {
+          padding: 0 15px;
+        }
+        .site-header {
+          height: 68px;
+        }
+        .header-note {
+          display: none;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          border-radius: 20px;
+        }
+        .hero-copy {
+          padding: 31px 25px 0;
+        }
+        .hero h1 {
+          margin-top: 13px;
+          font-size: clamp(29px, 8.5vw, 42px);
+        }
+        .hero p {
+          font-size: 12px;
+        }
+        .hero-stats {
+          margin-top: 24px;
+          gap: 16px;
+        }
+        .hero-stat {
+          min-width: 65px;
+          padding-right: 15px;
+        }
+        .hero-stat strong {
+          font-size: 21px;
+        }
+        .hero-visual {
+          min-height: 145px;
+          height: 145px;
+          justify-content: flex-end;
+          padding-right: 10px;
+          overflow: hidden;
+        }
+        .hero-art {
+          width: 240px;
+          transform: translateY(-14px);
+        }
+        .intro-line {
+          align-items: start;
+          margin: 16px 2px 29px;
+        }
+        .section-top h2 {
+          font-size: 25px;
+        }
+        .browser-controls {
+          position: static;
+          padding: 12px;
+          border-radius: 15px;
+        }
+        .control-row {
+          gap: 8px;
+        }
+        .sort-wrap select {
+          width: 114px;
+          padding: 0 20px 0 8px;
+        }
+        .sort-wrap::before {
+          display: none;
+        }
+        .gallery {
+          grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+          gap: 13px;
+          margin-bottom: 52px;
+        }
+        .footer {
+          grid-template-columns: 1fr;
+        }
+        .detail {
+          padding: 0;
+        }
+        .detail-panel {
+          width: 100%;
+          height: 100dvh;
+          border-radius: 0;
+        }
+        .detail-header {
+          padding: 13px 15px;
+        }
+        .detail-layout {
+          display: block;
+          overflow-y: auto;
+        }
+        .preview-pane {
+          padding: 14px 15px 18px;
+          overflow: visible;
+        }
+        .preview-frame {
+          min-height: 260px;
+          height: 40dvh;
+          max-height: 380px;
+        }
+        .preview-frame img {
+          max-height: 100%;
+        }
+        .variant-pane {
+          overflow: visible;
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding: 19px 15px 30px;
+        }
+      }
+      @media (max-width: 420px) {
+        .search-field input {
+          font-size: 11px;
+        }
+        .sort-wrap select {
+          width: 94px;
+          font-size: 11px;
+        }
+        .hero-stats {
+          gap: 10px;
+        }
+        .hero-stat {
+          padding-right: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a
+          class="brand"
+          href="#top"
+          aria-label="熊猫骑行实验室，返回顶部">
+          <span
+            class="brand-mark"
+            aria-hidden="true">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none">
+              <circle
+                cx="7"
+                cy="8"
+                r="4"
+                fill="currentColor" />
+              <circle
+                cx="25"
+                cy="8"
+                r="4"
+                fill="currentColor" />
+              <circle
+                cx="16"
+                cy="17"
+                r="13"
+                fill="currentColor" />
+              <ellipse
+                cx="10.5"
+                cy="15"
+                rx="3"
+                ry="4"
+                fill="#143f33"
+                transform="rotate(24 10.5 15)" />
+              <ellipse
+                cx="21.5"
+                cy="15"
+                rx="3"
+                ry="4"
+                fill="#143f33"
+                transform="rotate(-24 21.5 15)" />
+              <circle
+                cx="11"
+                cy="15"
+                r="1"
+                fill="currentColor" />
+              <circle
+                cx="21"
+                cy="15"
+                r="1"
+                fill="currentColor" />
+              <ellipse
+                cx="16"
+                cy="22"
+                rx="2.5"
+                ry="1.8"
+                fill="#143f33" />
+            </svg>
+          </span>
+          <span>熊猫骑行实验室<small>PANDA / SVG LAB</small></span>
+        </a>
+        <span class="header-note">持续收录 · AI 大模型生成能力 PK</span>
+      </header>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <span class="eyebrow">ONE PROMPT · MANY RIDES</span>
-          <h1 id="hero-title">同一道题，看看模型<br>各自<em>怎么骑。</em></h1>
-          <p>用“熊猫骑自行车”作为统一主题，直观对比 Claude、OpenAI 与各大国产 AI 模型生成 SVG 代码与动画的能力。每个型号归为一张卡片，档位与多次生成都能在里面切换。</p>
-          <div class="hero-stats" aria-label="画廊统计">
-            <div class="hero-stat"><strong id="stat-models">—</strong><span>个模型</span></div>
-            <div class="hero-stat"><strong id="stat-works">—</strong><span>份作品</span></div>
-            <div class="hero-stat"><strong id="stat-families">—</strong><span>个模型系列</span></div>
+      <main id="top">
+        <section
+          class="hero"
+          aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <span class="eyebrow">ONE PROMPT · MANY RIDES</span>
+            <h1 id="hero-title">
+              同一道题，看看模型<br />各自<em>怎么骑。</em>
+            </h1>
+            <p>
+              用“熊猫骑自行车”作为统一主题，直观对比 Claude、OpenAI 与各大国产
+              AI 模型生成 SVG
+              代码与动画的能力。每个型号归为一张卡片，档位与多次生成都能在里面切换。
+            </p>
+            <div
+              class="hero-stats"
+              aria-label="画廊统计">
+              <div class="hero-stat">
+                <strong id="stat-models">—</strong><span>个模型</span>
+              </div>
+              <div class="hero-stat">
+                <strong id="stat-works">—</strong><span>份作品</span>
+              </div>
+              <div class="hero-stat">
+                <strong id="stat-families">—</strong><span>个模型系列</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <svg class="hero-art" viewBox="0 0 470 300" fill="none">
-            <path d="M49 243h384" stroke="#99c8a2" stroke-opacity=".45" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 11"/>
-            <g class="hero-wheel" stroke="#ddf5e4" stroke-width="3"><circle cx="119" cy="207" r="70"/><path d="M119 138v138M50 207h138M69 157l100 100M169 157 69 257" stroke-opacity=".23"/></g>
-            <g class="hero-wheel" stroke="#ddf5e4" stroke-width="3"><circle cx="350" cy="207" r="70"/><path d="M350 138v138M281 207h138M300 157l100 100M400 157 300 257" stroke-opacity=".23"/></g>
-            <path d="m119 207 76-106 70 106H119l77-105 58 19 96 86-68-117h-41" stroke="#c3ed90" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M187 91h46M271 82h34" stroke="#f6fff8" stroke-width="9" stroke-linecap="round"/>
-            <path d="M264 207h30" stroke="#ddf5e4" stroke-width="9" stroke-linecap="round"/>
-            <path d="m197 111 45 44-24 43" stroke="#f6fff8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="m249 155 33 29-17 34" stroke="#f6fff8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M170 124c14-29 42-47 75-43 27 3 40 20 46 37l-28 24-76 17-17-35Z" fill="#f6fff8"/>
-            <path d="m178 137-36 40M273 127l31 17" stroke="#263e35" stroke-width="18" stroke-linecap="round"/>
-            <circle cx="225" cy="69" r="48" fill="#f6fff8"/>
-            <circle cx="188" cy="34" r="19" fill="#263e35"/><circle cx="262" cy="34" r="19" fill="#263e35"/>
-            <ellipse cx="208" cy="64" rx="14" ry="19" fill="#263e35" transform="rotate(20 208 64)"/><ellipse cx="242" cy="64" rx="14" ry="19" fill="#263e35" transform="rotate(-20 242 64)"/>
-            <circle cx="210" cy="65" r="4" fill="#f6fff8"/><circle cx="240" cy="65" r="4" fill="#f6fff8"/>
-            <ellipse cx="225" cy="91" rx="8" ry="6" fill="#263e35"/>
-            <path d="M284 113c17-5 24-16 26-26" stroke="#c3ed90" stroke-width="6" stroke-linecap="round"/>
-            <path d="M330 49h25M343 36v26M382 94h17M390 86v17" stroke="#c3ed90" stroke-width="3" stroke-linecap="round" opacity=".72"/>
+          <div
+            class="hero-visual"
+            aria-hidden="true">
+            <svg
+              class="hero-art"
+              viewBox="0 0 470 300"
+              fill="none">
+              <path
+                d="M49 243h384"
+                stroke="#99c8a2"
+                stroke-opacity=".45"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-dasharray="3 11" />
+              <g
+                class="hero-wheel"
+                stroke="#ddf5e4"
+                stroke-width="3">
+                <circle
+                  cx="119"
+                  cy="207"
+                  r="70" />
+                <path
+                  d="M119 138v138M50 207h138M69 157l100 100M169 157 69 257"
+                  stroke-opacity=".23" />
+              </g>
+              <g
+                class="hero-wheel"
+                stroke="#ddf5e4"
+                stroke-width="3">
+                <circle
+                  cx="350"
+                  cy="207"
+                  r="70" />
+                <path
+                  d="M350 138v138M281 207h138M300 157l100 100M400 157 300 257"
+                  stroke-opacity=".23" />
+              </g>
+              <path
+                d="m119 207 76-106 70 106H119l77-105 58 19 96 86-68-117h-41"
+                stroke="#c3ed90"
+                stroke-width="11"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path
+                d="M187 91h46M271 82h34"
+                stroke="#f6fff8"
+                stroke-width="9"
+                stroke-linecap="round" />
+              <path
+                d="M264 207h30"
+                stroke="#ddf5e4"
+                stroke-width="9"
+                stroke-linecap="round" />
+              <path
+                d="m197 111 45 44-24 43"
+                stroke="#f6fff8"
+                stroke-width="13"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path
+                d="m249 155 33 29-17 34"
+                stroke="#f6fff8"
+                stroke-width="12"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path
+                d="M170 124c14-29 42-47 75-43 27 3 40 20 46 37l-28 24-76 17-17-35Z"
+                fill="#f6fff8" />
+              <path
+                d="m178 137-36 40M273 127l31 17"
+                stroke="#263e35"
+                stroke-width="18"
+                stroke-linecap="round" />
+              <circle
+                cx="225"
+                cy="69"
+                r="48"
+                fill="#f6fff8" />
+              <circle
+                cx="188"
+                cy="34"
+                r="19"
+                fill="#263e35" />
+              <circle
+                cx="262"
+                cy="34"
+                r="19"
+                fill="#263e35" />
+              <ellipse
+                cx="208"
+                cy="64"
+                rx="14"
+                ry="19"
+                fill="#263e35"
+                transform="rotate(20 208 64)" />
+              <ellipse
+                cx="242"
+                cy="64"
+                rx="14"
+                ry="19"
+                fill="#263e35"
+                transform="rotate(-20 242 64)" />
+              <circle
+                cx="210"
+                cy="65"
+                r="4"
+                fill="#f6fff8" />
+              <circle
+                cx="240"
+                cy="65"
+                r="4"
+                fill="#f6fff8" />
+              <ellipse
+                cx="225"
+                cy="91"
+                rx="8"
+                ry="6"
+                fill="#263e35" />
+              <path
+                d="M284 113c17-5 24-16 26-26"
+                stroke="#c3ed90"
+                stroke-width="6"
+                stroke-linecap="round" />
+              <path
+                d="M330 49h25M343 36v26M382 94h17M390 86v17"
+                stroke="#c3ed90"
+                stroke-width="3"
+                stroke-linecap="round"
+                opacity=".72" />
+            </svg>
+          </div>
+        </section>
+
+        <p class="intro-line">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true">
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke="currentColor"
+              stroke-width="1.8" />
+            <path
+              d="M12 10.5v5.5M12 7.5h.01"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round" />
           </svg>
-        </div>
-      </section>
+          所有作品均为个人实测。运行环境、额度与上下文可能影响结果；页面中的日期表示文件更新时间，适合欣赏与对照，不作为严格排名。
+        </p>
 
-      <p class="intro-line">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 10.5v5.5M12 7.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        所有作品均为个人实测。运行环境、额度与上下文可能影响结果；页面中的日期表示文件更新时间，适合欣赏与对照，不作为严格排名。
-      </p>
-
-      <section id="works" aria-labelledby="gallery-title">
-        <div class="section-top">
-          <div><span class="section-kicker">EXPLORE THE COLLECTION</span><h2 id="gallery-title">浏览作品</h2></div>
-          <p id="result-count" class="result-count" aria-live="polite">正在加载作品…</p>
-        </div>
-        <div class="browser-controls">
-          <div class="control-row">
-            <label class="search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5" stroke="currentColor" stroke-width="1.9"/><path d="m16 16 4.4 4.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
-              <input id="search" type="search" placeholder="搜索模型、档位或 SVG 文件名" aria-label="搜索模型、档位或 SVG 文件名" autocomplete="off">
-              <button id="search-clear" class="search-clear" type="button" aria-label="清空搜索">×</button>
-            </label>
-            <label class="sort-wrap"><span class="visually-hidden">排序方式</span><select id="sort" aria-label="排序方式"><option value="recent">最近更新</option><option value="name">模型名称</option><option value="works">作品数量</option></select></label>
+        <section
+          id="works"
+          aria-labelledby="gallery-title">
+          <div class="section-top">
+            <div>
+              <span class="section-kicker">EXPLORE THE COLLECTION</span>
+              <h2 id="gallery-title">浏览作品</h2>
+            </div>
+            <p
+              id="result-count"
+              class="result-count"
+              aria-live="polite">
+              正在加载作品…
+            </p>
           </div>
-          <nav id="family-tabs" class="family-tabs" aria-label="按模型系列筛选"></nav>
-        </div>
-        <div id="gallery" class="gallery"></div>
-      </section>
-    </main>
-
-    <footer class="footer">
-        <div><strong>关于这场大模型评测实验</strong>同一个提示词，对比 OpenAI GPT、Claude、DeepSeek、Qwen 等模型生成代码与画面的多种思路。点击型号卡片，可查看它的配置和每次生成。</div>
-      <a href="http://www.cduyzh.top" target="_blank" rel="noopener noreferrer" aria-label="访问个人网站 cduyzh.top"><img src="ad_banner.png" alt="个人网站横幅" loading="lazy"><span>更多个人作品 ↗</span></a>
-    </footer>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <div id="detail" class="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden>
-    <div id="detail-backdrop" class="detail-backdrop"></div>
-    <div class="detail-panel">
-      <div class="detail-header">
-        <span id="detail-icon"></span>
-        <div class="detail-heading"><h2 id="detail-title"></h2><p id="detail-subtitle"></p></div>
-        <button id="detail-close" class="detail-close" type="button" aria-label="关闭预览">×</button>
-      </div>
-      <div class="detail-layout">
-        <div class="preview-pane">
-          <div class="preview-head"><span>SVG 动画预览</span><strong id="preview-position"></strong></div>
-          <div class="preview-frame"><img id="preview-img" alt=""></div>
-          <div class="preview-bottom">
-            <div class="preview-file"><strong id="preview-filename"></strong><span id="preview-date"></span></div>
-            <a id="preview-original" class="preview-original" href="#" target="_blank" rel="noopener noreferrer">打开原始 SVG ↗</a>
+          <div class="browser-controls">
+            <div class="control-row">
+              <label class="search-field">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true">
+                  <circle
+                    cx="10.8"
+                    cy="10.8"
+                    r="6.5"
+                    stroke="currentColor"
+                    stroke-width="1.9" />
+                  <path
+                    d="m16 16 4.4 4.4"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                    stroke-linecap="round" />
+                </svg>
+                <input
+                  id="search"
+                  type="search"
+                  placeholder="搜索模型、档位或 SVG 文件名"
+                  aria-label="搜索模型、档位或 SVG 文件名"
+                  autocomplete="off" />
+                <button
+                  id="search-clear"
+                  class="search-clear"
+                  type="button"
+                  aria-label="清空搜索">
+                  ×
+                </button>
+              </label>
+              <label class="sort-wrap"
+                ><span class="visually-hidden">排序方式</span
+                ><select
+                  id="sort"
+                  aria-label="排序方式">
+                  <option value="recent">最近更新</option>
+                  <option value="name">模型名称</option>
+                  <option value="works">作品数量</option>
+                </select></label
+              >
+            </div>
+            <nav
+              id="family-tabs"
+              class="family-tabs"
+              aria-label="按模型系列筛选"></nav>
           </div>
-          <div class="preview-nav"><button id="preview-prev" type="button">← 上一份</button><button id="preview-next" type="button">下一份 →</button></div>
+          <div
+            id="gallery"
+            class="gallery"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <strong>关于这场大模型评测实验</strong>同一个提示词，对比 OpenAI
+          GPT、Claude、DeepSeek、Qwen
+          等模型生成代码与画面的多种思路。点击型号卡片，可查看它的配置和每次生成。
         </div>
-        <aside class="variant-pane" aria-label="该模型的生成记录">
-          <div class="variant-head"><h3>生成记录</h3><span id="variant-count" class="variant-count"></span></div>
-          <p class="variant-note">按生成配置归类，可逐份切换。“2”等重复序号表示同一配置的再次生成。</p>
-          <div id="variant-list"></div>
-        </aside>
+        <a
+          href="http://www.cduyzh.top"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="访问个人网站 cduyzh.top"
+          ><img
+            src="ad_banner.png"
+            alt="个人网站横幅"
+            loading="lazy" /><span>更多个人作品 ↗</span></a
+        >
+      </footer>
+    </div>
+
+    <div
+      id="toast"
+      class="toast"
+      role="status"
+      aria-live="polite"></div>
+    <div
+      id="detail"
+      class="detail"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="detail-title"
+      hidden>
+      <div
+        id="detail-backdrop"
+        class="detail-backdrop"></div>
+      <div class="detail-panel">
+        <div class="detail-header">
+          <span id="detail-icon"></span>
+          <div class="detail-heading">
+            <h2 id="detail-title"></h2>
+            <p id="detail-subtitle"></p>
+          </div>
+          <button
+            id="detail-close"
+            class="detail-close"
+            type="button"
+            aria-label="关闭预览">
+            ×
+          </button>
+        </div>
+        <div class="detail-layout">
+          <div class="preview-pane">
+            <div class="preview-head">
+              <span>SVG 动画预览</span><strong id="preview-position"></strong>
+            </div>
+            <div class="preview-frame">
+              <img
+                id="preview-img"
+                alt="" />
+            </div>
+            <div class="preview-bottom">
+              <div class="preview-file">
+                <strong id="preview-filename"></strong
+                ><span id="preview-date"></span>
+              </div>
+              <a
+                id="preview-original"
+                class="preview-original"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >打开原始 SVG ↗</a
+              >
+            </div>
+            <div class="preview-nav">
+              <button
+                id="preview-prev"
+                type="button">
+                ← 上一份</button
+              ><button
+                id="preview-next"
+                type="button">
+                下一份 →
+              </button>
+            </div>
+          </div>
+          <aside
+            class="variant-pane"
+            aria-label="该模型的生成记录">
+            <div class="variant-head">
+              <h3>生成记录</h3>
+              <span
+                id="variant-count"
+                class="variant-count"></span>
+            </div>
+            <p class="variant-note">
+              按生成配置归类，可逐份切换。“2”等重复序号表示同一配置的再次生成。
+            </p>
+            <div id="variant-list"></div>
+          </aside>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    const familyMeta = {
-      GPT: { color: '#e5f4eb', ink: '#237653', glyph: '<circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14M7 7l10 10M17 7 7 17"/>' },
-      DeepSeek: { color: '#e7efff', ink: '#3564b6', glyph: '<path d="M3 15c3-5 6-5 9 0s6 5 9 0M3 9c3-5 6-5 9 0s6 5 9 0"/>' },
-      GLM: { color: '#eee9fb', ink: '#6e54a8', glyph: '<path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z"/>' },
-      Gemini: { color: '#e8f4fc', ink: '#4088ad', glyph: '<path d="M12 2c1.3 6.1 3.9 8.7 10 10-6.1 1.3-8.7 3.9-10 10C10.7 15.9 8.1 13.3 2 12 8.1 10.7 10.7 8.1 12 2Z"/>' },
-      MiniMax: { color: '#fff0e6', ink: '#bd6a37', glyph: '<path d="M3 19V6l4.5 7L12 6l4.5 7L21 6v13"/>' },
-      Qwen: { color: '#f1ebff', ink: '#8059ad', glyph: '<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/>' },
-      Seed: { color: '#e6f4df', ink: '#5a8a36', glyph: '<path d="M12 21V11M12 15C7 15 4 12 4 6c5 0 8 2 8 7M12 13c0-5 3-7 8-7 0 6-3 9-8 9"/>' },
-      Kimi: { color: '#fcecf4', ink: '#ae5b87', glyph: '<path d="M17.5 19A8 8 0 0 1 15 3.5 8.3 8.3 0 1 0 17.5 19Z"/>' },
-      Step: { color: '#e5f6f3', ink: '#258b83', glyph: '<path d="M4 18h5v-5h5V8h6M17 5l3 3-3 3"/>' },
-      Claude: { color: '#f9ece7', ink: '#ac6854', glyph: '<path d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/>' },
-      Other: { color: '#eef1ee', ink: '#68776c', glyph: '<circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/>' }
-    };
-    const familyOrder = ['GPT', 'DeepSeek', 'GLM', 'Gemini', 'MiniMax', 'Qwen', 'Seed', 'Kimi', 'Step', 'Claude'];
-    const $ = id => document.getElementById(id);
-    const state = { items: [], groups: [], family: 'all', search: '', sort: 'recent', openKey: null, selectedName: null, lastFocus: null, loaded: false };
-    let lastPayload = '';
-    let toastTimer;
-
-    function node(tag, className, value) {
-      const element = document.createElement(tag);
-      if (className) element.className = className;
-      if (value !== undefined) element.textContent = value;
-      return element;
-    }
-    function familyIcon(family) {
-      const meta = familyMeta[family] || familyMeta.Other;
-      const icon = node('span', 'family-icon');
-      icon.style.background = meta.color;
-      icon.style.color = meta.ink;
-      icon.setAttribute('aria-hidden', 'true');
-      icon.innerHTML = `<svg viewBox="0 0 24 24" width="68%" height="68%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${meta.glyph}</svg>`;
-      icon.style.display = 'inline-grid';
-      icon.style.placeItems = 'center';
-      return icon;
-    }
-    function assetUrl(item) { return `/${encodeURIComponent(item.name)}?v=${encodeURIComponent(item.mtime || item.date || '')}`; }
-    function formatDate(value) { return value ? String(value).replaceAll('-', '.') : '日期未知'; }
-    function familyRank(family) { const index = familyOrder.indexOf(family); return index === -1 ? 99 : index; }
-    function groupKey(item) { return `${item.family}\u0000${item.model}`; }
-    function latestTime(item) { return Number(item.mtime) || Date.parse(item.date || '') / 1000 || 0; }
-    function showToast(message) {
-      const toast = $('toast');
-      toast.textContent = message;
-      toast.classList.add('visible');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('visible'), 2800);
-    }
-    function buildGroups(items) {
-      const map = new Map();
-      for (const item of items) {
-        const key = groupKey(item);
-        if (!map.has(key)) map.set(key, { key, family: item.family, model: item.model, items: [] });
-        map.get(key).items.push(item);
-      }
-      return [...map.values()].map(group => {
-        group.items.sort((a, b) => latestTime(b) - latestTime(a) || Number(b.run || 1) - Number(a.run || 1) || a.name.localeCompare(b.name, 'zh-CN'));
-        group.latest = group.items[0];
-        group.settings = [...new Set(group.items.map(item => item.setting || '未标注档位'))];
-        return group;
-      });
-    }
-    function setStats() {
-      $('stat-models').textContent = state.groups.length;
-      $('stat-works').textContent = state.items.length;
-      $('stat-families').textContent = new Set(state.groups.map(group => group.family)).size;
-    }
-    function renderFamilyTabs() {
-      const tabs = $('family-tabs');
-      tabs.replaceChildren();
-      const counts = new Map();
-      for (const group of state.groups) counts.set(group.family, (counts.get(group.family) || 0) + 1);
-      const families = [...counts.keys()].sort((a, b) => familyRank(a) - familyRank(b) || a.localeCompare(b, 'zh-CN'));
-      const makeTab = (family, label, count) => {
-        const button = node('button', `family-tab${state.family === family ? ' active' : ''}`);
-        button.type = 'button';
-        button.setAttribute('aria-pressed', String(state.family === family));
-        if (family !== 'all') button.appendChild(familyIcon(family));
-        button.append(node('span', '', label), node('small', '', String(count)));
-        button.addEventListener('click', () => { state.family = family; renderFamilyTabs(); renderGallery(); });
-        tabs.appendChild(button);
+    <script>
+      const familyMeta = {
+        GPT: {
+          color: "#e5f4eb",
+          ink: "#237653",
+          glyph:
+            '<circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14M7 7l10 10M17 7 7 17"/>',
+        },
+        DeepSeek: {
+          color: "#e7efff",
+          ink: "#3564b6",
+          glyph:
+            '<path d="M3 15c3-5 6-5 9 0s6 5 9 0M3 9c3-5 6-5 9 0s6 5 9 0"/>',
+        },
+        GLM: {
+          color: "#eee9fb",
+          ink: "#6e54a8",
+          glyph:
+            '<path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3L12 3Z"/>',
+        },
+        Gemini: {
+          color: "#e8f4fc",
+          ink: "#4088ad",
+          glyph:
+            '<path d="M12 2c1.3 6.1 3.9 8.7 10 10-6.1 1.3-8.7 3.9-10 10C10.7 15.9 8.1 13.3 2 12 8.1 10.7 10.7 8.1 12 2Z"/>',
+        },
+        MiniMax: {
+          color: "#fff0e6",
+          ink: "#bd6a37",
+          glyph: '<path d="M3 19V6l4.5 7L12 6l4.5 7L21 6v13"/>',
+        },
+        Qwen: {
+          color: "#f1ebff",
+          ink: "#8059ad",
+          glyph:
+            '<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/>',
+        },
+        Seed: {
+          color: "#e6f4df",
+          ink: "#5a8a36",
+          glyph:
+            '<path d="M12 21V11M12 15C7 15 4 12 4 6c5 0 8 2 8 7M12 13c0-5 3-7 8-7 0 6-3 9-8 9"/>',
+        },
+        Kimi: {
+          color: "#fcecf4",
+          ink: "#ae5b87",
+          glyph: '<path d="M17.5 19A8 8 0 0 1 15 3.5 8.3 8.3 0 1 0 17.5 19Z"/>',
+        },
+        Step: {
+          color: "#e5f6f3",
+          ink: "#258b83",
+          glyph: '<path d="M4 18h5v-5h5V8h6M17 5l3 3-3 3"/>',
+        },
+        Claude: {
+          color: "#f9ece7",
+          ink: "#ac6854",
+          glyph: '<path d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/>',
+        },
+        Other: {
+          color: "#eef1ee",
+          ink: "#68776c",
+          glyph: '<circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/>',
+        },
       };
-      makeTab('all', '全部模型', state.groups.length);
-      for (const family of families) makeTab(family, family, counts.get(family));
-    }
-    function visibleGroups() {
-      const query = state.search.trim().toLocaleLowerCase();
-      const groups = state.groups.filter(group => {
-        if (state.family !== 'all' && group.family !== state.family) return false;
-        if (!query) return true;
-        return [group.family, group.model, ...group.items.flatMap(item => [item.name, item.setting || ''])].some(value => String(value).toLocaleLowerCase().includes(query));
-      });
-      groups.sort((a, b) => {
-        if (state.sort === 'name') return a.model.localeCompare(b.model, 'zh-CN');
-        if (state.sort === 'works') return b.items.length - a.items.length || latestTime(b.latest) - latestTime(a.latest);
-        return latestTime(b.latest) - latestTime(a.latest) || a.model.localeCompare(b.model, 'zh-CN');
-      });
-      return groups;
-    }
-    function renderGallery() {
-      const groups = visibleGroups();
-      const gallery = $('gallery');
-      gallery.replaceChildren();
-      const works = groups.reduce((sum, group) => sum + group.items.length, 0);
-      $('result-count').textContent = `${groups.length} 个模型 · ${works} 份作品`;
-      if (!groups.length) {
-        const empty = node('div', 'empty-state');
-        empty.append(node('div', 'empty-state-icon', '⌕'), node('h3', '', state.loaded ? '没有找到匹配的作品' : '正在载入作品'), node('p', '', state.loaded ? '试试其他关键词或切换模型系列。' : '请稍候…'));
-        if (state.loaded) {
-          const reset = node('button', '', '清空筛选');
-          reset.type = 'button';
-          reset.addEventListener('click', () => { state.family = 'all'; state.search = ''; $('search').value = ''; $('search-clear').classList.remove('visible'); renderFamilyTabs(); renderGallery(); });
-          empty.appendChild(reset);
-        }
-        gallery.appendChild(empty);
-        return;
-      }
-      const fragment = document.createDocumentFragment();
-      for (const group of groups) {
-        const card = node('article', 'model-card');
-        const button = node('button', 'card-action');
-        button.type = 'button';
-        button.setAttribute('aria-label', `查看 ${group.model} 的 ${group.items.length} 份作品`);
-        button.addEventListener('click', () => openDetail(group.key, button));
-        const preview = node('div', 'card-preview');
-        const img = node('img');
-        img.src = assetUrl(group.latest);
-        img.alt = `${group.model} 的 SVG 作品预览`;
-        img.loading = 'lazy';
-        preview.append(img, node('span', 'preview-count', `${group.items.length} 份作品`));
-        const content = node('div', 'card-content');
-        const family = node('span', 'card-family');
-        family.style.setProperty('--family-ink', (familyMeta[group.family] || familyMeta.Other).ink);
-        family.append(familyIcon(group.family), node('span', '', group.family));
-        const nameRow = node('div', 'card-name-row');
-        nameRow.append(node('h3', 'card-name', group.model), node('span', 'card-arrow', '↗'));
-        content.append(family, nameRow, node('div', 'card-meta', `${group.settings.length} 种配置 · 文件更新于 ${formatDate(group.latest.date)}`));
-        const tags = node('div', 'card-tags');
-        for (const setting of group.settings.slice(0, 3)) {
-          const count = group.items.filter(item => (item.setting || '未标注档位') === setting).length;
-          tags.appendChild(node('span', 'card-tag', count > 1 ? `${setting} ×${count}` : setting));
-        }
-        if (group.settings.length > 3) tags.appendChild(node('span', 'card-tag more', `+${group.settings.length - 3} 档`));
-        content.appendChild(tags);
-        const footer = node('div', 'card-footer');
-        footer.append(node('span', '', '按配置查看生成记录'), node('strong', '', '展开作品 →'));
-        content.appendChild(footer);
-        button.append(preview, content);
-        card.appendChild(button);
-        fragment.appendChild(card);
-      }
-      gallery.appendChild(fragment);
-    }
-    function activeGroup() { return state.groups.find(group => group.key === state.openKey); }
-    function openDetail(key, trigger) {
-      state.openKey = key;
-      state.selectedName = null;
-      state.lastFocus = trigger;
-      renderDetail();
-      $('detail').hidden = false;
-      document.body.classList.add('dialog-open');
-      $('detail-close').focus();
-    }
-    function closeDetail() {
-      $('detail').hidden = true;
-      document.body.classList.remove('dialog-open');
-      state.openKey = null;
-      state.selectedName = null;
-      if (state.lastFocus && state.lastFocus.isConnected) state.lastFocus.focus();
-    }
-    function selectItem(name) {
-      const focusVariant = document.activeElement?.classList.contains('variant-item');
-      state.selectedName = name;
-      renderDetail();
-      if (focusVariant) $('variant-list').querySelector('.variant-item.active')?.focus();
-    }
-    function moveItem(offset) {
-      const group = activeGroup();
-      if (!group) return;
-      const current = Math.max(0, group.items.findIndex(item => item.name === state.selectedName));
-      const next = current + offset;
-      if (next >= 0 && next < group.items.length) selectItem(group.items[next].name);
-    }
-    function renderDetail() {
-      const group = activeGroup();
-      if (!group) { if (!$('detail').hidden) closeDetail(); return; }
-      const item = group.items.find(entry => entry.name === state.selectedName) || group.latest;
-      state.selectedName = item.name;
-      const index = group.items.findIndex(entry => entry.name === item.name);
-      $('detail-icon').replaceChildren(familyIcon(group.family));
-      $('detail-title').textContent = group.model;
-      $('detail-subtitle').textContent = `${group.family} · ${group.settings.length} 种配置 · ${group.items.length} 份作品`;
-      $('preview-position').textContent = `第 ${index + 1} / ${group.items.length} 份`;
-      $('preview-img').src = assetUrl(item);
-      $('preview-img').alt = `${item.name} 动画预览`;
-      $('preview-filename').textContent = item.name;
-      $('preview-date').textContent = `配置：${item.setting || '未标注'} · 文件更新于 ${formatDate(item.date)}`;
-      $('preview-original').href = assetUrl(item);
-      $('preview-prev').disabled = index === 0;
-      $('preview-next').disabled = index === group.items.length - 1;
-      $('variant-count').textContent = `${group.items.length} 份`;
-      const list = $('variant-list');
-      list.replaceChildren();
-      const bySetting = new Map();
-      for (const entry of group.items) {
-        const setting = entry.setting || '未标注档位';
-        if (!bySetting.has(setting)) bySetting.set(setting, []);
-        bySetting.get(setting).push(entry);
-      }
-      for (const [setting, entries] of bySetting) {
-        const section = node('section', 'variant-group');
-        const heading = node('h4', '', setting);
-        heading.appendChild(node('small', '', `· ${entries.length} 份`));
-        section.appendChild(heading);
-        for (const entry of entries) {
-          const button = node('button', `variant-item${entry.name === item.name ? ' active' : ''}`);
-          button.type = 'button';
-          button.setAttribute('aria-pressed', String(entry.name === item.name));
-          button.setAttribute('aria-label', `预览 ${entry.name}`);
-          button.addEventListener('click', () => selectItem(entry.name));
-          const runLabel = entries.length > 1 || Number(entry.run || 1) > 1 ? `第 ${entry.run || 1} 次` : '作品';
-          const copy = node('span', 'variant-text');
-          copy.append(node('strong', '', entry.name), node('small', '', `${runLabel} · 更新于 ${formatDate(entry.date)}`));
-          button.append(node('span', 'variant-index', String(entry.run || 1).padStart(2, '0')), copy);
-          section.appendChild(button);
-        }
-        list.appendChild(section);
-      }
-    }
-    async function fetchSvgs() {
-      try {
-        const response = await fetch('/api/svgs', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const payload = await response.text();
-        if (payload === lastPayload) return;
-        const items = JSON.parse(payload);
-        if (!Array.isArray(items)) throw new Error('作品列表格式错误');
-        state.items = items.filter(item => item && typeof item.name === 'string' && typeof item.model === 'string' && typeof item.family === 'string');
-        state.groups = buildGroups(state.items);
-        if (state.family !== 'all' && !state.groups.some(group => group.family === state.family)) state.family = 'all';
-        const wasLoaded = state.loaded;
-        state.loaded = true;
-        lastPayload = payload;
-        setStats();
-        renderFamilyTabs();
-        renderGallery();
-        if (state.openKey) renderDetail();
-        if (wasLoaded) showToast('作品列表已更新');
-      } catch (error) {
-        console.error('获取 SVG 失败：', error);
-        if (!state.loaded) {
-          $('result-count').textContent = '暂时无法加载作品';
-          $('gallery').replaceChildren();
-          const empty = node('div', 'empty-state');
-          empty.append(node('div', 'empty-state-icon', '!'), node('h3', '', '作品暂时无法加载'), node('p', '', '请确认本地服务已启动，然后重试。'));
-          const retry = node('button', '', '重试加载');
-          retry.type = 'button';
-          retry.addEventListener('click', fetchSvgs);
-          empty.appendChild(retry);
-          $('gallery').appendChild(empty);
-        }
-      }
-    }
+      const familyOrder = [
+        "GPT",
+        "DeepSeek",
+        "GLM",
+        "Gemini",
+        "MiniMax",
+        "Qwen",
+        "Seed",
+        "Kimi",
+        "Step",
+        "Claude",
+      ];
+      const $ = (id) => document.getElementById(id);
+      const state = {
+        items: [],
+        groups: [],
+        family: "all",
+        search: "",
+        sort: "recent",
+        openKey: null,
+        selectedName: null,
+        lastFocus: null,
+        loaded: false,
+      };
+      let lastPayload = "";
+      let toastTimer;
 
-    $('search').addEventListener('input', event => {
-      state.search = event.target.value;
-      $('search-clear').classList.toggle('visible', !!state.search);
-      renderGallery();
-    });
-    $('search-clear').addEventListener('click', () => {
-      $('search').value = '';
-      state.search = '';
-      $('search-clear').classList.remove('visible');
-      renderGallery();
-      $('search').focus();
-    });
-    $('sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
-    $('detail-backdrop').addEventListener('click', closeDetail);
-    $('detail-close').addEventListener('click', closeDetail);
-    $('preview-prev').addEventListener('click', () => moveItem(-1));
-    $('preview-next').addEventListener('click', () => moveItem(1));
-    document.addEventListener('keydown', event => {
-      if ($('detail').hidden) return;
-      if (event.key === 'Escape') { event.preventDefault(); closeDetail(); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); moveItem(-1); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); moveItem(1); }
-      if (event.key === 'Tab') {
-        const focusable = [...$('detail').querySelectorAll('button:not(:disabled), a[href]')].filter(element => element.offsetParent !== null);
-        if (!focusable.length) return;
-        const first = focusable[0], last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      function node(tag, className, value) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (value !== undefined) element.textContent = value;
+        return element;
       }
-    });
-    renderGallery();
-    fetchSvgs();
-    setInterval(fetchSvgs, 15000);
-  </script>
-</body>
+      function familyIcon(family) {
+        const meta = familyMeta[family] || familyMeta.Other;
+        const icon = node("span", "family-icon");
+        icon.style.background = meta.color;
+        icon.style.color = meta.ink;
+        icon.setAttribute("aria-hidden", "true");
+        icon.innerHTML = `<svg viewBox="0 0 24 24" width="68%" height="68%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${meta.glyph}</svg>`;
+        icon.style.display = "inline-grid";
+        icon.style.placeItems = "center";
+        return icon;
+      }
+      function assetUrl(item) {
+        return `/${encodeURIComponent(item.name)}?v=${encodeURIComponent(item.mtime || item.date || "")}`;
+      }
+      function formatDate(value) {
+        return value ? String(value).replaceAll("-", ".") : "日期未知";
+      }
+      function familyRank(family) {
+        const index = familyOrder.indexOf(family);
+        return index === -1 ? 99 : index;
+      }
+      function groupKey(item) {
+        return `${item.family}\u0000${item.model}`;
+      }
+      function latestTime(item) {
+        return Number(item.mtime) || Date.parse(item.date || "") / 1000 || 0;
+      }
+      function showToast(message) {
+        const toast = $("toast");
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 2800);
+      }
+      function buildGroups(items) {
+        const map = new Map();
+        for (const item of items) {
+          const key = groupKey(item);
+          if (!map.has(key))
+            map.set(key, {
+              key,
+              family: item.family,
+              model: item.model,
+              items: [],
+            });
+          map.get(key).items.push(item);
+        }
+        return [...map.values()].map((group) => {
+          group.items.sort(
+            (a, b) =>
+              latestTime(b) - latestTime(a) ||
+              Number(b.run || 1) - Number(a.run || 1) ||
+              a.name.localeCompare(b.name, "zh-CN"),
+          );
+          group.latest = group.items[0];
+          group.settings = [
+            ...new Set(group.items.map((item) => item.setting || "未标注档位")),
+          ];
+          return group;
+        });
+      }
+      function setStats() {
+        $("stat-models").textContent = state.groups.length;
+        $("stat-works").textContent = state.items.length;
+        $("stat-families").textContent = new Set(
+          state.groups.map((group) => group.family),
+        ).size;
+      }
+      function renderFamilyTabs() {
+        const tabs = $("family-tabs");
+        tabs.replaceChildren();
+        const counts = new Map();
+        for (const group of state.groups)
+          counts.set(group.family, (counts.get(group.family) || 0) + 1);
+        const families = [...counts.keys()].sort(
+          (a, b) =>
+            familyRank(a) - familyRank(b) || a.localeCompare(b, "zh-CN"),
+        );
+        const makeTab = (family, label, count) => {
+          const button = node(
+            "button",
+            `family-tab${state.family === family ? " active" : ""}`,
+          );
+          button.type = "button";
+          button.setAttribute("aria-pressed", String(state.family === family));
+          if (family !== "all") button.appendChild(familyIcon(family));
+          button.append(
+            node("span", "", label),
+            node("small", "", String(count)),
+          );
+          button.addEventListener("click", () => {
+            state.family = family;
+            renderFamilyTabs();
+            renderGallery();
+          });
+          tabs.appendChild(button);
+        };
+        makeTab("all", "全部模型", state.groups.length);
+        for (const family of families)
+          makeTab(family, family, counts.get(family));
+      }
+      function visibleGroups() {
+        const query = state.search.trim().toLocaleLowerCase();
+        const groups = state.groups.filter((group) => {
+          if (state.family !== "all" && group.family !== state.family)
+            return false;
+          if (!query) return true;
+          return [
+            group.family,
+            group.model,
+            ...group.items.flatMap((item) => [item.name, item.setting || ""]),
+          ].some((value) => String(value).toLocaleLowerCase().includes(query));
+        });
+        groups.sort((a, b) => {
+          if (state.sort === "name")
+            return a.model.localeCompare(b.model, "zh-CN");
+          if (state.sort === "works")
+            return (
+              b.items.length - a.items.length ||
+              latestTime(b.latest) - latestTime(a.latest)
+            );
+          return (
+            latestTime(b.latest) - latestTime(a.latest) ||
+            a.model.localeCompare(b.model, "zh-CN")
+          );
+        });
+        return groups;
+      }
+      function renderGallery() {
+        const groups = visibleGroups();
+        const gallery = $("gallery");
+        gallery.replaceChildren();
+        const works = groups.reduce(
+          (sum, group) => sum + group.items.length,
+          0,
+        );
+        $("result-count").textContent =
+          `${groups.length} 个模型 · ${works} 份作品`;
+        if (!groups.length) {
+          const empty = node("div", "empty-state");
+          empty.append(
+            node("div", "empty-state-icon", "⌕"),
+            node(
+              "h3",
+              "",
+              state.loaded ? "没有找到匹配的作品" : "正在载入作品",
+            ),
+            node(
+              "p",
+              "",
+              state.loaded ? "试试其他关键词或切换模型系列。" : "请稍候…",
+            ),
+          );
+          if (state.loaded) {
+            const reset = node("button", "", "清空筛选");
+            reset.type = "button";
+            reset.addEventListener("click", () => {
+              state.family = "all";
+              state.search = "";
+              $("search").value = "";
+              $("search-clear").classList.remove("visible");
+              renderFamilyTabs();
+              renderGallery();
+            });
+            empty.appendChild(reset);
+          }
+          gallery.appendChild(empty);
+          return;
+        }
+        const fragment = document.createDocumentFragment();
+        for (const group of groups) {
+          const card = node("article", "model-card");
+          const button = node("button", "card-action");
+          button.type = "button";
+          button.setAttribute(
+            "aria-label",
+            `查看 ${group.model} 的 ${group.items.length} 份作品`,
+          );
+          button.addEventListener("click", () => openDetail(group.key, button));
+          const preview = node("div", "card-preview");
+          const img = node("img");
+          img.src = assetUrl(group.latest);
+          img.alt = `${group.model} 的 SVG 作品预览`;
+          img.loading = "lazy";
+          preview.append(
+            img,
+            node("span", "preview-count", `${group.items.length} 份作品`),
+          );
+          const content = node("div", "card-content");
+          const family = node("span", "card-family");
+          family.style.setProperty(
+            "--family-ink",
+            (familyMeta[group.family] || familyMeta.Other).ink,
+          );
+          family.append(
+            familyIcon(group.family),
+            node("span", "", group.family),
+          );
+          const nameRow = node("div", "card-name-row");
+          nameRow.append(
+            node("h3", "card-name", group.model),
+            node("span", "card-arrow", "↗"),
+          );
+          content.append(
+            family,
+            nameRow,
+            node(
+              "div",
+              "card-meta",
+              `${group.settings.length} 种配置 · 文件更新于 ${formatDate(group.latest.date)}`,
+            ),
+          );
+          const tags = node("div", "card-tags");
+          for (const setting of group.settings.slice(0, 3)) {
+            const count = group.items.filter(
+              (item) => (item.setting || "未标注档位") === setting,
+            ).length;
+            tags.appendChild(
+              node(
+                "span",
+                "card-tag",
+                count > 1 ? `${setting} ×${count}` : setting,
+              ),
+            );
+          }
+          if (group.settings.length > 3)
+            tags.appendChild(
+              node("span", "card-tag more", `+${group.settings.length - 3} 档`),
+            );
+          content.appendChild(tags);
+          const footer = node("div", "card-footer");
+          footer.append(
+            node("span", "", "按配置查看生成记录"),
+            node("strong", "", "展开作品 →"),
+          );
+          content.appendChild(footer);
+          button.append(preview, content);
+          card.appendChild(button);
+          fragment.appendChild(card);
+        }
+        gallery.appendChild(fragment);
+      }
+      function activeGroup() {
+        return state.groups.find((group) => group.key === state.openKey);
+      }
+      function openDetail(key, trigger) {
+        state.openKey = key;
+        state.selectedName = null;
+        state.lastFocus = trigger;
+        renderDetail();
+        $("detail").hidden = false;
+        document.body.classList.add("dialog-open");
+        $("detail-close").focus();
+      }
+      function closeDetail() {
+        $("detail").hidden = true;
+        document.body.classList.remove("dialog-open");
+        state.openKey = null;
+        state.selectedName = null;
+        if (state.lastFocus && state.lastFocus.isConnected)
+          state.lastFocus.focus();
+      }
+      function selectItem(name) {
+        const focusVariant =
+          document.activeElement?.classList.contains("variant-item");
+        state.selectedName = name;
+        renderDetail();
+        if (focusVariant)
+          $("variant-list").querySelector(".variant-item.active")?.focus();
+      }
+      function moveItem(offset) {
+        const group = activeGroup();
+        if (!group) return;
+        const current = Math.max(
+          0,
+          group.items.findIndex((item) => item.name === state.selectedName),
+        );
+        const next = current + offset;
+        if (next >= 0 && next < group.items.length)
+          selectItem(group.items[next].name);
+      }
+      function renderDetail() {
+        const group = activeGroup();
+        if (!group) {
+          if (!$("detail").hidden) closeDetail();
+          return;
+        }
+        const item =
+          group.items.find((entry) => entry.name === state.selectedName) ||
+          group.latest;
+        state.selectedName = item.name;
+        const index = group.items.findIndex(
+          (entry) => entry.name === item.name,
+        );
+        $("detail-icon").replaceChildren(familyIcon(group.family));
+        $("detail-title").textContent = group.model;
+        $("detail-subtitle").textContent =
+          `${group.family} · ${group.settings.length} 种配置 · ${group.items.length} 份作品`;
+        $("preview-position").textContent =
+          `第 ${index + 1} / ${group.items.length} 份`;
+        $("preview-img").src = assetUrl(item);
+        $("preview-img").alt = `${item.name} 动画预览`;
+        $("preview-filename").textContent = item.name;
+        $("preview-date").textContent =
+          `配置：${item.setting || "未标注"} · 文件更新于 ${formatDate(item.date)}`;
+        $("preview-original").href = assetUrl(item);
+        $("preview-prev").disabled = index === 0;
+        $("preview-next").disabled = index === group.items.length - 1;
+        $("variant-count").textContent = `${group.items.length} 份`;
+        const list = $("variant-list");
+        list.replaceChildren();
+        const bySetting = new Map();
+        for (const entry of group.items) {
+          const setting = entry.setting || "未标注档位";
+          if (!bySetting.has(setting)) bySetting.set(setting, []);
+          bySetting.get(setting).push(entry);
+        }
+        for (const [setting, entries] of bySetting) {
+          const section = node("section", "variant-group");
+          const heading = node("h4", "", setting);
+          heading.appendChild(node("small", "", `· ${entries.length} 份`));
+          section.appendChild(heading);
+          for (const entry of entries) {
+            const button = node(
+              "button",
+              `variant-item${entry.name === item.name ? " active" : ""}`,
+            );
+            button.type = "button";
+            button.setAttribute(
+              "aria-pressed",
+              String(entry.name === item.name),
+            );
+            button.setAttribute("aria-label", `预览 ${entry.name}`);
+            button.addEventListener("click", () => selectItem(entry.name));
+            const runLabel =
+              entries.length > 1 || Number(entry.run || 1) > 1
+                ? `第 ${entry.run || 1} 次`
+                : "作品";
+            const copy = node("span", "variant-text");
+            copy.append(
+              node("strong", "", entry.name),
+              node(
+                "small",
+                "",
+                `${runLabel} · 更新于 ${formatDate(entry.date)}`,
+              ),
+            );
+            button.append(
+              node(
+                "span",
+                "variant-index",
+                String(entry.run || 1).padStart(2, "0"),
+              ),
+              copy,
+            );
+            section.appendChild(button);
+          }
+          list.appendChild(section);
+        }
+      }
+      async function fetchSvgs() {
+        try {
+          const response = await fetch("/api/svgs", { cache: "no-store" });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const payload = await response.text();
+          if (payload === lastPayload) return;
+          const items = JSON.parse(payload);
+          if (!Array.isArray(items)) throw new Error("作品列表格式错误");
+          state.items = items.filter(
+            (item) =>
+              item &&
+              typeof item.name === "string" &&
+              typeof item.model === "string" &&
+              typeof item.family === "string",
+          );
+          state.groups = buildGroups(state.items);
+          if (
+            state.family !== "all" &&
+            !state.groups.some((group) => group.family === state.family)
+          )
+            state.family = "all";
+          const wasLoaded = state.loaded;
+          state.loaded = true;
+          lastPayload = payload;
+          setStats();
+          renderFamilyTabs();
+          renderGallery();
+          if (state.openKey) renderDetail();
+          if (wasLoaded) showToast("作品列表已更新");
+        } catch (error) {
+          console.error("获取 SVG 失败：", error);
+          if (!state.loaded) {
+            $("result-count").textContent = "暂时无法加载作品";
+            $("gallery").replaceChildren();
+            const empty = node("div", "empty-state");
+            empty.append(
+              node("div", "empty-state-icon", "!"),
+              node("h3", "", "作品暂时无法加载"),
+              node("p", "", "请确认本地服务已启动，然后重试。"),
+            );
+            const retry = node("button", "", "重试加载");
+            retry.type = "button";
+            retry.addEventListener("click", fetchSvgs);
+            empty.appendChild(retry);
+            $("gallery").appendChild(empty);
+          }
+        }
+      }
+
+      $("search").addEventListener("input", (event) => {
+        state.search = event.target.value;
+        $("search-clear").classList.toggle("visible", !!state.search);
+        renderGallery();
+      });
+      $("search-clear").addEventListener("click", () => {
+        $("search").value = "";
+        state.search = "";
+        $("search-clear").classList.remove("visible");
+        renderGallery();
+        $("search").focus();
+      });
+      $("sort").addEventListener("change", (event) => {
+        state.sort = event.target.value;
+        renderGallery();
+      });
+      $("detail-backdrop").addEventListener("click", closeDetail);
+      $("detail-close").addEventListener("click", closeDetail);
+      $("preview-prev").addEventListener("click", () => moveItem(-1));
+      $("preview-next").addEventListener("click", () => moveItem(1));
+      document.addEventListener("keydown", (event) => {
+        if ($("detail").hidden) return;
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeDetail();
+        }
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          moveItem(-1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          moveItem(1);
+        }
+        if (event.key === "Tab") {
+          const focusable = [
+            ...$("detail").querySelectorAll("button:not(:disabled), a[href]"),
+          ].filter((element) => element.offsetParent !== null);
+          if (!focusable.length) return;
+          const first = focusable[0],
+            last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+      renderGallery();
+      fetchSvgs();
+      setInterval(fetchSvgs, 15000);
+    </script>
+  </body>
 </html>
