@@ -115,8 +115,8 @@ def classify_stem(stem):
         ),
         (
             "Claude",
-            r"^(Sonnet|Opus)[\s-]*(\d+(?:\.\d+)?)(.*)$",
-            lambda m: f"{m[1].title()} {m[2]}",
+            r"^(Sonnet|Opus)[\s-]*(\d+(?:[.,]\d+)?)(.*)$",
+            lambda m: f"{m[1].title()} {m[2].replace(',', '.')}",
         ),
         (
             "Step",
