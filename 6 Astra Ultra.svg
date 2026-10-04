@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">熊猫骑自行车</title>
+  <desc id="desc">一只可爱的熊猫在彩色山丘间骑着红色自行车，车轮、脚踏和云朵持续运动。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfeeff"/>
+      <stop offset="0.68" stop-color="#e5f8ff"/>
+      <stop offset="1" stop-color="#fff8e8"/>
+    </linearGradient>
+    <linearGradient id="hillBack" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#a9dfc0"/>
+      <stop offset="1" stop-color="#75bfaa"/>
+    </linearGradient>
+    <linearGradient id="hillFront" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#70c69d"/>
+      <stop offset="1" stop-color="#3f9e78"/>
+    </linearGradient>
+    <linearGradient id="bikeRed" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff6e65"/>
+      <stop offset="1" stop-color="#df3145"/>
+    </linearGradient>
+    <linearGradient id="helmet" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#ffd867"/>
+      <stop offset="1" stop-color="#f5a72f"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <g id="cloud">
+      <path d="M0 28c0-13 11-23 24-23 5 0 10 2 14 5C44 4 53 0 64 0c18 0 32 12 35 28h7c11 0 20 8 20 18s-9 18-20 18H20C9 64 0 56 0 46s9-18 20-18h4" fill="#fff" opacity=".88"/>
+    </g>
+    <g id="wheel">
+      <circle r="91" fill="#f7fbfc" stroke="#263844" stroke-width="10"/>
+      <circle r="11" fill="#ffcb57" stroke="#263844" stroke-width="6"/>
+      <g stroke="#b8cbd0" stroke-width="3" opacity=".9">
+        <path d="M0-11V-86M0 11V86M-11 0H-86M11 0H86M-8-8-61-61M8 8 61 61M8-8 61-61M-8 8-61 61"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- sky and landscape -->
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="1010" cy="126" r="66" fill="#ffe38b" opacity=".88">
+    <animate attributeName="r" values="66;71;66" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <g opacity=".9">
+    <use xlink:href="#cloud" x="130" y="122" transform="scale(.9)"/>
+    <use xlink:href="#cloud" x="750" y="88" transform="scale(.72)"/>
+    <use xlink:href="#cloud" x="920" y="256" transform="scale(.55)"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0;18 0;0 0" dur="14s" repeatCount="indefinite"/>
+  </g>
+  <path d="M0 430 Q160 285 330 405T650 386T930 350T1200 420V800H0Z" fill="url(#hillBack)"/>
+  <path d="M0 522 Q180 388 370 504T700 476T965 445T1200 505V800H0Z" fill="url(#hillFront)"/>
+  <path d="M0 608 Q250 564 450 603T830 578T1200 604V800H0Z" fill="#2f8b6e"/>
+
+  <!-- road -->
+  <path d="M0 650 C230 604 455 612 610 650s355 47 590 3v147H0Z" fill="#f8e1b0"/>
+  <path d="M0 675 C235 635 420 645 604 680s381 43 596 0" fill="none" stroke="#e7c88e" stroke-width="8" stroke-dasharray="26 22" opacity=".8">
+    <animate attributeName="stroke-dashoffset" values="0;-96" dur="1.7s" repeatCount="indefinite"/>
+  </path>
+  <ellipse cx="603" cy="721" rx="284" ry="31" fill="#1f5e50" opacity=".22" filter="url(#softShadow)">
+    <animate attributeName="rx" values="284;266;284" dur="1.1s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- bicycle -->
+  <g id="bicycle" transform="translate(0 4)">
+    <g id="rollingWheels">
+      <g transform="translate(382 604)"><g><use xlink:href="#wheel"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1.12s" repeatCount="indefinite"/>
+      </g></g>
+      <g transform="translate(822 604)"><g><use xlink:href="#wheel"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1.12s" repeatCount="indefinite"/>
+      </g></g>
+    </g>
+    <g fill="none" stroke="url(#bikeRed)" stroke-width="12" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M382 604 512 470 670 604 382 604 574 604 512 470 742 458 822 604"/>
+      <path d="M670 604 742 458"/>
+    </g>
+    <path d="M490 465h57" stroke="#263844" stroke-width="12" stroke-linecap="round"/>
+    <path d="M735 455h61" stroke="#263844" stroke-width="11" stroke-linecap="round"/>
+    <path d="M764 455l17-47" stroke="#263844" stroke-width="10" stroke-linecap="round"/>
+    <path d="M768 406q26-17 51 1" fill="none" stroke="#263844" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="574" cy="604" r="23" fill="#ffcb57" stroke="#263844" stroke-width="7"/>
+    <g id="pedal" transform="translate(574 604)"><g>
+      <path d="M0 0 36 33M0 0-28-33" stroke="#263844" stroke-width="8" stroke-linecap="round"/>
+      <path d="M28 36h24M-52-36h24" stroke="#263844" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1.12s" repeatCount="indefinite"/>
+    </g></g>
+  </g>
+
+  <!-- panda rider -->
+  <g id="panda" transform="translate(0 1)">
+    <animateTransform attributeName="transform" type="translate" values="0 1;0 -5;0 1" dur="1.12s" repeatCount="indefinite"/>
+    <!-- rear leg, cycling -->
+    <g fill="none" stroke="#202d35" stroke-width="23" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M565 472 Q541 529 573 604"/>
+      <path d="M565 472 Q616 526 604 582"/>
+    </g>
+    <g fill="none" stroke="#f4f7f5" stroke-width="11" stroke-linecap="round">
+      <path d="M565 472 Q541 529 573 604"/>
+      <path d="M565 472 Q616 526 604 582"/>
+    </g>
+    <g fill="#202d35">
+      <ellipse cx="582" cy="612" rx="34" ry="12" transform="rotate(18 582 612)"/>
+      <ellipse cx="603" cy="589" rx="33" ry="12" transform="rotate(-28 603 589)"/>
+    </g>
+    <!-- body -->
+    <ellipse cx="569" cy="391" rx="85" ry="105" fill="#202d35" transform="rotate(-10 569 391)"/>
+    <ellipse cx="567" cy="399" rx="54" ry="75" fill="#f8fbf6" transform="rotate(-10 567 399)"/>
+    <path d="M503 345q-36 12-38 53" fill="none" stroke="#202d35" stroke-width="28" stroke-linecap="round"/>
+    <path d="M620 346q38 16 73 86" fill="none" stroke="#202d35" stroke-width="26" stroke-linecap="round"/>
+    <g fill="#f8fbf6" stroke="#202d35" stroke-width="7">
+      <ellipse cx="478" cy="400" rx="22" ry="20"/>
+      <ellipse cx="697" cy="433" rx="22" ry="20"/>
+    </g>
+    <!-- neck scarf -->
+    <path d="M505 326 Q565 349 627 323 L638 352 Q566 379 497 350Z" fill="#f05a4f"/>
+    <path d="M621 340l36 53-28 16-31-64Z" fill="#de403e"/>
+    <!-- head -->
+    <g>
+      <circle cx="561" cy="282" r="92" fill="#202d35"/>
+      <circle cx="499" cy="219" r="30" fill="#202d35"/>
+      <circle cx="624" cy="219" r="30" fill="#202d35"/>
+      <ellipse cx="561" cy="294" rx="70" ry="65" fill="#f8fbf6"/>
+      <ellipse cx="524" cy="274" rx="26" ry="34" fill="#202d35" transform="rotate(30 524 274)"/>
+      <ellipse cx="598" cy="274" rx="26" ry="34" fill="#202d35" transform="rotate(-30 598 274)"/>
+      <circle cx="525" cy="274" r="9" fill="#fff"/><circle cx="598" cy="274" r="9" fill="#fff"/>
+      <circle cx="528" cy="276" r="4" fill="#202d35"/><circle cx="595" cy="276" r="4" fill="#202d35"/>
+      <ellipse cx="561" cy="309" rx="17" ry="13" fill="#202d35"/>
+      <path d="M548 326q13 12 26 0" fill="none" stroke="#202d35" stroke-width="5" stroke-linecap="round"/>
+      <!-- helmet -->
+      <path d="M494 229q9-64 68-70 61 1 72 70l-16 13H509Z" fill="url(#helmet)" stroke="#d8892c" stroke-width="5"/>
+      <path d="M488 235h154" stroke="#d8892c" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="532" cy="184" r="8" fill="#fff3b0" opacity=".8"/><circle cx="554" cy="176" r="5" fill="#fff3b0" opacity=".8"/>
+    </g>
+    <!-- front arm to handlebars -->
+    <path d="M626 350q44 30 87 65" fill="none" stroke="#202d35" stroke-width="24" stroke-linecap="round"/>
+    <path d="M626 350q44 30 87 65" fill="none" stroke="#f8fbf6" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="713" cy="415" r="17" fill="#202d35"/>
+    <!-- little motion marks -->
+    <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".75">
+      <path d="M425 318h-26"/><path d="M420 340h-38"/>
+      <path d="M735 279h30"/><path d="M742 299h22"/>
+    </g>
+  </g>
+
+  <!-- foreground flowers -->
+  <g>
+    <g transform="translate(120 690)"><path d="M0 0q-4-42 4-71" fill="none" stroke="#277d61" stroke-width="6"/><circle cx="4" cy="-76" r="12" fill="#ff7f78"/><circle cx="-7" cy="-68" r="10" fill="#ff9b83"/><circle cx="15" cy="-68" r="10" fill="#ff9b83"/><circle cx="4" cy="-67" r="7" fill="#ffd45f"/></g>
+    <g transform="translate(1083 708) scale(.8)"><path d="M0 0q-4-42 4-71" fill="none" stroke="#277d61" stroke-width="6"/><circle cx="4" cy="-76" r="12" fill="#f3b2d3"/><circle cx="-7" cy="-68" r="10" fill="#f3c7df"/><circle cx="15" cy="-68" r="10" fill="#f3c7df"/><circle cx="4" cy="-67" r="7" fill="#ffd45f"/></g>
+  </g>
+  <text x="600" y="760" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#27664f" opacity=".82">一起出发吧！</text>
+</svg>

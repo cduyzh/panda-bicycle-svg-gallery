@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">熊猫骑自行车</title>
+  <desc id="desc">一只戴红围巾的熊猫在晴朗的山谷中骑着自行车，车轮和脚踏持续转动。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9de3ff"/>
+      <stop offset="1" stop-color="#dff7ff"/>
+    </linearGradient>
+    <linearGradient id="meadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9cdb74"/>
+      <stop offset="1" stop-color="#4a9b58"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6f8790"/>
+      <stop offset="1" stop-color="#405762"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff9be" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ffd66e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <style>
+      .outline { stroke:#1e2730; stroke-linecap:round; stroke-linejoin:round; }
+      .wheel-ring { fill:none; stroke:#263640; stroke-width:19; }
+      .spoke { stroke:#a6bdc4; stroke-width:4; opacity:.9; }
+      .frame { fill:none; stroke:#e45f46; stroke-width:11; stroke-linecap:round; stroke-linejoin:round; }
+      .chrome { fill:none; stroke:#dbe8e9; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+      .leg-left, .leg-right, .panda-bob, .cloud, .cloud-slow { transform-box:fill-box; }
+      @media (prefers-reduced-motion: reduce) {
+        .wheel-spin, .pedal-spin, .leg-left, .leg-right, .panda-bob, .cloud, .cloud-slow, .road-flow { animation-play-state:paused !important; }
+      }
+    </style>
+  </defs>
+
+  <!-- sky and distant valley -->
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="980" cy="138" r="120" fill="url(#sun)"/>
+  <g class="cloud" opacity=".72">
+    <path d="M70 160 C80 132 108 122 131 136 C144 98 205 99 218 143 C253 129 283 150 286 177 H70Z" fill="#fff"/>
+    <animateTransform attributeName="transform" type="translate" from="-40 0" to="210 0" dur="22s" repeatCount="indefinite"/>
+  </g>
+  <g class="cloud-slow" opacity=".52">
+    <path d="M760 220 C770 194 796 183 817 198 C835 159 889 164 900 201 C931 188 959 207 962 232 H760Z" fill="#fff"/>
+    <animateTransform attributeName="transform" type="translate" from="110 0" to="-170 0" dur="28s" repeatCount="indefinite"/>
+  </g>
+  <path d="M0 405 L165 285 L300 395 L485 240 L655 395 L830 265 L1020 410 L1200 305 L1200 590 L0 590Z" fill="#75b6a0" opacity=".58"/>
+  <path d="M0 455 L185 335 L325 438 L490 318 L690 452 L875 330 L1048 455 L1200 370 L1200 605 L0 605Z" fill="#4e9882" opacity=".72"/>
+  <path d="M0 535 Q190 495 400 532 T800 526 T1200 520 V800 H0Z" fill="url(#meadow)"/>
+
+  <!-- road and motion marks -->
+  <path d="M0 630 Q270 608 600 628 T1200 621 V800 H0Z" fill="url(#road)" opacity=".92"/>
+  <path class="road-flow" d="M0 700 H1200" stroke="#e8f5d1" stroke-width="9" stroke-dasharray="46 36" opacity=".85">
+    <animate attributeName="stroke-dashoffset" from="0" to="-164" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <ellipse cx="600" cy="700" rx="292" ry="28" fill="#17252a" opacity=".24" filter="url(#softShadow)"/>
+
+  <!-- small foreground plants -->
+  <g opacity=".75">
+    <path d="M94 700 Q98 654 116 624 M100 672 Q75 651 64 629 M106 660 Q131 640 138 615" stroke="#256b49" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="65" cy="625" r="7" fill="#f2bd4c"/><circle cx="138" cy="612" r="7" fill="#eb7e73"/>
+    <path d="M1070 706 Q1074 664 1094 640 M1080 678 Q1054 658 1046 637 M1085 670 Q1110 650 1120 625" stroke="#256b49" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="1047" cy="634" r="7" fill="#f2bd4c"/><circle cx="1121" cy="623" r="7" fill="#eb7e73"/>
+  </g>
+
+  <!-- bicycle shadow -->
+  <ellipse cx="596" cy="704" rx="286" ry="24" fill="#15252a" opacity=".32" filter="url(#smallShadow)"/>
+
+  <!-- bicycle wheels -->
+  <g aria-label="自行车车轮">
+    <g class="wheel-spin" transform="rotate(0 430 600)">
+      <circle cx="430" cy="600" r="94" class="wheel-ring"/>
+      <circle cx="430" cy="600" r="83" fill="none" stroke="#81979e" stroke-width="2" opacity=".65"/>
+      <g class="spoke">
+        <path d="M430 600 L430 514 M430 600 L491 539 M430 600 L516 600 M430 600 L491 661 M430 600 L430 686 M430 600 L369 661 M430 600 L344 600 M430 600 L369 539"/>
+      </g>
+      <circle cx="430" cy="600" r="10" fill="#e45f46" class="outline" stroke-width="4"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 430 600;360 430 600" dur="1.8s" repeatCount="indefinite"/>
+    </g>
+    <g class="wheel-spin" transform="rotate(0 760 600)">
+      <circle cx="760" cy="600" r="94" class="wheel-ring"/>
+      <circle cx="760" cy="600" r="83" fill="none" stroke="#81979e" stroke-width="2" opacity=".65"/>
+      <g class="spoke">
+        <path d="M760 600 L760 514 M760 600 L821 539 M760 600 L846 600 M760 600 L821 661 M760 600 L760 686 M760 600 L699 661 M760 600 L674 600 M760 600 L699 539"/>
+      </g>
+      <circle cx="760" cy="600" r="10" fill="#e45f46" class="outline" stroke-width="4"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 760 600;360 760 600" dur="1.8s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- bicycle frame -->
+  <g aria-label="自行车车架">
+    <path class="frame" d="M430 600 L534 600 L612 468 L760 600 L534 600 L486 470 L612 468"/>
+    <path class="frame" d="M612 468 L680 438 L735 448"/>
+    <path class="chrome" d="M735 448 L756 432 M740 442 L770 452"/>
+    <path d="M474 464 H518" stroke="#25363c" stroke-width="12" stroke-linecap="round"/>
+    <path d="M534 600 L534 568 M500 568 H568" stroke="#263640" stroke-width="9" stroke-linecap="round"/>
+    <g class="pedal-spin" transform="rotate(0 534 600)">
+      <circle cx="534" cy="600" r="18" fill="#263640"/>
+      <path d="M534 600 L565 573 M565 573 h24" stroke="#263640" stroke-width="8" stroke-linecap="round"/>
+      <path d="M534 600 L503 627 M503 627 h-24" stroke="#263640" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 534 600;360 534 600" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- panda rider -->
+  <g class="panda-bob" aria-label="骑车的熊猫">
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="1.2s" repeatCount="indefinite"/>
+
+    <!-- rear leg -->
+    <g class="leg-left">
+      <path d="M548 423 C538 460 533 493 550 531 L516 586" fill="none" stroke="#1e2730" stroke-width="32" stroke-linecap="round"/>
+      <path d="M548 423 C538 460 533 493 550 531 L516 586" fill="none" stroke="#f5f5ed" stroke-width="21" stroke-linecap="round"/>
+      <ellipse cx="509" cy="592" rx="30" ry="13" fill="#1e2730" transform="rotate(-10 509 592)"/>
+      <animateTransform attributeName="transform" type="rotate" values="-20 550 420;20 550 420;-20 550 420" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+    <!-- front leg -->
+    <g class="leg-right">
+      <path d="M591 423 C608 462 617 500 594 534 L570 587" fill="none" stroke="#1e2730" stroke-width="32" stroke-linecap="round"/>
+      <path d="M591 423 C608 462 617 500 594 534 L570 587" fill="none" stroke="#f5f5ed" stroke-width="21" stroke-linecap="round"/>
+      <ellipse cx="565" cy="592" rx="30" ry="13" fill="#1e2730" transform="rotate(12 565 592)"/>
+      <animateTransform attributeName="transform" type="rotate" values="20 591 420;-20 591 420;20 591 420" dur="1.2s" begin=".6s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- body -->
+    <ellipse cx="570" cy="364" rx="91" ry="111" fill="#f8f8f1" class="outline" stroke-width="8" transform="rotate(-8 570 364)"/>
+    <path d="M515 377 Q564 411 624 371" fill="none" stroke="#d8ddd7" stroke-width="7" opacity=".75"/>
+    <ellipse cx="516" cy="370" rx="27" ry="49" fill="#202b32" transform="rotate(15 516 370)"/>
+    <ellipse cx="623" cy="359" rx="26" ry="49" fill="#202b32" transform="rotate(-10 623 359)"/>
+
+    <!-- scarf -->
+    <path d="M514 319 Q569 344 625 316 L621 342 Q568 367 518 341Z" fill="#ec6654" class="outline" stroke-width="5"/>
+    <path d="M611 340 L648 383 L623 377 L608 365Z" fill="#dc4d42" class="outline" stroke-width="4"/>
+
+    <!-- arms to handlebar -->
+    <path d="M622 331 Q672 347 713 407" fill="none" stroke="#1e2730" stroke-width="33" stroke-linecap="round"/>
+    <path d="M622 331 Q672 347 713 407" fill="none" stroke="#f8f8f1" stroke-width="21" stroke-linecap="round"/>
+    <path d="M520 334 Q490 352 487 404" fill="none" stroke="#1e2730" stroke-width="31" stroke-linecap="round"/>
+    <path d="M520 334 Q490 352 487 404" fill="none" stroke="#f8f8f1" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="713" cy="407" r="13" fill="#202b32"/>
+    <circle cx="487" cy="404" r="13" fill="#202b32"/>
+
+    <!-- head -->
+    <circle cx="568" cy="249" r="78" fill="#f8f8f1" class="outline" stroke-width="8"/>
+    <circle cx="514" cy="191" r="27" fill="#202b32" class="outline" stroke-width="6"/>
+    <circle cx="622" cy="192" r="27" fill="#202b32" class="outline" stroke-width="6"/>
+    <ellipse cx="534" cy="244" rx="23" ry="31" fill="#202b32" transform="rotate(35 534 244)"/>
+    <ellipse cx="604" cy="244" rx="23" ry="31" fill="#202b32" transform="rotate(-35 604 244)"/>
+    <circle cx="540" cy="244" r="8" fill="#f8f8f1"/>
+    <circle cx="598" cy="244" r="8" fill="#f8f8f1"/>
+    <circle cx="542" cy="246" r="4" fill="#1e2730"/>
+    <circle cx="600" cy="246" r="4" fill="#1e2730"/>
+    <ellipse cx="569" cy="271" rx="16" ry="12" fill="#202b32"/>
+    <path d="M557 286 Q569 296 582 286" fill="none" stroke="#202b32" stroke-width="5" stroke-linecap="round"/>
+    <path d="M618 274 Q637 270 647 259" fill="none" stroke="#202b32" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+
+    <!-- tiny tail -->
+    <circle cx="657" cy="398" r="19" fill="#f8f8f1" class="outline" stroke-width="7"/>
+  </g>
+
+  <!-- foreground sparkles -->
+  <g fill="#fff8c8" opacity=".8">
+    <path d="M210 270 l5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/>
+    <path d="M898 355 l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/>
+  </g>
+</svg>

@@ -44,20 +44,18 @@ def model_and_setting(family, model, tail):
     if not tail:
         return family, model, ""
 
-    # Four-digit codes in existing filenames identify a dated model revision.
-    build = re.fullmatch(rf"(\d{{4}})[\s_-]*({SETTING_PATTERN})", tail, re.IGNORECASE)
-    if build:
-        model += f" {build.group(1)}"
-        tail = build.group(2)
-
     match = re.fullmatch(
-        rf"({SETTING_PATTERN})(?:[\s_-]+(codex))?", tail, re.IGNORECASE
+        rf"(.*?)(?:[\s_-]*)({SETTING_PATTERN})(?:[\s_-]+(codex))?", tail, re.IGNORECASE
     )
     if match:
+        extra = match.group(1).strip(" -_\t")
+        if extra:
+            model += f" {extra}"
+            
         setting = next(
-            value for value in SETTINGS if value.casefold() == match.group(1).casefold()
+            value for value in SETTINGS if value.casefold() == match.group(2).casefold()
         )
-        if match.group(2):
+        if match.group(3):
             setting += " · Codex"
         return family, model, setting
 
