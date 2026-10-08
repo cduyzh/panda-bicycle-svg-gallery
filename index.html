@@ -331,7 +331,7 @@
         display: flex;
         align-items: center;
         flex: 1;
-        min-width: 180px;
+        min-width: 0;
         height: 44px;
         border: 1px solid var(--line);
         border-radius: 12px;
@@ -383,41 +383,6 @@
       }
       .search-clear:hover {
         background: #edf2ed;
-      }
-      .sort-wrap {
-        position: relative;
-        flex: none;
-      }
-      .sort-wrap::before {
-        content: "排序";
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        pointer-events: none;
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .sort-wrap select {
-        width: 155px;
-        height: 44px;
-        padding: 0 12px 0 46px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        appearance: none;
-        background: #fff;
-        color: var(--ink);
-        font-size: 12px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .sort-wrap::after {
-        content: "⌄";
-        position: absolute;
-        top: 9px;
-        right: 12px;
-        pointer-events: none;
-        color: var(--muted);
-        font-size: 19px;
       }
       .family-tabs {
         display: flex;
@@ -1106,13 +1071,6 @@
         .control-row {
           gap: 8px;
         }
-        .sort-wrap select {
-          width: 114px;
-          padding: 0 20px 0 8px;
-        }
-        .sort-wrap::before {
-          display: none;
-        }
         .gallery {
           grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
           gap: 13px;
@@ -1159,10 +1117,6 @@
         .search-field input {
           font-size: 11px;
         }
-        .sort-wrap select {
-          width: 94px;
-          font-size: 11px;
-        }
         .hero-stats {
           gap: 10px;
         }
@@ -1180,8 +1134,23 @@
         }
       }
     </style>
-    <script defer src="https://umami.cduyzh.top/script.js" data-website-id="37b88d5f-682e-43c8-9519-d7661f696bdb"></script>
-    <script defer src="https://umami.cduyzh.top/recorder.js" data-website-id="37b88d5f-682e-43c8-9519-d7661f696bdb"></script>
+    <link rel="stylesheet" href="scoring.css" />
+    <link rel="stylesheet" href="sort-dropdown.css" />
+    <script>
+      if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        const umami = document.createElement('script');
+        umami.defer = true;
+        umami.src = 'https://umami.cduyzh.top/script.js';
+        umami.dataset.websiteId = '37b88d5f-682e-43c8-9519-d7661f696bdb';
+        document.head.appendChild(umami);
+
+        const recorder = document.createElement('script');
+        recorder.defer = true;
+        recorder.src = 'https://umami.cduyzh.top/recorder.js';
+        recorder.dataset.websiteId = '37b88d5f-682e-43c8-9519-d7661f696bdb';
+        document.head.appendChild(recorder);
+      }
+    </script>
   </head>
   <body>
     <div class="page-shell">
@@ -1429,8 +1398,20 @@
               stroke-width="2"
               stroke-linecap="round" />
           </svg>
-          所有作品均为个人实测。运行环境、额度与上下文可能影响结果；页面中的日期表示文件更新时间，适合欣赏与对照，不作为严格排名。
+          所有作品均为个人实测。评分针对这一次生成的 SVG；运行环境、额度与上下文可能影响结果，接近的分数适合按同一梯队对照。页面日期表示文件更新时间。
         </p>
+
+        <section id="scoring-rules" class="scoring-panel" aria-labelledby="scoring-title">
+          <div class="scoring-heading">
+            <h2 id="scoring-title">评分制度与权重</h2>
+          </div>
+          <p id="score-coverage" class="scoring-note" aria-live="polite">正在读取评分…</p>
+          <div id="weight-grid" class="weight-grid"></div>
+          <details class="rubric-details">
+            <summary>查看 13 项评分标准、档位和评审流程</summary>
+            <div id="rubric-content"></div>
+          </details>
+        </section>
 
         <section
           id="works"
@@ -1449,6 +1430,21 @@
           </div>
           <div class="browser-controls">
             <div class="control-row">
+              <div id="sort-wrap" class="sort-wrap">
+                <button id="sort" class="sort-trigger" type="button" role="combobox"
+                  aria-label="排序方式：最新作品评分" aria-haspopup="listbox" aria-expanded="false" aria-controls="sort-options">
+                  <svg class="sort-symbol" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M3 5h13M3 10h9M3 15h5M15 10v7m-2-2 2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span class="sort-caption">排序</span><span id="sort-label">最新作品评分</span>
+                  <svg class="sort-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div id="sort-options" class="sort-menu" role="listbox" aria-label="排序方式" tabindex="-1" hidden>
+                  <div class="sort-menu-heading" aria-hidden="true">选择展示顺序</div>
+                </div>
+              </div>
               <label class="search-field">
                 <svg
                   viewBox="0 0 24 24"
@@ -1480,16 +1476,6 @@
                   ×
                 </button>
               </label>
-              <label class="sort-wrap"
-                ><span class="visually-hidden">排序方式</span
-                ><select
-                  id="sort"
-                  aria-label="排序方式">
-                  <option value="recent">最近更新</option>
-                  <option value="name">模型名称</option>
-                  <option value="works">作品数量</option>
-                </select></label
-              >
             </div>
             <nav
               id="family-tabs"
@@ -1590,6 +1576,7 @@
           <aside
             class="variant-pane"
             aria-label="该模型的生成记录">
+            <div id="detail-score" aria-live="polite"></div>
             <div class="variant-head">
               <h3>生成记录</h3>
               <span
@@ -1605,6 +1592,8 @@
       </div>
     </div>
 
+    <script src="scoring-ui.js"></script>
+    <script src="sort-dropdown.js"></script>
     <script>
       const familyMeta = {
         GPT: {
@@ -1687,11 +1676,12 @@
         groups: [],
         family: "all",
         search: "",
-        sort: "recent",
+        sort: "score",
         openKey: null,
         selectedName: null,
         lastFocus: null,
         loaded: false,
+        rubric: null,
       };
       let lastPayload = "";
       let toastTimer;
@@ -1724,7 +1714,7 @@
         return index === -1 ? 99 : index;
       }
       function groupKey(item) {
-        return `${item.family}\u0000${item.model}`;
+        return item.name;
       }
       function latestTime(item) {
         return Number(item.mtime) || Date.parse(item.date || "") / 1000 || 0;
@@ -1744,7 +1734,7 @@
             map.set(key, {
               key,
               family: item.family,
-              model: item.model,
+              model: item.name.replace(/\.svg$/i, ""),
               items: [],
             });
           map.get(key).items.push(item);
@@ -1769,6 +1759,7 @@
         $("stat-families").textContent = new Set(
           state.groups.map((group) => group.family),
         ).size;
+        renderScoreCoverage();
       }
       function renderFamilyTabs() {
         const tabs = $("family-tabs");
@@ -1816,13 +1807,10 @@
           ].some((value) => String(value).toLocaleLowerCase().includes(query));
         });
         groups.sort((a, b) => {
+          if (state.sort === "score")
+            return (b.latest.score?.total ?? -1) - (a.latest.score?.total ?? -1) || a.model.localeCompare(b.model, "zh-CN");
           if (state.sort === "name")
             return a.model.localeCompare(b.model, "zh-CN");
-          if (state.sort === "works")
-            return (
-              b.items.length - a.items.length ||
-              latestTime(b.latest) - latestTime(a.latest)
-            );
           return (
             latestTime(b.latest) - latestTime(a.latest) ||
             a.model.localeCompare(b.model, "zh-CN")
@@ -1888,7 +1876,6 @@
           img.loading = "lazy";
           preview.append(
             img,
-            node("span", "preview-count", `${group.items.length} 份作品`),
           );
           const content = node("div", "card-content");
           const family = node("span", "card-family");
@@ -1911,7 +1898,7 @@
             node(
               "div",
               "card-meta",
-              `${group.settings.length} 种配置 · 文件更新于 ${formatDate(group.latest.date)}`,
+              `文件更新于 ${formatDate(group.latest.date)}`,
             ),
           );
           const tags = node("div", "card-tags");
@@ -1932,6 +1919,7 @@
               node("span", "card-tag more", `+${group.settings.length - 3} 档`),
             );
           content.appendChild(tags);
+          content.appendChild(scoreBlock(group.latest));
           const footer = node("div", "card-footer");
           footer.append(
             node("span", "", "按配置查看生成记录"),
@@ -1973,15 +1961,15 @@
           $("variant-list").querySelector(".variant-item.active")?.focus();
       }
       function moveItem(offset) {
-        const group = activeGroup();
-        if (!group) return;
-        const current = Math.max(
-          0,
-          group.items.findIndex((item) => item.name === state.selectedName),
-        );
-        const next = current + offset;
-        if (next >= 0 && next < group.items.length)
-          selectItem(group.items[next].name);
+        const groups = visibleGroups();
+        const currentGroupIndex = groups.findIndex(g => g.key === state.openKey);
+        if (currentGroupIndex === -1) return;
+        const nextGroupIndex = currentGroupIndex + offset;
+        if (nextGroupIndex >= 0 && nextGroupIndex < groups.length) {
+          state.openKey = groups[nextGroupIndex].key;
+          state.selectedName = null;
+          renderDetail();
+        }
       }
       function renderDetail() {
         const group = activeGroup();
@@ -1998,18 +1986,19 @@
         );
         $("detail-icon").replaceChildren(familyIcon(group.family));
         $("detail-title").textContent = group.model;
-        $("detail-subtitle").textContent =
-          `${group.family} · ${group.settings.length} 种配置 · ${group.items.length} 份作品`;
-        $("preview-position").textContent =
-          `第 ${index + 1} / ${group.items.length} 份`;
+        $("detail-subtitle").textContent = `${group.family} · ${item.setting || "未标注档位"}`;
+        $("preview-position").textContent = "";
         $("preview-img").src = assetUrl(item);
         $("preview-img").alt = `${item.name} 动画预览`;
         $("preview-filename").textContent = item.name;
         $("preview-date").textContent =
           `配置：${item.setting || "未标注"} · 文件更新于 ${formatDate(item.date)}`;
         $("preview-original").href = assetUrl(item);
-        $("preview-prev").disabled = index === 0;
-        $("preview-next").disabled = index === group.items.length - 1;
+        const groups = visibleGroups();
+        const groupIndex = groups.findIndex(g => g.key === state.openKey);
+        $("preview-prev").disabled = groupIndex <= 0;
+        $("preview-next").disabled = groupIndex === -1 || groupIndex === groups.length - 1;
+        $("detail-score").replaceChildren(scoreBlock(item, true));
         $("variant-count").textContent = `${group.items.length} 份`;
         const list = $("variant-list");
         list.replaceChildren();
@@ -2057,6 +2046,7 @@
               ),
               copy,
             );
+            copy.appendChild(node("span", "variant-score", entry.score?.status === "scored" ? `${entry.score.total} 分 · ${entry.score.level}` : entry.score?.status === "stale" ? "待复评" : "待评分"));
             section.appendChild(button);
           }
           list.appendChild(section);
@@ -2064,11 +2054,15 @@
       }
       async function fetchSvgs() {
         try {
-          const response = await fetch("/api/svgs", { cache: "no-store" });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const payload = await response.text();
-          if (payload === lastPayload) return;
+          const [response, rubricResponse] = await Promise.all([
+            fetch("/api/svgs", { cache: "no-store" }), fetch("/api/scoring", { cache: "no-store" }),
+          ]);
+          if (!response.ok || !rubricResponse.ok) throw new Error(`HTTP ${response.status} / ${rubricResponse.status}`);
+          const [payload, rubricPayload] = await Promise.all([response.text(), rubricResponse.text()]);
+          const fingerprint = payload + rubricPayload;
+          if (fingerprint === lastPayload) return;
           const items = JSON.parse(payload);
+          state.rubric = JSON.parse(rubricPayload);
           if (!Array.isArray(items)) throw new Error("作品列表格式错误");
           state.items = items.filter(
             (item) =>
@@ -2085,8 +2079,9 @@
             state.family = "all";
           const wasLoaded = state.loaded;
           state.loaded = true;
-          lastPayload = payload;
+          lastPayload = fingerprint;
           setStats();
+          renderRubric();
           renderFamilyTabs();
           renderGallery();
           if (state.openKey) renderDetail();
@@ -2123,10 +2118,7 @@
         renderGallery();
         $("search").focus();
       });
-      $("sort").addEventListener("change", (event) => {
-        state.sort = event.target.value;
-        renderGallery();
-      });
+      setupSortDropdown();
       $("detail-backdrop").addEventListener("click", closeDetail);
       $("detail-close").addEventListener("click", closeDetail);
       $("preview-prev").addEventListener("click", () => moveItem(-1));
@@ -2147,7 +2139,7 @@
         }
         if (event.key === "Tab") {
           const focusable = [
-            ...$("detail").querySelectorAll("button:not(:disabled), a[href]"),
+            ...$("detail").querySelectorAll("button:not(:disabled), a[href], summary"),
           ].filter((element) => element.offsetParent !== null);
           if (!focusable.length) return;
           const first = focusable[0],

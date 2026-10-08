@@ -8,6 +8,7 @@ import socketserver
 import urllib.parse
 from collections import defaultdict
 from pathlib import Path
+from scoring import load_data, score_for
 
 
 PORT = 8000
@@ -139,6 +140,7 @@ def classify_stem(stem):
 
 
 def list_svgs():
+    scoring = load_data()
     files = [path for path in DIRECTORY.iterdir() if path.is_file() and path.suffix.lower() == ".svg"]
     known_stems = {path.stem.casefold() for path in files}
     numbered_siblings = defaultdict(set)
@@ -163,6 +165,7 @@ def list_svgs():
                 "model": model,
                 "setting": setting,
                 "mtime": mtime,
+                "score": score_for(path, scoring),
                 "_explicit_run": explicit_run,
             }
         )
@@ -210,8 +213,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         parsed_path = urllib.parse.urlparse(self.path)
-        if parsed_path.path == "/api/svgs":
-            payload = json.dumps(list_svgs(), ensure_ascii=False).encode("utf-8")
+        if parsed_path.path in ("/api/svgs", "/api/scoring"):
+            try:
+                data = list_svgs() if parsed_path.path == "/api/svgs" else {
+                    key: value for key, value in load_data().items() if key != "reviews"
+                }
+            except (ValueError, KeyError, TypeError, OSError) as error:
+                self.log_error("评分数据不可用：%s", error)
+                self.send_error(503, "Scoring data is unavailable")
+                return
+            payload = json.dumps(data, ensure_ascii=False).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")

@@ -1,0 +1,48 @@
+summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.scoring-panel { margin: 0 0 34px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+.scoring-panel h2 { margin: 0; font-size: 21px; }
+.scoring-panel h3 { font-size: 15px; margin-top: 22px; }
+.scoring-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.scoring-heading a { color: var(--green); font-size: 12px; }
+.scoring-note, .score-source { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.scoring-note { margin: 12px 0; }
+.weight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+.weight-item { padding: 14px 16px; background: #f1f6f0; border-radius: 12px; }
+.weight-item strong { display: block; margin-top: 6px; font-size: 26px; color: var(--green); }
+.weight-item span { font-size: 12px; }
+.rubric-details summary, .score-details summary { cursor: pointer; color: var(--green); font-size: 13px; font-weight: 700; padding: 8px 0; }
+.rubric-table-wrap { overflow-x: auto; margin: 12px 0; }
+.rubric-table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.6; }
+.rubric-table th, .rubric-table td { padding: 10px; text-align: left; border-bottom: 1px solid var(--line); }
+.rubric-table th { background: #f3f7f1; }
+.rubric-table td:first-child { white-space: nowrap; }
+.rubric-list { padding-left: 20px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.level-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.level-list span { padding: 6px 10px; background: #f1f5f0; border-radius: 8px; font-size: 12px; }
+.score-block { margin: 13px 0 0; padding: 13px 0 0; border-top: 1px solid var(--line); text-align: left; }
+.score-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.score-label { font-size: 11px; color: var(--muted); }
+.score-number { font-size: 26px; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
+.score-number small { font-size: 12px; font-weight: 500; color: var(--muted); }
+.score-level { font-size: 11px; padding: 3px 7px; background: #e8f3e7; color: #245839; border-radius: 6px; }
+.score-comment { margin: 7px 0; font-size: 12px; line-height: 1.7; color: #43564a; overflow-wrap: anywhere; }
+.score-dimensions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 14px; margin: 14px 0; }
+.score-dimension { font-size: 11px; color: var(--muted); }
+.score-dimension strong { float: right; color: var(--ink); }
+.score-track { height: 5px; margin-top: 6px; background: #e8eee7; border-radius: 5px; overflow: hidden; }
+.score-fill { display: block; height: 100%; background: #368067; border-radius: inherit; }
+.score-source { margin: 6px 0; font-size: 11px; }
+.score-pending { color: #886329; background: #fbf2df; }
+.detail-score { margin: 0 0 24px; padding: 0 0 20px; border-top: 0; border-bottom: 1px solid var(--line); }
+.detail-score .score-number { font-size: 34px; }
+.score-notes p { font-size: 12px; line-height: 1.7; }
+.score-item { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; font-size: 12px; border-bottom: 1px solid var(--line); }
+.score-item strong { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.variant-score { display: block; margin-top: 5px; color: var(--green); font-size: 11px; }
+#score-coverage { color: var(--green); }
+@media (max-width: 600px) {
+  .scoring-panel { padding: 18px; }
+  .weight-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .rubric-table th, .rubric-table td { padding: 8px 6px; }
+  .rubric-table td:first-child { white-space: normal; min-width: 95px; }
+}

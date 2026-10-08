@@ -1,0 +1,2418 @@
+{
+  "schemaVersion": 1,
+  "rubricVersion": "1.0",
+  "updatedAt": "2026-10-08",
+  "sourceFile": "熊猫骑自行车SVG评分表.xlsx",
+  "dimensions": [
+    {
+      "code": "A",
+      "label": "形象还原",
+      "max": 30
+    },
+    {
+      "code": "B",
+      "label": "动画",
+      "max": 35
+    },
+    {
+      "code": "C",
+      "label": "视觉设计",
+      "max": 20
+    },
+    {
+      "code": "D",
+      "label": "技术",
+      "max": 15
+    }
+  ],
+  "criteria": [
+    {
+      "dimension": "A",
+      "code": "A1",
+      "label": "熊猫辨识度",
+      "max": 12,
+      "standard": "黑耳、黑眼圈、黑四肢、白身体，可爱度与比例"
+    },
+    {
+      "dimension": "A",
+      "code": "A2",
+      "label": "自行车结构",
+      "max": 8,
+      "standard": "车架、两轮、链条、踏板、车把是否合理"
+    },
+    {
+      "dimension": "A",
+      "code": "A3",
+      "label": "人车融合",
+      "max": 10,
+      "standard": "坐在车座上、手握把、脚踩踏板，无悬空或脱节"
+    },
+    {
+      "dimension": "B",
+      "code": "B1",
+      "label": "核心动作",
+      "max": 15,
+      "standard": "车轮转动、腿随踏板联动、动作幅度"
+    },
+    {
+      "dimension": "B",
+      "code": "B2",
+      "label": "次级动画",
+      "max": 8,
+      "standard": "身体起伏、围巾、耳朵、眨眼等"
+    },
+    {
+      "dimension": "B",
+      "code": "B3",
+      "label": "速度感与环境",
+      "max": 7,
+      "standard": "背景视差、地面滚动、速度线、扬尘"
+    },
+    {
+      "dimension": "B",
+      "code": "B4",
+      "label": "循环与稳定",
+      "max": 5,
+      "standard": "无闪烁、首帧异常、穿帮"
+    },
+    {
+      "dimension": "C",
+      "code": "C1",
+      "label": "构图配色",
+      "max": 8,
+      "standard": "主体突出、对比度、色彩统一"
+    },
+    {
+      "dimension": "C",
+      "code": "C2",
+      "label": "场景层次",
+      "max": 7,
+      "standard": "远中近景、环境元素"
+    },
+    {
+      "dimension": "C",
+      "code": "C3",
+      "label": "细节完成度",
+      "max": 5,
+      "standard": "高光、阴影、小物件"
+    },
+    {
+      "dimension": "D",
+      "code": "D1",
+      "label": "有效性与干净渲染",
+      "max": 5,
+      "standard": "XML 合法、无报错、无外链"
+    },
+    {
+      "dimension": "D",
+      "code": "D2",
+      "label": "实现质量",
+      "max": 5,
+      "standard": "纯 SMIL/CSS、元素复用、体积、title/desc"
+    },
+    {
+      "dimension": "D",
+      "code": "D3",
+      "label": "健壮性",
+      "max": 5,
+      "standard": "不依赖脚本、几何一致、可维护"
+    }
+  ],
+  "levels": [
+    {
+      "min": 90,
+      "label": "惊艳",
+      "meaning": "专业级，几乎无短板"
+    },
+    {
+      "min": 80,
+      "label": "优秀",
+      "meaning": "完成度高，有少量短板"
+    },
+    {
+      "min": 70,
+      "label": "良好",
+      "meaning": "整体可用，有明显不足"
+    },
+    {
+      "min": 60,
+      "label": "及格",
+      "meaning": "能看出主题，缺陷较多"
+    },
+    {
+      "min": 0,
+      "label": "有明显缺陷",
+      "meaning": "形象或动画存在严重问题"
+    }
+  ],
+  "methodology": [
+    "以单份 SVG 原始作品为评分对象，不把作品分数等同于模型整体能力。",
+    "13 个小项直接相加得到 100 分制总分；四维权重为 30 / 35 / 20 / 15，已经包含在小项满分中，不再重复乘权重。",
+    "原表的 15 份评分保持不变，其余作品由 Codex 按相同小项补评；卡片展示最新一份作品的分数与点评，详情逐份展示。",
+    "补评结合 XML 与源码检查、0–2 秒多个动作时间点，以及 6、12、30、30.12 秒取样；取样用于检查动作位置与接缝，不作为连续播放或帧率测试。",
+    "新作品先收录并标记待评分，完成截图、四维复核和 13 小项评分后更新；文件内容或规则版本变化后标记待复评。"
+  ],
+  "limitations": [
+    "原表注明评分约有 ±3 分的主观误差，形象项受个人审美影响较大；接近的分数应按同一梯队理解。",
+    "原表只检查 0–2 秒的 12 帧，未检查长周期接缝；补评的离散取样也无法覆盖全部连续帧及所有长周期。",
+    "本轮补评使用 Chromium，未验证 Safari、移动端浏览器兼容性或真机帧率。"
+  ],
+  "reviews": {
+    "Sonnet5,5 thinking Max.svg": {
+      "sha256": "7610c782a8c60236ee8001301de0c5358f6b5c7af7f23b178ab1eee2222993dc",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 11,
+        "A2": 7,
+        "A3": 8,
+        "B1": 14,
+        "B2": 7,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 5,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "熊猫最完整，多层竹林景深最好、蹬踏联动正确；骑姿偏直，文件最大（67KB）",
+      "originalComment": "熊猫最完整，多层竹林景深最好、蹬踏联动正确；骑姿偏直，文件最大（67KB）",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 6,
+        "alias": "Sonnet5_5_Max-thinking"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "M3.1-Flash-Preview-Max.svg": {
+      "sha256": "f83a9346397a1bb91abd387749774ca3b37bf40ab2f0c67c7130aefc8ff2628a",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 8,
+        "A3": 9,
+        "B1": 14,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "趴伏骑姿速度感最强，围巾飘动；吻部带胡须像猫，背部黑块不像熊猫",
+      "originalComment": "趴伏骑姿速度感最强，围巾飘动；吻部带胡须像猫，背部黑块不像熊猫",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 7,
+        "alias": "M3_1-Flash-Preview-Max"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek-V4.1-Flash最大.svg": {
+      "sha256": "45ffab1aabeda88623c6b0b3a845cd79c8e4f9e0a37eecd38236008bc90ec14a",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 7,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "路牌、树、挡泥板等细节好，人车结合自然；正脸配侧身略不一致",
+      "originalComment": "路牌、树、挡泥板等细节好，人车结合自然；正脸配侧身略不一致",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 8,
+        "alias": "DeepSeek-V4_1-Flash最大"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "Step-5-Preview高.svg": {
+      "sha256": "8ee91302ab4a3968aa4b753cc9d24434f80aacbaae79d5611478d62cabacb30d",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 14,
+        "B2": 6,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "彩虹、飞鸟、橙围巾，结构完整；手臂偏长，侧脸辨识度稍弱",
+      "originalComment": "彩虹、飞鸟、橙围巾，结构完整；手臂偏长，侧脸辨识度稍弱",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 9,
+        "alias": "Step-5-Preview高"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "Seed-2.1-Turbo高.svg": {
+      "sha256": "20a5b64dd51c79f2c78148aedc41e0bae2795e51a2fc68b9193d3e79c73d2d7e",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 9,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "夜景氛围和尾焰最强；头盔遮耳朵，气质偏离\"熊猫骑车\"",
+      "originalComment": "夜景氛围和尾焰最强；头盔遮耳朵，气质偏离\"熊猫骑车\"",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 10,
+        "alias": "Seed-2_1-Turbo高"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "Sonnet5.5 Extra.svg": {
+      "sha256": "96567f8503160422c376b727c1dbb15e21b47747f11f1fe6f3e479bb08b0f386",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 11,
+        "A2": 7,
+        "A3": 7,
+        "B1": 14,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "腿部跟踪踏板，地面速度与车轮转速一致；场景层次较少，大腿偏粗。",
+      "originalComment": "（Claude 自己生成）腿跟踪踏板，地面速度与车轮转速一致；场景层次不如第一名，大腿偏粗。首轮自评 88，复核后扣 2 分",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 11,
+        "alias": "Sonnet5_5_Extra_1"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek V4.1 Flash Ultra.svg": {
+      "sha256": "207a7edba96d1f51aba24dccec69185680ac4ae1041353f0df1441a9940e1125",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 8,
+        "A3": 8,
+        "B1": 12,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 7,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "山、树、蝴蝶、渐变天空最精致；熊猫偏灰米色，动作幅度偏小",
+      "originalComment": "山、树、蝴蝶、渐变天空最精致；熊猫偏灰米色，动作幅度偏小",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 12,
+        "alias": "DeepSeek_V4_1_Flash_Ultra"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "Seed-Code-高.svg": {
+      "sha256": "c1eb5db3851c4030df4ca83536aa7ef0d030e0e431d1452646c16e7a41d9b797",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 6,
+        "C2": 5,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "与 Seed-2.1 同骨架的代码主题，太暗，熊猫被背景吞没",
+      "originalComment": "与 Seed-2.1 同骨架的代码主题，太暗，熊猫被背景吞没",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 13,
+        "alias": "Seed-Code-高"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek V4.1 Flash极高.svg": {
+      "sha256": "6046b12e9b21d2cbe0f6138b1b9e17d8145b9250c854883dd153bdbfe7499fef",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 9,
+        "A2": 7,
+        "A3": 8,
+        "B1": 13,
+        "B2": 6,
+        "B3": 7,
+        "B4": 3,
+        "C1": 7,
+        "C2": 6,
+        "C3": 3,
+        "D1": 4,
+        "D2": 4,
+        "D3": 4
+      },
+      "comment": "红头盔造型好；首帧左上角闪现一个齿轮，篮子在后座，车架比例怪",
+      "originalComment": "红头盔造型好；首帧左上角闪现一个齿轮，篮子在后座，车架比例怪",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 14,
+        "alias": "DeepSeek_V4_1_Flash极高"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "MiniMax-M3默认.svg": {
+      "sha256": "027d9282722ff87f1962503cd112dda02428664f711407a7a0ac564c015642dd",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 7,
+        "A3": 5,
+        "B1": 12,
+        "B2": 5,
+        "B3": 6,
+        "B4": 4,
+        "C1": 8,
+        "C2": 7,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "comment": "黄昏配色很好；头与身体分离，手臂过长，腿像面条",
+      "originalComment": "黄昏配色很好；头与身体分离，手臂过长，腿像面条",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 15,
+        "alias": "MiniMax-M3默认"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "M3-默认.svg": {
+      "sha256": "b778a4f3fec43f3eeae7c6c38c1b24dc47a4e457802606079b53c53a7bd4104d",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 7,
+        "A3": 6,
+        "B1": 11,
+        "B2": 6,
+        "B3": 5,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "comment": "正脸可爱；腿细直，手臂线条过长，没有路面，滚动感弱",
+      "originalComment": "正脸可爱；腿细直，手臂线条过长，没有路面，滚动感弱",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 16,
+        "alias": "M3-默认"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek V4 Pro Ultra 2.svg": {
+      "sha256": "e45b8d6891a98e9d6fe19f03d5bb37ba93a1f58603f815ecbe082fcc47db301b",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 7,
+        "A3": 4,
+        "B1": 8,
+        "B2": 5,
+        "B3": 6,
+        "B4": 3,
+        "C1": 6,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "comment": "樱花树和竹捆不错；脚掌与小腿脱开漂浮，蛋形身体悬在车座上",
+      "originalComment": "樱花树和竹捆不错；脚掌与小腿脱开漂浮，蛋形身体悬在车座上",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 17,
+        "alias": "DeepSeek_V4_Pro_Ultra_2"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "GLM-5.3-FlashX-Max.svg": {
+      "sha256": "b5de3cdeba722a0b9f6d97fecdb2b63a4bdb347e835e3306ee40014aa0797ed2",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 7,
+        "A2": 6,
+        "A3": 5,
+        "B1": 9,
+        "B2": 4,
+        "B3": 5,
+        "B4": 4,
+        "C1": 5,
+        "C2": 4,
+        "C3": 3,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "comment": "人和车偏小、留白多，腿是弯曲粗线，两个轮子各有一个分离的影子",
+      "originalComment": "人和车偏小、留白多，腿是弯曲粗线，两个轮子各有一个分离的影子",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 18,
+        "alias": "GLM-5_3-FlashX-Max"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek V4 Pro Ultra.svg": {
+      "sha256": "c714dd16125a2e008126df5e141bf25b682812bd9b7c8edc00f857447cdb37a9",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 8,
+        "A2": 7,
+        "A3": 4,
+        "B1": 8,
+        "B2": 4,
+        "B3": 5,
+        "B4": 4,
+        "C1": 5,
+        "C2": 4,
+        "C3": 2,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "comment": "蛋形身体悬空，腿短够不到踏板",
+      "originalComment": "蛋形身体悬空，腿短够不到踏板",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 19,
+        "alias": "DeepSeek_V4_Pro_Ultra"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "DeepSeek V4 Pro 极高.svg": {
+      "sha256": "1f79b65700197a096766c6def4c9c19b764da9f2e88e68ee184fa56d11b70381",
+      "rubricVersion": "1.0",
+      "source": "spreadsheet",
+      "reviewer": "原评分表",
+      "reviewedAt": "2026-10-08",
+      "scores": {
+        "A1": 7,
+        "A2": 5,
+        "A3": 5,
+        "B1": 8,
+        "B2": 4,
+        "B3": 4,
+        "B4": 4,
+        "C1": 5,
+        "C2": 4,
+        "C3": 2,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "comment": "最简，头小，车架几何怪，动作幅度最低",
+      "originalComment": "最简，头小，车架几何怪，动作幅度最低",
+      "sourceRef": {
+        "sheet": "评分结果",
+        "row": 20,
+        "alias": "DeepSeek_V4_Pro_极高"
+      },
+      "evidence": {
+        "method": "原表记录：0–2 秒 12 帧；本项目未重新复评原表作品",
+        "importedAt": "2026-10-08"
+      }
+    },
+    "5.6 Sol gpt聊天 高.svg": {
+      "sha256": "af6aadcd75fff698e3231ad8d6b9847c26661b2a0c360548e0f54ea7dd3c4515",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "蓝衣熊猫辨识清楚、道路有速度感；双腿摆动没有贴合踏板，场景较平。",
+      "scores": {
+        "A1": 10,
+        "A2": 7,
+        "A3": 6,
+        "B1": 10,
+        "B2": 6,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 4,
+        "C3": 3,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "notes": {
+        "A": "正脸可爱，红色车架清晰；坐姿偏直，手脚与车把踏板的接触不准确。",
+        "B": "轮子、曲柄和双腿都有动作；双腿是绕上端摆动，未跟踪踏板圆周，路面与云朵持续位移。",
+        "C": "蓝绿配色明快；背景主要为天空与草地，高光和环境细节较少。",
+        "D": "XML 合法且无外链或脚本；CSS 动画简洁，但缺 title/desc 和元素复用，腿部几何联动较弱。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 10237,
+        "sha256": "af6aadcd75fff698e3231ad8d6b9847c26661b2a0c360548e0f54ea7dd3c4515",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 119,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": false,
+        "hasDesc": false,
+        "smilCount": 0,
+        "durations": [],
+        "cssKeyframes": 11,
+        "useCount": 0
+      }
+    },
+    "5.6 Sol 高 codex.svg": {
+      "sha256": "40dc0443d79134d798286055e22a443df392b704bf4a5e3382ee6493e3f44b29",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "春日公园与熊猫表情很完整；双腿交叉摆动较大，脚端没有跟随曲柄。",
+      "scores": {
+        "A1": 11,
+        "A2": 8,
+        "A3": 5,
+        "B1": 9,
+        "B2": 6,
+        "B3": 5,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫五官、红围巾与薄荷色车架完整；脚端与踏板在多个时间点分离，骑姿偏正面。",
+        "B": "两轮与曲柄均为 1.6 秒；腿部路径虽变形，但端点轨迹与曲柄圆周不一致，花瓣、鸟与眨眼提供次级动作。",
+        "C": "配色统一，花树、竹篮、蝴蝶和阴影丰富；远景移动较慢，速度感偏温和。",
+        "D": "合法 XML、无外部依赖，有 title/desc 与 use；路径关键帧较长且脚端几何缺少统一约束。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 17647,
+        "sha256": "40dc0443d79134d798286055e22a443df392b704bf4a5e3382ee6493e3f44b29",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 256,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 24,
+        "durations": [
+          ".55s",
+          ".8s",
+          "1.1s",
+          "1.2s",
+          "1.3s",
+          "1.6s",
+          "28s",
+          "3.8s",
+          "38s",
+          "4.2s",
+          "4.5s",
+          "7.5s",
+          "8.2s",
+          "8.7s",
+          "9.6s",
+          "9s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 9
+      }
+    },
+    "6 Astra Ultra.svg": {
+      "sha256": "d40a57a05cbb9497bdda071639ec9e27c510018ef49735e8c9a7882ac20afb09",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "黄头盔熊猫清晰可爱；腿部保持固定姿势，踏板空转，手也没有握住车把。",
+      "scores": {
+        "A1": 10,
+        "A2": 6,
+        "A3": 4,
+        "B1": 6,
+        "B2": 4,
+        "B3": 5,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "黑白辨识明确，头盔与围巾有细节；车架多条连接不自然，手离车把，身体与车座接触偏弱。",
+        "B": "轮子与曲柄旋转；源码中两条腿是静态路径，只有全身起伏，踏板转动时脚不跟随，次级动作较少。",
+        "C": "山丘分层与暖色路面清楚，花朵和阴影有装饰；整体留白较多。",
+        "D": "XML 合法，无脚本外链，有 title/desc 与轮子复用；腿部缺少联动，几何联系不足。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 9216,
+        "sha256": "d40a57a05cbb9497bdda071639ec9e27c510018ef49735e8c9a7882ac20afb09",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 129,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 8,
+        "durations": [
+          "1.12s",
+          "1.1s",
+          "1.7s",
+          "14s",
+          "5s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 5
+      }
+    },
+    "6 Astra高.svg": {
+      "sha256": "bc0ed08c700a92ac11879326e29a5811ca58de938c41ed78c9660309202c1394",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "紫色夜景、竹林视差与蹬踏组合完整；熊猫主体偏小，头盔遮住部分耳朵。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "熊猫脸与黑白身体清楚，车架、链条和竹篮齐全；前倾骑姿与车座车把基本结合，主体比例偏小。",
+        "B": "腿部、车轮和曲柄在取样中保持同一骑行节奏；围巾、眨眼、竹叶与尘粒丰富，路面和竹林后移明显。",
+        "C": "夜空紫色与车架呼应，远山竹林道路有层次；小尺寸观看时身体细节不够突出。",
+        "D": "合法 XML，无脚本外链，有 title/desc 与 use；大量运动元素周期各异，未覆盖全部长循环。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 22492,
+        "sha256": "bc0ed08c700a92ac11879326e29a5811ca58de938c41ed78c9660309202c1394",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 267,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 44,
+        "durations": [
+          "0.14s",
+          "0.16s",
+          "0.18s",
+          "0.19s",
+          "0.21s",
+          "0.22s",
+          "0.28s",
+          "0.32s",
+          "0.34s",
+          "0.9s",
+          "1.1s",
+          "1.3s",
+          "1.4s",
+          "1.7s",
+          "1.8s",
+          "2.2s",
+          "2.8s",
+          "26s",
+          "2s",
+          "3.1s",
+          "4.2s",
+          "48s",
+          "5s",
+          "6s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 7
+      }
+    },
+    "6 Luna Max.svg": {
+      "sha256": "176c9a159e288bf4efc7e0aaee54def26b4c4d52a02b22720130285839de9a5f",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林、围巾与路面运动丰富，骑行动作完整；主体偏小，晴天配色较常规。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "熊猫辨识清晰，红色自行车与篮子结构完整；身体坐在车座附近，手脚衔接基本成立，头盔略遮耳朵。",
+        "B": "车轮、曲柄与双腿同周期，围巾、眼睛、叶片和扬尘提供次级动作；竹林视差与道路移动明显。",
+        "C": "天空、山丘、竹林和道路层次清楚；主体较小，绿蓝红配色清晰但较常规。",
+        "D": "XML 合法、无脚本外链，有 title/desc 和复用元素；动画组织完整，长周期仅离散取样。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 21793,
+        "sha256": "176c9a159e288bf4efc7e0aaee54def26b4c4d52a02b22720130285839de9a5f",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 258,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 40,
+        "durations": [
+          "0.14s",
+          "0.16s",
+          "0.18s",
+          "0.19s",
+          "0.21s",
+          "0.22s",
+          "0.28s",
+          "0.32s",
+          "0.34s",
+          "0.9s",
+          "1.1s",
+          "1.3s",
+          "1.4s",
+          "1.8s",
+          "26s",
+          "2s",
+          "3.1s",
+          "4.2s",
+          "48s",
+          "6s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 7
+      }
+    },
+    "6 Luna Max2.svg": {
+      "sha256": "118aeb7b5e6d5b6bfb08b81fb1db4459ded019c544fed514d170c2601d730d29",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "青绿车架和公园配色干净；熊猫四肢过长，脚与踏板的相位不一致，速度感较弱。",
+      "scores": {
+        "A1": 9,
+        "A2": 8,
+        "A3": 5,
+        "B1": 10,
+        "B2": 5,
+        "B3": 4,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫正脸清楚，车架两轮齐全；手臂腿部过长，身体细瘦，脚端与踏板位置存在偏差。",
+        "B": "腿部路径与曲柄均为 1.6 秒，但四分之一周期的方向不一致；有眨眼、云朵与飘叶，草地缺少明显滚动。",
+        "C": "画面清爽，有山丘、云朵与小花；环境变化和高光细节偏少。",
+        "D": "XML 合法且无外部依赖，有 title/desc；腿与曲柄分别编码，相位及几何缺少统一约束。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 12001,
+        "sha256": "118aeb7b5e6d5b6bfb08b81fb1db4459ded019c544fed514d170c2601d730d29",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 154,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 17,
+        "durations": [
+          "1.6s",
+          "10s",
+          "12s",
+          "2.3s",
+          "2.7s",
+          "4.2s",
+          "4.8s",
+          "5.5s",
+          "6.2s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "6 Luna高.svg": {
+      "sha256": "5ea5bf2c5f866b9b6ae3ea3a8fd2ef0319dda3ef750b27de2d969fe65739057f",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "绿头盔与竹林道路很清爽；细长手臂和摆腿削弱人车融合，脚没有持续踩住踏板。",
+      "scores": {
+        "A1": 10,
+        "A2": 7,
+        "A3": 6,
+        "B1": 10,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫正脸与车架易辨识；手臂细长，腿部姿态偏僵硬，脚端与踏板没有保持接触。",
+        "B": "轮子与路面运动清楚，竹林提供视差；腿部的摆动轨迹不足以贴合曲柄，眨眼、围巾和尘粒增加细节。",
+        "C": "绿蓝红配色明快，竹林与山丘分层；人物和自行车的阴影、高光较简略。",
+        "D": "合法 XML、无脚本外链，有 title/desc 与 use；骑行几何与腿部相位仍有改进空间。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 9927,
+        "sha256": "5ea5bf2c5f866b9b6ae3ea3a8fd2ef0319dda3ef750b27de2d969fe65739057f",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 142,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 15,
+        "durations": [
+          ".35s",
+          ".5s",
+          ".7s",
+          "1.1s",
+          "1.3s",
+          "1.6s",
+          "12s",
+          "2s",
+          "48s",
+          "4s",
+          "5s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 13
+      }
+    },
+    "6.1 SolUltra.svg": {
+      "sha256": "a968923b063c38482a2c7503800cb45c29138b629b9dea754ddff1deeee5d83a",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "山谷配色柔和、熊猫面部可爱；双腿绕错误位置旋转，会飞离身体并伸到路面外。",
+      "scores": {
+        "A1": 9,
+        "A2": 6,
+        "A3": 2,
+        "B1": 5,
+        "B2": 3,
+        "B3": 5,
+        "B4": 2,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 2
+      },
+      "notes": {
+        "A": "熊猫正脸清楚，但白色四肢与黑白特征不完全一致；车架连接不自然，腿在多个取样点脱离身体和踏板。",
+        "B": "两轮与曲柄旋转，双腿围绕固定点摆动，与踏板圆周轨迹不符；0.6 秒等时间点腿飞到身体侧边，晚时点又伸到路面下，稳定性明显扣分。",
+        "C": "山谷、云朵和渐变天空协调；场景清楚但细节较少。",
+        "D": "XML 合法，无脚本外链，有 title/desc；缺少元素复用，腿部变换中心与几何衔接存在严重问题。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 10551,
+        "sha256": "a968923b063c38482a2c7503800cb45c29138b629b9dea754ddff1deeee5d83a",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 110,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 9,
+        "durations": [
+          "1.2s",
+          "1.8s",
+          "1s",
+          "22s",
+          "28s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "6.1 Sol高.svg": {
+      "sha256": "1b8304994d1d9bef2c552c58d79fd9dae7e4fc3d37edfbabca826ba365e5610b",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林道路和车轮运动鲜明；熊猫直立、腿部交叉摆动，脚与踏板存在偏差。",
+      "scores": {
+        "A1": 9,
+        "A2": 7,
+        "A3": 6,
+        "B1": 10,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "头盔熊猫辨识较好，红色车架清楚；身体过于直立，腿部交叉，人车接触不够自然。",
+        "B": "道路、竹林与车轮运动突出，有眨眼和尘粒；双腿虽然与骑行同节奏，取样中端点仍偏离踏板。",
+        "C": "对比清晰，远中近景成立；身体轮廓和车架偏硬，精细阴影较少。",
+        "D": "XML 合法，无外链脚本，有 title/desc 与复用元素；腿部几何和骑姿一致性限制健壮性。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 10757,
+        "sha256": "1b8304994d1d9bef2c552c58d79fd9dae7e4fc3d37edfbabca826ba365e5610b",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 146,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 15,
+        "durations": [
+          ".52s",
+          "1.05s",
+          "1.1s",
+          "1.2s",
+          "1.4s",
+          "1.5s",
+          "42s",
+          "5s",
+          "8s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 5
+      }
+    },
+    "DeepSeek-V4-Flash-0731 默认.svg": {
+      "sha256": "f9b2512289dff4c05e221c7c7dd386e075182f3ada4b3286ff0017552bee7a4a",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "围巾、太阳和红色自行车主题明确；双腿摆动与踏板脱节，部分姿态脚伸到车外。",
+      "scores": {
+        "A1": 9,
+        "A2": 7,
+        "A3": 5,
+        "B1": 9,
+        "B2": 6,
+        "B3": 6,
+        "B4": 3,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫五官清楚、车架基本完整；身体小，腿较细长，脚在 1–2 秒取样中离开踏板。",
+        "B": "轮子、曲柄、围巾及云朵有动画；腿部旋转与踏板轨迹不一致，出现脚向车外伸出的姿态。",
+        "C": "天空、山丘和路面分层清楚；环境细节与材质较简略。",
+        "D": "合法 XML、无外链脚本，有 title 但缺 desc 与元素复用；腿部各自旋转，几何一致性有限。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 14700,
+        "sha256": "f9b2512289dff4c05e221c7c7dd386e075182f3ada4b3286ff0017552bee7a4a",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 167,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": false,
+        "smilCount": 32,
+        "durations": [
+          "0.38s",
+          "0.45s",
+          "0.4s",
+          "0.5s",
+          "0.6s",
+          "0.7s",
+          "0.9s",
+          "1.6s",
+          "1.9s",
+          "16s",
+          "2.1s",
+          "2.4s",
+          "24s",
+          "2s",
+          "3.2s",
+          "30s",
+          "3s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "DeepSeek-V4-pro最大.svg": {
+      "sha256": "b0a2101be72bf2064f992d4e891f48abcf76ad80464e175d5dc2843b315f3e2b",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "能看出熊猫与红车主题；主体很小、首帧车轮出界，骑行途中整辆车会离开画面。",
+      "scores": {
+        "A1": 8,
+        "A2": 6,
+        "A3": 3,
+        "B1": 7,
+        "B2": 5,
+        "B3": 3,
+        "B4": 2,
+        "C1": 4,
+        "C2": 3,
+        "C3": 2,
+        "D1": 5,
+        "D2": 3,
+        "D3": 2
+      },
+      "notes": {
+        "A": "熊猫黑白特征存在，但人物很小，双臂未握住车把，身体与车座分离。",
+        "B": "轮子、曲柄与摆腿有运动，但脚没有跟踪踏板；整车平移导致 6 秒附近几乎完全离开画面，主题持续性较差。",
+        "C": "大量天空留白，地面与天空基本为平涂；主体偏左且首帧轮子被画布裁切，层次与细节较少。",
+        "D": "XML 合法且无脚本外链，使用轮子和踏板复用；缺 title/desc，平移范围与画布边界、身体接触关系不稳。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 9750,
+        "sha256": "b0a2101be72bf2064f992d4e891f48abcf76ad80464e175d5dc2843b315f3e2b",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 129,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": false,
+        "hasDesc": false,
+        "smilCount": 20,
+        "durations": [
+          "0.6s",
+          "0.8s",
+          "18s",
+          "22s",
+          "2s",
+          "3s",
+          "9s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 4
+      }
+    },
+    "DeepSeek-V4.1-Pro-0813 默认.svg": {
+      "sha256": "261a3b5cb3795fb5cf2e17ac122007818e2b8c84c1dded5de3799893d863a459",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "山丘和红围巾清楚，车轮有速度感；头身间隙明显，身体悬在车座上，手臂偏长。",
+      "scores": {
+        "A1": 8,
+        "A2": 7,
+        "A3": 4,
+        "B1": 10,
+        "B2": 4,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "黑耳和眼圈易辨，但头与圆形身体之间存在明显间隔；车架基本完整，身体未自然坐稳，长手臂突兀。",
+        "B": "车轮与曲柄转动，腿部有变化，道路与云朵后移；围巾形状变化少，身体起伏较轻。",
+        "C": "配色清晰，山丘与灌木提供景深；人物线条和环境细节较简略。",
+        "D": "XML 合法、无外链脚本，有 title/desc；结构可读，但头身和手脚几何需进一步协调。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 12180,
+        "sha256": "261a3b5cb3795fb5cf2e17ac122007818e2b8c84c1dded5de3799893d863a459",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 148,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 17,
+        "durations": [
+          "0.0955s",
+          "0.158s",
+          "0.5405s",
+          "0.6s",
+          "1.2s",
+          "24s",
+          "28s",
+          "30s",
+          "34s",
+          "7s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "GLM-5.3-Flash最大.svg": {
+      "sha256": "7a593b2da3d65be0d76adfc1f593f0c788a4a0cecbabe557a862a36183198436",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "红围巾与车架辨识清晰；脚没有跟着踏板转，环境层次和细节偏少。",
+      "scores": {
+        "A1": 9,
+        "A2": 7,
+        "A3": 5,
+        "B1": 9,
+        "B2": 5,
+        "B3": 6,
+        "B4": 3,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫五官和自行车完整可辨；细腿与踏板接触不稳，坐姿偏直。",
+        "B": "轮子、曲柄、云朵与围巾有运动；腿部摆动与踏板圆周不一致，部分时间点脚离开自行车。",
+        "C": "天空、山丘与路面配色干净；场景较空，物件和阴影细节有限。",
+        "D": "XML 合法，无脚本外链，有 title 但缺 desc 和复用；腿部轨迹与车架几何分开编写。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 11871,
+        "sha256": "7a593b2da3d65be0d76adfc1f593f0c788a4a0cecbabe557a862a36183198436",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 141,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": false,
+        "smilCount": 24,
+        "durations": [
+          "0.38s",
+          "0.45s",
+          "0.4s",
+          "0.5s",
+          "0.6s",
+          "0.7s",
+          "0.9s",
+          "1.6s",
+          "1.9s",
+          "16s",
+          "24s",
+          "2s",
+          "3.2s",
+          "30s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "GLM-5.3最大.svg": {
+      "sha256": "0e8f1963c76bd619a732a24215848f1345090f5afdeea4305d3ffc131c38904f",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林公路、眨眼和围巾让画面活泼；脚端与踏板衔接仍有偏差，场景细节较朴素。",
+      "scores": {
+        "A1": 10,
+        "A2": 7,
+        "A3": 6,
+        "B1": 11,
+        "B2": 6,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫正脸完整，红车轮廓清楚；人物与车把接触基本成立，但部分相位脚偏离踏板。",
+        "B": "CSS 与 SMIL 配合实现车轮、腿部及次级动作，背景、道路可见位移；腿与踏板联动仍不完全吻合。",
+        "C": "阳光、竹子与小花形成明快公园；层次成立但色块与细节较简单。",
+        "D": "XML 合法、无外链脚本，有 title/desc 和 use；双套动画实现增加协调成本，骑行几何仍需校准。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 14793,
+        "sha256": "0e8f1963c76bd619a732a24215848f1345090f5afdeea4305d3ffc131c38904f",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 161,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 13,
+        "durations": [
+          "0.8s",
+          "0.9s",
+          "2.4s",
+          "24s",
+          "3.5s"
+        ],
+        "cssKeyframes": 11,
+        "useCount": 14
+      }
+    },
+    "GLM-5.3默认.svg": {
+      "sha256": "c10081989d53a921183c55f869b1956f5bc63f4200c4b01a0886c0a14b7c023c",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林、篮子和道路视差完整；手臂过长，弯曲腿部在部分时间点伸到踏板之外。",
+      "scores": {
+        "A1": 9,
+        "A2": 8,
+        "A3": 5,
+        "B1": 10,
+        "B2": 6,
+        "B3": 7,
+        "B4": 3,
+        "C1": 7,
+        "C2": 6,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫辨识清楚，自行车传动与篮子完整；长直手臂比例不自然，弯腿脚端和曲柄位置未完全衔接。",
+        "B": "轮子、踏板、腿部及环境都在运动；腿部关键帧圆周与曲柄中心关系有偏差，取样出现脚低垂至路面。",
+        "C": "远山竹林与道路分层，配色清晰；人物细节与高光较少。",
+        "D": "XML 合法，无脚本外链，有 title/desc 和大量 use；动态路径和曲柄分别定义，几何一致性有限。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 17646,
+        "sha256": "c10081989d53a921183c55f869b1956f5bc63f4200c4b01a0886c0a14b7c023c",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 201,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 32,
+        "durations": [
+          "0.13s",
+          "0.14s",
+          "0.45s",
+          "0.7s",
+          "0.9s",
+          "2.2s",
+          "2.6s",
+          "36s",
+          "4.2s",
+          "40s",
+          "8s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 28
+      }
+    },
+    "Gemini 3.1 Pro High.svg": {
+      "sha256": "d58253018e1c99a0aa753bdf081aa66922693c1b3fa717b05e436b4923079d0b",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "熊猫脸和蹬车主题很直观；身体偏瘦、腿像长棍，背景层次与装饰较少。",
+      "scores": {
+        "A1": 9,
+        "A2": 7,
+        "A3": 6,
+        "B1": 11,
+        "B2": 5,
+        "B3": 5,
+        "B4": 4,
+        "C1": 6,
+        "C2": 3,
+        "C3": 2,
+        "D1": 5,
+        "D2": 3,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫黑耳与眼圈明显；车架基本成立，身体细长，手臂与腿比例偏硬，脚端接触不够自然。",
+        "B": "轮子、踏板与双腿均有明显运动，围巾、云和速度线辅助；地面与环境变化比较单一。",
+        "C": "简单蓝天、灰路和绿地让主体易辨；缺少中远景、阴影与物件细节。",
+        "D": "XML 合法，无外链脚本，少量 use；缺 title/desc，几何比例和腿部跟踪仍需改善。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 10304,
+        "sha256": "d58253018e1c99a0aa753bdf081aa66922693c1b3fa717b05e436b4923079d0b",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 113,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": false,
+        "hasDesc": false,
+        "smilCount": 20,
+        "durations": [
+          "0.4s",
+          "0.5s",
+          "0.6s",
+          "0.7s",
+          "0.8s",
+          "1.3s",
+          "15s",
+          "1s",
+          "20s",
+          "25s",
+          "4s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 2
+      }
+    },
+    "Gemini 3.8 Flash High.svg": {
+      "sha256": "86b5a80dac82fa1c85368bab9b68c272f1b966b4bd1ce2932e7a54af728ef8d7",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "头盔、竹篮和围巾完成度高，蹬踏与道路有速度感；腿部插值仍有轻微脱节，缺少说明元数据。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 3,
+        "D3": 4
+      },
+      "notes": {
+        "A": "黑白熊猫清晰，竹篮、车架与传动结构完整；前倾骑姿自然，部分插值时腿端与脚掌略有间隙。",
+        "B": "腿部路径、曲柄公转和踏板反转同为 1.1 秒；轮子更快，眨眼、围巾、竹子、尘粒与路面层次丰富。",
+        "C": "浅蓝绿背景与红围巾突出主体，远山道路分层；局部高光和零件细节完整。",
+        "D": "XML 合法、无外链脚本；CSS 与 SMIL 组合清晰，但缺 title/desc、未复用重复图形，关键帧仍需连续验证。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 28728,
+        "sha256": "86b5a80dac82fa1c85368bab9b68c272f1b966b4bd1ce2932e7a54af728ef8d7",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 235,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": false,
+        "hasDesc": false,
+        "smilCount": 2,
+        "durations": [
+          "1.1s"
+        ],
+        "cssKeyframes": 15,
+        "useCount": 0
+      }
+    },
+    "Kimi-k3最大.svg": {
+      "sha256": "4c05220ad221dda6407767a20012902d8a6c3f3593e3382a2a9a62156fc92719",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "公园、围巾和熊猫正脸清新；手臂太长，腿部动作偏僵，缺少明显滚动路面。",
+      "scores": {
+        "A1": 10,
+        "A2": 7,
+        "A3": 5,
+        "B1": 9,
+        "B2": 5,
+        "B3": 3,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 3
+      },
+      "notes": {
+        "A": "熊猫脸清楚，车架易辨；身体小而腿长，横向手臂过长，脚与踏板并非始终贴合。",
+        "B": "轮子、曲柄和摆腿有动画，云朵和树叶移动；草地几乎没有明显滚动，速度感较弱。",
+        "C": "蓝天山丘、树木小花层次清楚；画面偏平，人物材质细节较少。",
+        "D": "XML 合法，无脚本外链，有 title/desc；轮子有复用，但腿部动作和长周期环境需进一步协调。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 12032,
+        "sha256": "4c05220ad221dda6407767a20012902d8a6c3f3593e3382a2a9a62156fc92719",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 159,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 19,
+        "durations": [
+          "0.9s",
+          "1.2s",
+          "10s",
+          "1s",
+          "2s",
+          "30s",
+          "45s",
+          "4s",
+          "52s",
+          "60s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 2
+      }
+    },
+    "Opus 4.6(Antigravity) 默认.svg": {
+      "sha256": "096da8960c8cc79317e72737e5ff47f9aa346b71c31d0d0bf32b2d06bd3d6a56",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林景深、围巾和骑行结构完整；手臂仍偏长，主体略小，部分脚踏衔接不够细腻。",
+      "scores": {
+        "A1": 11,
+        "A2": 8,
+        "A3": 7,
+        "B1": 12,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 7,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "熊猫黑白特征和车架链条完整，竹篮自然；侧身骑姿成立，双臂偏长，部分脚踏连接仍有小偏差。",
+        "B": "腿部关键帧、轮子与道路运动协调，叶片、花瓣、飞鸟、眨眼及围巾丰富；部分脚端与踏板位置有偏差，取样中主题保持清楚。",
+        "C": "近竹、中景树与远山景深丰富，主体轮廓清楚，阴影与竹篮有细节；人物相对画面略小。",
+        "D": "XML 合法且无外部依赖，大量 use 复用图形，有 title 但缺 desc；多种长周期仍未覆盖全部接缝。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 31368,
+        "sha256": "096da8960c8cc79317e72737e5ff47f9aa346b71c31d0d0bf32b2d06bd3d6a56",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 326,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": false,
+        "smilCount": 55,
+        "durations": [
+          ".1s",
+          ".38s",
+          ".4s",
+          ".55s",
+          ".5s",
+          ".7s",
+          ".8s",
+          "1.5s",
+          "1.8s",
+          "1s",
+          "36s",
+          "4.5s",
+          "45s",
+          "4s",
+          "6s",
+          "8s",
+          "90s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 57
+      }
+    },
+    "Qwen-3.8Flash极高.svg": {
+      "sha256": "92dbc99cb5af499d2465dd49a0272815519bfcbeeb85a519d676a9422c32415a",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "竹林、围巾与路面运动丰富，骑行动作完整；主体偏小，晴天配色较常规。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "熊猫辨识清晰，红色自行车与篮子结构完整；身体坐在车座附近，手脚衔接基本成立，头盔略遮耳朵。",
+        "B": "车轮、曲柄与双腿同周期，围巾、眼睛、叶片和扬尘提供次级动作；竹林视差与道路移动明显。",
+        "C": "天空、山丘、竹林和道路层次清楚；主体较小，绿蓝红配色清晰但较常规。",
+        "D": "XML 合法、无脚本外链，有 title/desc 和复用元素；动画组织完整，长周期仅离散取样。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 21781,
+        "sha256": "92dbc99cb5af499d2465dd49a0272815519bfcbeeb85a519d676a9422c32415a",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 258,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 40,
+        "durations": [
+          "0.14s",
+          "0.16s",
+          "0.18s",
+          "0.19s",
+          "0.21s",
+          "0.22s",
+          "0.28s",
+          "0.32s",
+          "0.34s",
+          "0.9s",
+          "1.1s",
+          "1.3s",
+          "1.4s",
+          "1.8s",
+          "26s",
+          "2s",
+          "3.1s",
+          "4.2s",
+          "48s",
+          "6s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 7
+      }
+    },
+    "Qwen-3.8Max极高.svg": {
+      "sha256": "20db1dc6b438b741f172bf982df35357dea61249b8c8d64514979991e89433ba",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "前倾骑姿与多关键帧蹬踏联动较好；手臂偏长，代码重复较多、体积较大。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 14,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 3,
+        "D3": 4
+      },
+      "notes": {
+        "A": "侧脸熊猫与车架传动清楚，坐姿较自然，脚端与曲柄在取样中衔接较好；双臂较长。",
+        "B": "腿部采用多段关键帧追踪脚踏圆周，两轮、道路和竹林有速度感；围巾、鸟与飘叶补充次级动作。",
+        "C": "青绿车架与山竹环境协调，有远中近景和轮部高光；人物细节较简约。",
+        "D": "XML 合法，无脚本外链，有 title/desc；约 52KB、730 个元素且没有 use，重复路径和关键帧较多，维护成本较高。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 51886,
+        "sha256": "20db1dc6b438b741f172bf982df35357dea61249b8c8d64514979991e89433ba",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 730,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 46,
+        "durations": [
+          ".62s",
+          ".64s",
+          ".7s",
+          "0.191s",
+          "0.2464s",
+          "0.4694s",
+          "0.5357s",
+          "0.8s",
+          "1.6s",
+          "18.2543s",
+          "19.3281s",
+          "2.6954s",
+          "46.9397s",
+          "48s",
+          "6.6742s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "Seed-2.1-Pro-0915高.svg": {
+      "sha256": "b35f68e1b6450145e4e767272329a93d01ffedba7b23943b7144ff0abe9a4b7b",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "黄昏公路、装备与扬尘很丰富；头盔和黄色上衣弱化黑白熊猫特征，小尺寸略显拥挤。",
+      "scores": {
+        "A1": 9,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 7,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 7,
+        "C3": 5,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "车架、链条、篮筐和装备完整，骑姿与手脚接触较自然；头盔与黄色服装遮住部分黑白特征。",
+        "B": "轮子、双腿和曲柄连续换位，围巾、尘粒、落叶与路面提供明显速度感；取样中结构基本稳定。",
+        "C": "黄昏光线、山丘、路灯、彩色护栏和车身零件层次丰富；装饰较密集，主体与环境有些拥挤。",
+        "D": "XML 合法，无脚本外链，有 title/desc 与部分复用；73 个 SMIL 动画周期较多，长循环没有完整覆盖。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 32360,
+        "sha256": "b35f68e1b6450145e4e767272329a93d01ffedba7b23943b7144ff0abe9a4b7b",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 409,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 73,
+        "durations": [
+          "0.12s",
+          "0.13s",
+          "0.15s",
+          "0.18s",
+          "0.23s",
+          "0.26s",
+          "0.28s",
+          "0.5s",
+          "0.6s",
+          "0.75s",
+          "0.7s",
+          "0.84s",
+          "0.9s",
+          "1.1s",
+          "1.5s",
+          "1.8s",
+          "1s",
+          "2.4s",
+          "2.9s",
+          "24s",
+          "3.6s",
+          "3.8s",
+          "3.9s",
+          "4.1s",
+          "4.2s",
+          "4.4s",
+          "4.5s",
+          "4.6s",
+          "4.8s",
+          "44s",
+          "46s",
+          "4s",
+          "5.1s",
+          "5.3s",
+          "5.6s",
+          "5s",
+          "6s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 9
+      }
+    },
+    "Sonnet 4.6(Antigravity) 默认.svg": {
+      "sha256": "4e0874767cd15a4c37602f39a58ab8c4c5fde0cbbad879c5d96576e48ac4a248",
+      "rubricVersion": "1.0",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-08",
+      "reviewer": "Codex",
+      "comment": "夕阳、远山和自行车细节协调，蹬踏主题完整；头盔与墨镜遮住面部，手臂偏长。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 8,
+        "B1": 13,
+        "B2": 6,
+        "B3": 7,
+        "B4": 4,
+        "C1": 8,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "熊猫黑白轮廓和完整车架易辨；坐姿与脚踏关系较自然，手臂略长，墨镜和头盔削弱五官辨识。",
+        "B": "双腿、轮子与曲柄在取样中保持骑行节奏，道路与山景运动明显；围巾、尘粒、云朵提供次级细节。",
+        "C": "橙色夕阳与车架呼应，山脉和路面分层清楚；车轮、灯具与阴影有细节。",
+        "D": "XML 合法，无脚本外链，较多 use 复用，有 title 但缺 desc；80/50/40 秒等长周期未完整覆盖。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-2026-10-08/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ],
+        "method": "Chromium SMIL/CSS 时间定位截图及 XML/源码复核；离散取样，未进行连续播放或帧率测试"
+      },
+      "technical": {
+        "bytes": 30181,
+        "sha256": "4e0874767cd15a4c37602f39a58ab8c4c5fde0cbbad879c5d96576e48ac4a248",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 291,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": false,
+        "smilCount": 49,
+        "durations": [
+          "0.1s",
+          "0.36s",
+          "0.5s",
+          "0.65s",
+          "0.8s",
+          "1.2s",
+          "1.5s",
+          "1.6s",
+          "1s",
+          "35s",
+          "40s",
+          "50s",
+          "5s",
+          "6s",
+          "80s",
+          "9s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 45
+      }
+    }
+  }
+}
