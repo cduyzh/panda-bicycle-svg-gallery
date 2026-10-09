@@ -114,7 +114,7 @@ def classify_stem(stem):
         ),
         (
             "Claude",
-            r"^(Sonnet|Opus)[\s-]*(\d+(?:[.,]\d+)?)(.*)$",
+            r"^(Sonnet|Opus|Haiku)[\s-]*(\d+(?:[.,]\d+)?)(.*)$",
             lambda m: f"{m[1].title()} {m[2].replace(',', '.')}",
         ),
         (
