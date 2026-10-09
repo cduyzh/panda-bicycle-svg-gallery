@@ -1233,7 +1233,7 @@
               <br /><br />
               为保证评测数据的<strong>真实性与准确性</strong>，所有测试数据均来源于<strong>官方模型接口或网页端</strong>，<strong>坚决不使用任何第三方 API 中转平台</strong>。我们致力于在<strong>新模型发布或可用的当天</strong>完成首发测试，确保模型能力原汁原味，<strong>不降质、不缩水</strong>。同时，本站的<strong>评分规则体系</strong>由 <strong>Claude 模型</strong>主导制定，后续所有作品的<strong>代码审查与评分脚本执行</strong>则交由 <strong>Gemini 模型</strong>独立完成。
               <br /><br />
-              <strong style="font-size: 1.2em; display: inline-block; padding: 6px 10px; background: rgba(23,106,85,0.08); border-radius: 6px; border-left: 5px solid var(--green); color: var(--ink);">测试提示词：做一个 熊猫骑自行车 svg动画 svg命名为 XXX.svg</strong>
+              <strong style="font-size: 1.2em; display: inline-block; padding: 6px 10px; background: rgba(255,255,255,0.08); border-radius: 6px; border-left: 5px solid #44ac8b; color: #fff;">测试提示词：做一个 熊猫骑自行车 svg动画 svg命名为 XXX.svg</strong>
             </p>
             <div
               class="hero-stats"
@@ -1654,6 +1654,11 @@
           ink: "#ac6854",
           glyph: '<path d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/>',
         },
+        MiMo: {
+          color: "#e6f5f0",
+          ink: "#2c7a5b",
+          glyph: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+        },
         Other: {
           color: "#eef1ee",
           ink: "#68776c",
@@ -1661,6 +1666,7 @@
         },
       };
       const familyOrder = [
+        "Claude",
         "GPT",
         "DeepSeek",
         "GLM",
@@ -1670,7 +1676,7 @@
         "Seed",
         "Kimi",
         "Step",
-        "Claude",
+        "MiMo",
       ];
       const $ = (id) => document.getElementById(id);
       const state = {

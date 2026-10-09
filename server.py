@@ -131,7 +131,7 @@ def classify_stem(stem):
 
     # A future model from a known maker still belongs under that maker. Its full
     # filename stem remains the model until its naming convention is understood.
-    for family in ("DeepSeek", "GLM", "Gemini", "Kimi", "MiniMax", "Qwen", "Seed", "Step"):
+    for family in ("DeepSeek", "GLM", "Gemini", "Kimi", "MiMo", "MiniMax", "Qwen", "Seed", "Step"):
         if re.match(rf"^{family}(?:[\s-]|$)", stem, re.IGNORECASE):
             return family, stem, ""
 
