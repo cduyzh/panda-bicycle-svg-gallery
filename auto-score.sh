@@ -23,8 +23,7 @@ python3 scoring.py apply "$WORK_DIR/review.json"
 python3 scoring.py audit
 python3 -m unittest discover -s tests
 
-echo "=> 6. 自动化流程已完成，新评分已生效到本地网页。"
-# 如果你有部署需求，可以在这里取消注释
-# git add .
-# git commit -m "Auto update svg scores"
-# git push
+echo "=> 6. 自动化流程已完成，新评分已生效到本地网页并同步远程。"
+git add .
+git commit -m "feat: Auto update svg scores"
+git push
