@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "rubricVersion": "1.1",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-10-24",
   "sourceFile": "熊猫骑自行车SVG评分表.xlsx",
   "dimensions": [
     {
@@ -3564,6 +3564,166 @@
           "47.5s",
           "5s",
           "6.47s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "GLM-5.3 最高.svg": {
+      "sha256": "9cd244dbb81d7f7e61e2e4a24cadfbbed6bb1334df3a6019e933cd61f7156d01",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-24",
+      "reviewer": "ZCode (GLM-5.3-Flash)",
+      "comment": "双腿逐帧贴合踏板、地速与轮速一致，动作逻辑全对；素白椭圆身体略抽象，链条上股虚线方向与前进相反。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 9,
+        "B1": 14,
+        "B2": 7,
+        "B3": 7,
+        "B4": 5,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "黑耳、黑眼圈、黑四肢与白身俱全，眨眼、腮红与红围巾添趣；身体为无斑纹的素白大椭圆，缺少黑胸带，抽象感略强。",
+        "B": "车轮与牙盘 0→360 顺时针正向骑行，双腿路径端点在八个关键帧逐一贴合踏板圆轨迹，地面 400px/s 与轮缘 377px/s 基本一致；链条上股虚线偏移方向与前进相反，扣一分。",
+        "C": "红色车架与蓝天绿地对比明快，云、飞鸟、竹丛、公路构成基本层次；远中景为简单椭圆山丘，纵深细节一般。",
+        "D": "纯 SMIL 无脚本，XML 合法并带 title/desc；前后轮代码手写重复未用 use 复用，链条速度与几何匹配度稍逊。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-glm53/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 17357,
+        "sha256": "9cd244dbb81d7f7e61e2e4a24cadfbbed6bb1334df3a6019e933cd61f7156d01",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 193,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 33,
+        "durations": [
+          "0.18s",
+          "0.24s",
+          "0.45s",
+          "0.4s",
+          "0.55s",
+          "0.8s",
+          "1.1s",
+          "1.6s",
+          "20s",
+          "28s",
+          "3.6s",
+          "4.4s",
+          "46s",
+          "4s",
+          "64s",
+          "78s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
+      }
+    },
+    "GLM-5.3-Flash 最高.svg": {
+      "sha256": "e002d4d9cee29cf77153e5312b2973faf87979013f1d03149cef156b565d2d1b",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-10-24",
+      "reviewer": "ZCode (GLM-5.3-Flash)",
+      "comment": "曲柄-踏板-双腿全联动且地速匹配轮速，五层视差加扬尘循环无缝；车筐竹子摆动点睛，轮毂高光细节略少。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 9,
+        "B1": 14,
+        "B2": 8,
+        "B3": 7,
+        "B4": 5,
+        "C1": 7,
+        "C2": 7,
+        "C3": 4,
+        "D1": 5,
+        "D2": 4,
+        "D3": 5
+      },
+      "notes": {
+        "A": "黑耳、黑眼圈、黑四肢齐全，身体以 clipPath 做出黑斑，前倾骑姿生动；头部比例偏大，走可爱风。",
+        "B": "车轮、牙盘、曲柄全部顺时针正向，踏板圆轨迹与曲柄等长 38px，双腿端点逐帧贴合，链条上下两股移动方向均正确，地面 316px/s 与轮缘 314px/s 几乎一致。",
+        "C": "云、远山、近山、路旁树花与前景草构成五层景深，橙色车架与蓝天对比鲜明；顶部大字号标题分散视觉焦点。",
+        "D": "纯 SMIL，视差山平移整周期保证无缝，云用负延迟避免首帧空景；树组与轮组重复绘制，未用 use 复用。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-glm53/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 20283,
+        "sha256": "e002d4d9cee29cf77153e5312b2973faf87979013f1d03149cef156b565d2d1b",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 210,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 49,
+        "durations": [
+          "0.19s",
+          "0.45s",
+          "0.65s",
+          "0.8s",
+          "0.9s",
+          "1.1s",
+          "1.6s",
+          "2.4s",
+          "2.8s",
+          "20s",
+          "26s",
+          "3.44s",
+          "3.6s",
+          "32s",
+          "3s",
+          "41s",
+          "45s",
+          "8s"
         ],
         "cssKeyframes": 0,
         "useCount": 0
