@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "rubricVersion": "1.1",
-  "updatedAt": "2026-10-24",
+  "updatedAt": "2026-11-09",
   "sourceFile": "熊猫骑自行车SVG评分表.xlsx",
   "dimensions": [
     {
@@ -3727,6 +3727,84 @@
         ],
         "cssKeyframes": 0,
         "useCount": 0
+      }
+    },
+    "QoDuck 极高.svg": {
+      "sha256": "a9768a78f6e0002b8c75a1890fee7305dde28bcdd0bed101e56e0d1c2db8cedf",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-11-09",
+      "reviewer": "Qoder (Qwen)",
+      "comment": "IK 关键帧双腿逐帧贴合踏板、地速与轮速一致，四层视差加围巾眨眼抖耳完整；躯干素白略抽象，速度线在浅色天空中偏弱。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 9,
+        "B1": 14,
+        "B2": 7,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 5,
+        "D3": 4
+      },
+      "notes": {
+        "A": "黑耳、黑眼圈、黑四肢与白身齐全，腮红与微笑可爱；躯干为素白椭圆加黑肩带，略抽象。车架双三角、辐条轮、链条、牙盘、曲柄、踏板、车把、车座完整；坐姿稳、双手握把、双脚由 IK 关键帧贴合踏板，融合自然。",
+        "B": "车轮与牙盘 0→360 顺时针正向，双腿 12 关键帧 IK 逐帧贴合踏板圆轨迹，踏板反向自转保持水平；地面 340px/s 与轮缘 339px/s 一致，链条上股方向正确。身体起伏、点头、围巾摆动、抖耳、定时眨眼齐全；云、远山、近山、竹林四层视差加速度线与扬尘，但白色速度线在浅天空下偏弱。11 个离散时间点未见首帧异常或穿帮，未做连续播放全覆盖验证。",
+        "C": "红色车架与围巾呼应，蓝天绿地对比明快，主体居中突出；天空、太阳、云、双层山丘、竹林、公路构成完整景深；车架高光、眼睛高光、腮红、地面投影等细节到位，竹叶与远山造型偏简单。",
+        "D": "纯 SMIL 无脚本无外链，XML 合法，title/desc 齐全；wheel/cloud/bamboo/hill/spokes 共 22 处 use 复用，16KB 体积精简；腿部关键帧为脚本生成的数值路径，手工可维护性稍逊。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-qoduck/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 16345,
+        "sha256": "a9768a78f6e0002b8c75a1890fee7305dde28bcdd0bed101e56e0d1c2db8cedf",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 191,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 39,
+        "durations": [
+          "0.14s",
+          "0.2s",
+          "0.7s",
+          "0.8s",
+          "0.9s",
+          "1.2s",
+          "1.6s",
+          "16s",
+          "1s",
+          "26s",
+          "3.2s",
+          "30s",
+          "36s",
+          "38s",
+          "4s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 22
       }
     }
   }
