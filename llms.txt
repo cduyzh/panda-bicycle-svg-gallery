@@ -1,0 +1,20 @@
+# 熊猫骑行实验室 (Panda Cycling Lab: LLM SVG Animation Arena)
+
+> 基于统一题目“画一个熊猫骑自行车的 SVG 动画”，实测并对比主流海外与国产大模型生成原生 SVG 矢量代码与流畅动画的表现。
+
+Website: https://panda.cduyzh.top/
+Sitemap: https://panda.cduyzh.top/sitemap.xml
+Full Documentation: https://panda.cduyzh.top/llms-full.txt
+Author: cduyzh (Chengdu, Sichuan, China / 四川成都)
+Author Portfolio: https://www.cduyzh.top/
+GitHub Repo: https://github.com/cduyzh/panda-bicycle-svg-gallery
+
+## Benchmark Overview
+
+- Single-Prompt Standard: "画一个 熊猫骑自行车 svg动画" (Draw a panda riding a bicycle SVG animation)
+- Models Evaluated: OpenAI GPT (6 Sol, 6 Astra, 6 Luna), Anthropic Claude (Sonnet 3.5, Opus 4.6), Google Gemini (3.1 Pro, 3.8 Flash), DeepSeek (V4, V4.1), Qwen (3.8 Flash, 3.8 Max), GLM (5.3, Flash), MiniMax, Kimi, etc.
+- Evaluation Rubric: Total 100 points across 4 dimensions:
+  - Panda Character & Anatomy (形象, 30 points)
+  - Bike Mechanics & Motion (动画, 35 points)
+  - Visual Appeal & Craft (视觉, 20 points)
+  - Code Elegance & SVG Structure (技术, 15 points)

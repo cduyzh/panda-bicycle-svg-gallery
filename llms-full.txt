@@ -1,0 +1,37 @@
+# 熊猫骑行实验室 — 完整大模型评测基准与数据集文档
+
+> 熊猫骑行实验室 (Panda Bicycle SVG Gallery) 是一个专注于评测与对比大语言模型（LLM）原生 SVG 矢量动画生成能力的公开实验平台。
+
+Author: cduyzh (Chengdu, Sichuan, China / 四川成都)
+Website: https://panda.cduyzh.top/
+Sitemap: https://panda.cduyzh.top/sitemap.xml
+Author Profile: https://www.cduyzh.top/
+
+---
+
+## 1. 评测背景与目标
+
+大模型在自然语言、数学与常规代码生成上取得了长足进步，但在“空间几何推理”、“矢量图形结构化构造”以及“时间轴关键帧编排 (SMIL / CSS Keyframes)”复合领域，模型表现呈现显著的分化与差异。
+
+本项目选用标准化单一测试题：“画一个 熊猫骑自行车 svg动画”，要求模型直接输出可在现代浏览器中独立渲染与循环播放的纯原生 SVG 文件，不依赖任何外部 JavaScript 运行时或位图资源。
+
+---
+
+## 2. 四维评分体系与权重 (100分制)
+
+1. **形象与结构 (30分)**：熊猫五官辨识度、黑白毛色分布、解剖与坐姿合理性、手握车把、脚踩踏板与车架咬合。
+2. **机械动力学与动画连贯度 (35分)**：曲柄转动、脚踏联动机理、车轮旋转、车身微颠簸与次级动作（如耳朵摆动、风中飘带）。
+3. **视觉美学与表现力 (20分)**：配色协调性、光影质感、视差背景层次与整体构图。
+4. **技术规范与代码质量 (15分)**：SVG 语义化标签使用、路径（Path）精简度、无多余重叠与脏代码、跨浏览器兼容性。
+
+---
+
+## 3. 参评大模型代表系列
+
+- OpenAI: GPT-6 Sol, GPT-6 Astra, GPT-6 Luna
+- Anthropic: Claude 3.5 Sonnet, Claude Opus 4.6
+- Google: Gemini 3.1 Pro, Gemini 3.8 Flash
+- DeepSeek (深度求索): DeepSeek-V4, DeepSeek-V4.1 Flash / Pro
+- 阿里通义: Qwen-3.8 Flash, Qwen-3.8 Max
+- 智谱 AI: GLM-5.3, GLM-5.3 Flash
+- 其他国产模型: MiniMax, Kimi, Step 等
