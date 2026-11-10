@@ -79,7 +79,7 @@ def classify_stem(stem):
         ),
         (
             "DeepSeek",
-            r"^deepsekk[\s-]+(Flash)(.*)$",
+            r"^deepse(?:kk)?[\s-]+(Flash)(.*)$",
             lambda m: "DeepSeek Flash",
         ),
         (
