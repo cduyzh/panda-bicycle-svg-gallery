@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "rubricVersion": "1.1",
-  "updatedAt": "2026-11-09",
+  "updatedAt": "2026-11-10",
   "sourceFile": "熊猫骑自行车SVG评分表.xlsx",
   "dimensions": [
     {
@@ -3805,6 +3805,210 @@
         ],
         "cssKeyframes": 0,
         "useCount": 22
+      }
+    },
+    "Gemini 3.8 Flash agy 高.svg": {
+      "sha256": "e9a2bb8373e87fb3486949b192a365036c7b861a9bb4610293c90ace8e823a85",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-11-10",
+      "reviewer": "Codex",
+      "comment": "头盔竹篮复古车完成度高，25 帧 IK 双腿贴合踏板、铃铛声波与落叶灵动；轮速略快于地速，且缺少 title/desc 元数据。",
+      "scores": {
+        "A1": 10,
+        "A2": 8,
+        "A3": 9,
+        "B1": 12,
+        "B2": 7,
+        "B3": 6,
+        "B4": 4,
+        "C1": 7,
+        "C2": 6,
+        "C3": 4,
+        "D1": 5,
+        "D2": 3,
+        "D3": 4
+      },
+      "notes": {
+        "A": "黑耳黑眼圈黑四肢白身体齐全，头盔与腮红可爱、比例协调；车架/链条/牙盘/踏板/车把/挡泥板完整，坐车座、握把、IK 脚踩踏板均贴合。",
+        "B": "车轮与牙盘同向 0.8s 正转、双腿 25 关键帧逆连杆贴合曲柄端，方向正确；但轮面速度约 550px/s 高于路面 400px/s，略有打滑。起伏/点头/双层围巾/铃铛声波/落叶齐全，四层视差加速度线；离散取样 30s 前后无穿帮。",
+        "C": "青绿+红+金配色统一、主体突出；天空/远山/竹林/路面/花草层次清楚；镀铬渐变、皮座弹簧、竹篮与地面阴影细节到位，左上横幅略抢镜。",
+        "D": "XML 合法、无外链无脚本；CSS+SMIL 混合、20 处 use 复用，但缺 title/desc；类名与 defs 组织清晰、几何一致。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-20261110-gemini-kimi/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 40478,
+        "sha256": "e9a2bb8373e87fb3486949b192a365036c7b861a9bb4610293c90ace8e823a85",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 402,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": false,
+        "hasDesc": false,
+        "smilCount": 2,
+        "durations": [
+          "0.8s"
+        ],
+        "cssKeyframes": 18,
+        "useCount": 20
+      }
+    },
+    "Gemini 4 Argon AI Studio 高.svg": {
+      "sha256": "5d68ea74821cdb988df09d2f94eba05e60ca2a9ebb29f824e57cbf4847153186",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-11-10",
+      "reviewer": "Codex",
+      "comment": "竹林暖阳氛围与复古车细节均属顶尖，全身 IK 蹬踏握把、链节滚动且地速轮速一致，眨眼抖耳摇尾围巾齐备。",
+      "scores": {
+        "A1": 11,
+        "A2": 8,
+        "A3": 9,
+        "B1": 14,
+        "B2": 8,
+        "B3": 7,
+        "B4": 5,
+        "C1": 8,
+        "C2": 7,
+        "C3": 5,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "墨镜架额、围巾挎包、口衔竹枝，形象可爱且比例佳；车架/链节/齿盘/踏板/挡泥板/后货架完整，坐稳握把、双腿双脚 IK 贴合踏板。",
+        "B": "轮 1.15s、曲柄 1.44s 正向联动，轮面约 574px/s 与路面 1200px/2.05s≈585px/s 基本一致；躯干摇摆/点头/抖耳/眨眼/摇尾/双层围巾/竹枝摆动/铃铛波全备；1200px 无缝四层视差+风线+落叶，30s 取样稳定无穿帮。",
+        "C": "青绿+奶油+金配色统一、主体突出；竹林远中近景、山丘塔影、光束飞鸟花草层次丰富；白边胎、气门嘴、阴影高光、车篮花与风车细节完成度极高。",
+        "D": "XML 合法、无外链无脚本、title/desc 齐全；纯 CSS、29 处 use 复用，唯 589 元素/89KB 体积偏大；类名分组清晰、几何一致。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-20261110-gemini-kimi/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 89792,
+        "sha256": "5d68ea74821cdb988df09d2f94eba05e60ca2a9ebb29f824e57cbf4847153186",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 589,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 0,
+        "durations": [],
+        "cssKeyframes": 35,
+        "useCount": 29
+      }
+    },
+    "Kimi-K3.1-Pro  Max.svg": {
+      "sha256": "73fd7f66dfb9d75d28a01ebf8bb6b729c1362ee768d6f1629b998fe656d170af",
+      "rubricVersion": "1.1",
+      "source": "supplemental",
+      "reviewedAt": "2026-11-10",
+      "reviewer": "Codex",
+      "comment": "头盔熊猫清新可爱、链条牙盘齐全且正向蹬踏；但轮速远快于地速、背景山树静止，腿部四帧插值脚部偶有漂移。",
+      "scores": {
+        "A1": 10,
+        "A2": 7,
+        "A3": 7,
+        "B1": 10,
+        "B2": 6,
+        "B3": 4,
+        "B4": 4,
+        "C1": 7,
+        "C2": 5,
+        "C3": 3,
+        "D1": 5,
+        "D2": 4,
+        "D3": 4
+      },
+      "notes": {
+        "A": "黑耳黑眼圈黑四肢白身体、头盔腮红可爱；车架/链条/牙盘/踏板/车把齐全；坐车座握把良好，但腿仅四关键帧插值、脚随曲柄转动未反向保持水平，贴合度一般。",
+        "B": "车轮/曲柄/链条正向联动、方向正确，但轮面约 711px/s 远高于路面标线的 192px/s，打滑明显；眨眼/点头/围巾形变/身体起伏具备；路面滚动+速度线+落叶有，山树静止、云仅往返摆动，视差不足；取样无穿帮。",
+        "C": "扁平清新配色、主体突出；远山/树/云/花草有层次但静态；头盔高光、车架描线、地面阴影尚可，细节量中等。",
+        "D": "XML 合法、无外链无脚本、title/desc 齐全；纯 SMIL、19.7KB 紧凑，但无 use 复用；结构分组清晰、几何一致。"
+      },
+      "evidence": {
+        "capturePlan": "work/scoring-20261110-gemini-kimi/capture-plan.json",
+        "sampleTimesMs": [
+          0,
+          120,
+          360,
+          600,
+          1000,
+          1500,
+          2000,
+          6000,
+          12000,
+          30000,
+          30120
+        ]
+      },
+      "technical": {
+        "bytes": 19685,
+        "sha256": "73fd7f66dfb9d75d28a01ebf8bb6b729c1362ee768d6f1629b998fe656d170af",
+        "xmlValid": true,
+        "svgRoot": true,
+        "elements": 238,
+        "duplicateIds": [],
+        "externalReferences": [],
+        "scripts": 0,
+        "eventHandlers": [],
+        "hasTitle": true,
+        "hasDesc": true,
+        "smilCount": 30,
+        "durations": [
+          "0.55s",
+          "1.05s",
+          "1.25s",
+          "1.35s",
+          "1.4s",
+          "10s",
+          "12s",
+          "1s",
+          "22s",
+          "28s",
+          "2s",
+          "3.6s",
+          "3s",
+          "4.2s",
+          "70s"
+        ],
+        "cssKeyframes": 0,
+        "useCount": 0
       }
     }
   }

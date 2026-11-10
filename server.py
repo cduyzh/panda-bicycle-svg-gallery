@@ -78,6 +78,11 @@ def classify_stem(stem):
             lambda m: f"DeepSeek V{m[1]} {m[2].title()}",
         ),
         (
+            "DeepSeek",
+            r"^deepsekk[\s-]+(Flash)(.*)$",
+            lambda m: "DeepSeek Flash",
+        ),
+        (
             "GLM",
             r"^GLM[\s-]+(\d+(?:\.\d+)?)(?:[\s-]+(FlashX|Flash))?(.*)$",
             lambda m: f"GLM-{m[1]}" + (f" {m[2]}" if m[2] else ""),
@@ -101,6 +106,11 @@ def classify_stem(stem):
             "Qwen",
             r"^Qwen[\s-]+(\d+(?:\.\d+)?)(Flash|Max)(.*)$",
             lambda m: f"Qwen {m[1]} {m[2].title()}",
+        ),
+        (
+            "Qwen",
+            r"^(QoDuck)(.*)$",
+            lambda m: "QoDuck",
         ),
         (
             "Seed",
