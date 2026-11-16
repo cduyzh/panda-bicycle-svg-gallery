@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+<title>熊猫骑自行车</title>
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff"/><stop offset="1" stop-color="#fff4dc"/></linearGradient>
+ <radialGradient id="cheek"><stop offset="0" stop-color="#ff9db0" stop-opacity=".9"/><stop offset="1" stop-color="#ff9db0" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="600" height="400" fill="url(#sky)"/>
+<circle cx="500" cy="70" r="34" fill="#ffd45c"><animate attributeName="r" values="34;37;34" dur="3s" repeatCount="indefinite"/></circle>
+<g fill="#fff" opacity=".9">
+ <g><ellipse cx="120" cy="70" rx="38" ry="14"/><ellipse cx="140" cy="60" rx="24" ry="14"/>
+  <animateTransform attributeName="transform" type="translate" from="650 0" to="-250 0" dur="22s" repeatCount="indefinite"/></g>
+ <g><ellipse cx="340" cy="110" rx="30" ry="11"/><ellipse cx="355" cy="102" rx="18" ry="11"/>
+  <animateTransform attributeName="transform" type="translate" from="300 0" to="-500 0" dur="16s" repeatCount="indefinite"/></g>
+</g>
+<g fill="#a8d8a0"><g><path d="M0 300 Q75 200 150 300 Z"/><path d="M150 300 Q225 200 300 300 Z"/><path d="M300 300 Q375 200 450 300 Z"/><path d="M450 300 Q525 200 600 300 Z"/><path d="M600 300 Q675 200 750 300 Z"/><path d="M750 300 Q825 200 900 300 Z"/><path d="M900 300 Q975 200 1050 300 Z"/><path d="M1050 300 Q1125 200 1200 300 Z"/><animateTransform attributeName="transform" type="translate" from="0 0" to="-600 0" dur="12s" repeatCount="indefinite"/></g></g>
+<g fill="#7cc276"><g><g transform="translate(20 0)"><rect x="0" y="190" width="7" height="140" rx="3"/><path d="M3 195 q14 -10 22 -4 q-12 6 -22 4z M3 220 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(115 0)"><rect x="0" y="175" width="7" height="155" rx="3"/><path d="M3 180 q14 -10 22 -4 q-12 6 -22 4z M3 205 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(210 0)"><rect x="0" y="200" width="7" height="130" rx="3"/><path d="M3 205 q14 -10 22 -4 q-12 6 -22 4z M3 230 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(305 0)"><rect x="0" y="185" width="7" height="145" rx="3"/><path d="M3 190 q14 -10 22 -4 q-12 6 -22 4z M3 215 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(400 0)"><rect x="0" y="170" width="7" height="160" rx="3"/><path d="M3 175 q14 -10 22 -4 q-12 6 -22 4z M3 200 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(495 0)"><rect x="0" y="195" width="7" height="135" rx="3"/><path d="M3 200 q14 -10 22 -4 q-12 6 -22 4z M3 225 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(590 0)"><rect x="0" y="180" width="7" height="150" rx="3"/><path d="M3 185 q14 -10 22 -4 q-12 6 -22 4z M3 210 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(685 0)"><rect x="0" y="205" width="7" height="125" rx="3"/><path d="M3 210 q14 -10 22 -4 q-12 6 -22 4z M3 235 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(780 0)"><rect x="0" y="190" width="7" height="140" rx="3"/><path d="M3 195 q14 -10 22 -4 q-12 6 -22 4z M3 220 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(875 0)"><rect x="0" y="175" width="7" height="155" rx="3"/><path d="M3 180 q14 -10 22 -4 q-12 6 -22 4z M3 205 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(970 0)"><rect x="0" y="200" width="7" height="130" rx="3"/><path d="M3 205 q14 -10 22 -4 q-12 6 -22 4z M3 230 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(1065 0)"><rect x="0" y="185" width="7" height="145" rx="3"/><path d="M3 190 q14 -10 22 -4 q-12 6 -22 4z M3 215 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><g transform="translate(1160 0)"><rect x="0" y="170" width="7" height="160" rx="3"/><path d="M3 175 q14 -10 22 -4 q-12 6 -22 4z M3 200 q-14 -10 -22 -4 q12 6 22 4z" fill="#5fae5a"/></g><animateTransform attributeName="transform" type="translate" from="0 0" to="-570 0" dur="5s" repeatCount="indefinite"/></g></g>
+<rect y="328" width="600" height="72" fill="#e8c98f"/>
+<rect y="328" width="600" height="6" fill="#d2ad6c"/>
+<line x1="0" y1="362" x2="600" y2="362" stroke="#fff" stroke-width="5" stroke-dasharray="40 30" opacity=".75">
+ <animate attributeName="stroke-dashoffset" from="0" to="350" dur="1s" repeatCount="indefinite"/></line>
+<g stroke="#8fb7d6" stroke-width="3" stroke-linecap="round" opacity=".7">
+ <line x1="60" y1="200" x2="110" y2="200"><animate attributeName="opacity" values="0;1;0" dur=".8s" repeatCount="indefinite"/></line>
+ <line x1="40" y1="240" x2="100" y2="240"><animate attributeName="opacity" values="1;0;1" dur=".8s" repeatCount="indefinite"/></line>
+ <line x1="70" y1="280" x2="110" y2="280"><animate attributeName="opacity" values="0;1;0" dur=".6s" repeatCount="indefinite"/></line>
+</g>
+<ellipse cx="290" cy="332" rx="170" ry="7" fill="#000" opacity=".12"/>
+<g id="rider">
+ <animateTransform attributeName="transform" type="translate" values="0 0;0 -1.5;0 0;0 1;0 0" dur=".5s" repeatCount="indefinite"/>
+ <!-- far arm -->
+ <path d="M282 150 Q330 150 372 176" fill="none" stroke="#3a3a42" stroke-width="15" stroke-linecap="round"/>
+ <!-- far leg & pedal -->
+ <path fill="none" stroke="#3a3a42" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" d="M266 203 L299.8 243.8 L263.0 282.0"><animate attributeName="d" dur="1s" repeatCount="indefinite" values="M266 203 L299.8 243.8 L263.0 282.0;M266 203 L302.0 241.9 L263.3 278.2;M266 203 L304.3 239.7 L264.3 274.5;M266 203 L306.6 237.0 L265.9 271.0;M266 203 L309.0 234.0 L268.1 267.9;M266 203 L311.2 230.7 L270.9 265.1;M266 203 L313.1 227.2 L274.0 262.9;M266 203 L314.8 223.7 L277.5 261.3;M266 203 L316.1 220.4 L281.2 260.3;M266 203 L316.9 217.7 L285.0 260.0;M266 203 L317.4 215.7 L288.8 260.3;M266 203 L317.7 214.7 L292.5 261.3;M266 203 L317.7 214.6 L296.0 262.9;M266 203 L317.5 215.4 L299.1 265.1;M266 203 L317.1 217.1 L301.9 267.9;M266 203 L316.4 219.5 L304.1 271.0;M266 203 L315.3 222.4 L305.7 274.5;M266 203 L313.9 225.7 L306.7 278.2;M266 203 L312.0 229.2 L307.0 282.0;M266 203 L309.8 232.9 L306.7 285.8;M266 203 L307.0 236.5 L305.7 289.5;M266 203 L303.9 240.0 L304.1 293.0;M266 203 L300.6 243.2 L301.9 296.1;M266 203 L297.1 245.9 L299.1 298.9;M266 203 L293.8 248.1 L296.0 301.1;M266 203 L291.1 249.7 L292.5 302.7;M266 203 L289.2 250.7 L288.8 303.7;M266 203 L288.3 251.1 L285.0 304.0;M266 203 L288.2 251.1 L281.2 303.7;M266 203 L288.7 250.9 L277.5 302.7;M266 203 L289.7 250.4 L274.0 301.1;M266 203 L290.9 249.8 L270.9 298.9;M266 203 L292.3 249.0 L268.1 296.1;M266 203 L294.0 248.0 L265.9 293.0;M266 203 L295.8 246.9 L264.3 289.5;M266 203 L297.7 245.5 L263.3 285.8;M266 203 L299.8 243.8 L263.0 282.0"/></path>
+ <g transform="translate(285 282) rotate(180)">
+  <g><line x1="0" y1="0" x2="22" y2="0" stroke="#6b737c" stroke-width="5" stroke-linecap="round"/>
+   <g transform="translate(22 0)"><g>
+     <ellipse cx="2" cy="-7" rx="14" ry="8" fill="#3a3a42"/><rect x="-9" y="-2.5" width="18" height="5" rx="2" fill="#6b737c"/>
+     <animateTransform attributeName="transform" type="rotate" from="-180" to="-540" dur="1s" repeatCount="indefinite"/></g></g>
+   <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/></g></g>
+ <g transform="translate(175 275)">
+  <circle r="55" fill="none" stroke="#2b2b33" stroke-width="9"/>
+  <circle r="49" fill="none" stroke="#9aa3ad" stroke-width="2"/>
+  <g stroke="#c9d0d6" stroke-width="1.6"><line x1="0" y1="0" x2="50.0" y2="0.0"/><line x1="0" y1="0" x2="43.3" y2="25.0"/><line x1="0" y1="0" x2="25.0" y2="43.3"/><line x1="0" y1="0" x2="0.0" y2="50.0"/><line x1="0" y1="0" x2="-25.0" y2="43.3"/><line x1="0" y1="0" x2="-43.3" y2="25.0"/><line x1="0" y1="0" x2="-50.0" y2="0.0"/><line x1="0" y1="0" x2="-43.3" y2="-25.0"/><line x1="0" y1="0" x2="-25.0" y2="-43.3"/><line x1="0" y1="0" x2="-0.0" y2="-50.0"/><line x1="0" y1="0" x2="25.0" y2="-43.3"/><line x1="0" y1="0" x2="43.3" y2="-25.0"/>
+    <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/></g>
+  <circle r="6" fill="#56606b"/></g>
+ <g transform="translate(405 275)">
+  <circle r="55" fill="none" stroke="#2b2b33" stroke-width="9"/>
+  <circle r="49" fill="none" stroke="#9aa3ad" stroke-width="2"/>
+  <g stroke="#c9d0d6" stroke-width="1.6"><line x1="0" y1="0" x2="50.0" y2="0.0"/><line x1="0" y1="0" x2="43.3" y2="25.0"/><line x1="0" y1="0" x2="25.0" y2="43.3"/><line x1="0" y1="0" x2="0.0" y2="50.0"/><line x1="0" y1="0" x2="-25.0" y2="43.3"/><line x1="0" y1="0" x2="-43.3" y2="25.0"/><line x1="0" y1="0" x2="-50.0" y2="0.0"/><line x1="0" y1="0" x2="-43.3" y2="-25.0"/><line x1="0" y1="0" x2="-25.0" y2="-43.3"/><line x1="0" y1="0" x2="-0.0" y2="-50.0"/><line x1="0" y1="0" x2="25.0" y2="-43.3"/><line x1="0" y1="0" x2="43.3" y2="-25.0"/>
+    <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/></g>
+  <circle r="6" fill="#56606b"/></g>
+ <!-- frame -->
+ <g fill="none" stroke="#18a999" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M175 275 L285 282 L250 205 Z"/>
+  <path d="M250 205 L372 198 L285 282"/>
+  <path d="M372 198 L405 275" stroke-width="7"/>
+  <path d="M368 186 L377 210" stroke="#0f7f73" stroke-width="10"/>
+ </g>
+ <path d="M250 205 L246 214" stroke="#555" stroke-width="5"/>
+ <path d="M228 210 Q250 200 275 210 Q252 220 228 210Z" fill="#2b2b33"/>
+ <path d="M368 186 L374 168 L388 166" fill="none" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+ <circle cx="285" cy="282" r="13" fill="none" stroke="#56606b" stroke-width="4"/>
+ <circle cx="388" cy="166" r="5" fill="#2b2b33"/>
+ <!-- scarf tail -->
+ <path fill="#e8463d" d="M276 128 Q240 120 210 132 Q228 140 212 150 Q246 146 278 138Z">
+  <animate attributeName="d" dur=".6s" repeatCount="indefinite" values="M276 128 Q240 120 210 132 Q228 140 212 150 Q246 146 278 138Z;M276 128 Q240 132 208 124 Q226 140 214 156 Q246 142 278 138Z;M276 128 Q240 120 210 132 Q228 140 212 150 Q246 146 278 138Z"/></path>
+ <!-- body -->
+ <ellipse cx="264" cy="168" rx="42" ry="50" fill="#fff" stroke="#22222a" stroke-width="3"/>
+ <path d="M228 140 Q264 118 300 140 L302 160 Q264 140 226 160Z" fill="#22222a"/>
+ <!-- head -->
+ <g>
+  <animateTransform attributeName="transform" type="rotate" values="-3 300 100;3 300 100;-3 300 100" dur="1s" repeatCount="indefinite"/>
+  <circle cx="272" cy="70" r="14" fill="#22222a"/><circle cx="326" cy="70" r="14" fill="#22222a"/>
+  <circle cx="300" cy="102" r="40" fill="#fff" stroke="#22222a" stroke-width="3"/>
+  <ellipse cx="285" cy="98" rx="10" ry="13" fill="#22222a" transform="rotate(-25 285 98)"/>
+  <ellipse cx="318" cy="98" rx="10" ry="13" fill="#22222a" transform="rotate(25 318 98)"/>
+  <g fill="#fff"><circle cx="287" cy="96" r="3.5"/><circle cx="320" cy="96" r="3.5"/>
+   <animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 .1;1 1" keyTimes="0;.9;.95;1" dur="3s" repeatCount="indefinite" additive="sum"/></g>
+  <ellipse cx="302" cy="114" rx="6" ry="4.5" fill="#22222a"/>
+  <path d="M296 122 Q302 128 308 122" fill="none" stroke="#22222a" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="276" cy="116" r="8" fill="url(#cheek)"/><circle cx="328" cy="116" r="8" fill="url(#cheek)"/>
+ </g>
+ <path d="M266 132 Q300 146 330 130 L328 140 Q300 156 268 142Z" fill="#e8463d"/>
+ <!-- near leg & pedal -->
+ <path fill="none" stroke="#22222a" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" d="M266 203 L312.0 229.2 L307.0 282.0"><animate attributeName="d" dur="1s" repeatCount="indefinite" values="M266 203 L312.0 229.2 L307.0 282.0;M266 203 L309.8 232.9 L306.7 285.8;M266 203 L307.0 236.5 L305.7 289.5;M266 203 L303.9 240.0 L304.1 293.0;M266 203 L300.6 243.2 L301.9 296.1;M266 203 L297.1 245.9 L299.1 298.9;M266 203 L293.8 248.1 L296.0 301.1;M266 203 L291.1 249.7 L292.5 302.7;M266 203 L289.2 250.7 L288.8 303.7;M266 203 L288.3 251.1 L285.0 304.0;M266 203 L288.2 251.1 L281.2 303.7;M266 203 L288.7 250.9 L277.5 302.7;M266 203 L289.7 250.4 L274.0 301.1;M266 203 L290.9 249.8 L270.9 298.9;M266 203 L292.3 249.0 L268.1 296.1;M266 203 L294.0 248.0 L265.9 293.0;M266 203 L295.8 246.9 L264.3 289.5;M266 203 L297.7 245.5 L263.3 285.8;M266 203 L299.8 243.8 L263.0 282.0;M266 203 L302.0 241.9 L263.3 278.2;M266 203 L304.3 239.7 L264.3 274.5;M266 203 L306.6 237.0 L265.9 271.0;M266 203 L309.0 234.0 L268.1 267.9;M266 203 L311.2 230.7 L270.9 265.1;M266 203 L313.1 227.2 L274.0 262.9;M266 203 L314.8 223.7 L277.5 261.3;M266 203 L316.1 220.4 L281.2 260.3;M266 203 L316.9 217.7 L285.0 260.0;M266 203 L317.4 215.7 L288.8 260.3;M266 203 L317.7 214.7 L292.5 261.3;M266 203 L317.7 214.6 L296.0 262.9;M266 203 L317.5 215.4 L299.1 265.1;M266 203 L317.1 217.1 L301.9 267.9;M266 203 L316.4 219.5 L304.1 271.0;M266 203 L315.3 222.4 L305.7 274.5;M266 203 L313.9 225.7 L306.7 278.2;M266 203 L312.0 229.2 L307.0 282.0"/></path>
+ <g transform="translate(285 282) rotate(0)">
+  <g><line x1="0" y1="0" x2="22" y2="0" stroke="#3a3f47" stroke-width="5" stroke-linecap="round"/>
+   <g transform="translate(22 0)"><g>
+     <rect x="-9" y="-2.5" width="18" height="5" rx="2" fill="#3a3f47"/><ellipse cx="2" cy="-7" rx="14" ry="8" fill="#1d1d22"/>
+     <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="1s" repeatCount="indefinite"/></g></g>
+   <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/></g></g>
+ <!-- near arm -->
+ <path d="M272 152 Q328 158 384 168" fill="none" stroke="#22222a" stroke-width="17" stroke-linecap="round"/>
+ <circle cx="386" cy="168" r="9" fill="#22222a"/>
+</g>
+</svg>

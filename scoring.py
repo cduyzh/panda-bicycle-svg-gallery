@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "scoring.json"
-SAMPLE_TIMES = [0, 120, 360, 600, 1000, 1500, 2000, 6000, 12000, 30000, 30120]
+SAMPLE_TIMES = [0, 40, 120, 360, 600, 1000, 1500, 2000, 6000, 12000, 30000, 30120]
 
 
 def digest(path):
@@ -63,11 +63,20 @@ def validate(data):
         if review["source"] not in ("spreadsheet", "supplemental") or not re.fullmatch(r"[0-9a-f]{64}", review.get("sha256", "")):
             raise ValueError(f"{filename}：来源或 SHA-256 无效")
         if review["source"] == "supplemental":
-            if set(review.get("notes", {})) != set(dimensions) or any(not str(value).strip() for value in review["notes"].values()):
-                raise ValueError(f"{filename}：需填写四个维度的评分依据")
+            if set(review.get("notes", {})) != set(dimensions) or any(
+                len(str(value).strip()) < 8 or str(value).strip() == "复评补充说明"
+                for value in review["notes"].values()
+            ):
+                raise ValueError(f"{filename}：需填写四个维度的实质性评分依据（每项不少于8字且不得为占位语）")
             evidence = review.get("evidence", {})
             if not evidence.get("capturePlan") or len(evidence.get("sampleTimesMs", [])) < 3:
                 raise ValueError(f"{filename}：缺少动画时间点证据")
+        elif "notes" in review:
+            if set(review["notes"]) != set(dimensions) or any(
+                len(str(value).strip()) < 8 or str(value).strip() == "复评补充说明"
+                for value in review["notes"].values()
+            ):
+                raise ValueError(f"{filename}：原表附带的四维评分依据不得为空或占位语")
     return data
 
 
@@ -94,6 +103,8 @@ def score_for(path, data):
         "comment": review["comment"], "source": review["source"],
         "reviewedAt": review["reviewedAt"], "reviewer": review["reviewer"],
         "notes": review.get("notes", {}), "evidence": review.get("evidence", {}),
+        "sourceRef": review.get("sourceRef"),
+        "originalComment": review.get("originalComment"),
     }
 
 

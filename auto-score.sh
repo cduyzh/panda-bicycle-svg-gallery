@@ -16,7 +16,7 @@ node /Users/hobby/.codex/tools/browser-qa/capture.mjs "$WORK_DIR/capture-plan.js
 
 echo "=> 4. 召唤大模型进行视觉评审与打分..."
 # 使用 Antigravity CLI (agy) 让大模型作为阅卷人，补充完 review.json
-agy --prompt "请读取 $WORK_DIR/review.json 和 $WORK_DIR/frames/ 下的截图，根据 README 规则和原表基准，直接在 $WORK_DIR/review.json 里补充所有 null 项。包括：13项评分、一句话点评 (comment)、四维笔记 (notes)、评审人 (reviewer填AI)。然后使用 replace_file_content 覆写 $WORK_DIR/review.json。完成所有修改后退出。"
+agy --prompt "请读取 $WORK_DIR/review.json 和 $WORK_DIR/frames/ 下的截图以及对应 SVG 源码，严格依据 scoring.json (v1.2) 的 13 项量化锚点与 README 规范，直接在 $WORK_DIR/review.json 里补充所有 null 项。必须结合源码检查车轮/曲柄旋转方向（严禁仅凭离散帧辐条频闪误判倒转）、牙盘存在性、轮地速度比、use 复用数与 title/desc 完整性，填写 13 项评分、一句话点评 (comment)、四维实质性评分依据 (notes，每项不少于8字，严禁填入占位语)、评审人 (reviewer)。完成后覆写 $WORK_DIR/review.json 并退出。"
 
 echo "=> 5. 应用分数并自校验..."
 python3 scoring.py apply "$WORK_DIR/review.json"

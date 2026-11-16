@@ -61,10 +61,9 @@ try {
     const comparators = {
       recent: (a, b) => b.latest.mtime - a.latest.mtime || a.model.localeCompare(b.model, 'zh-CN'),
       name: (a, b) => a.model.localeCompare(b.model, 'zh-CN'),
-      works: (a, b) => b.items.length - a.items.length || b.latest.mtime - a.latest.mtime,
       score: (a, b) => (b.latest.score.total ?? -1) - (a.latest.score.total ?? -1) || a.model.localeCompare(b.model, 'zh-CN'),
     };
-    const labels = { recent: '最近更新', name: '模型名称', works: '作品数量', score: '最新作品评分' };
+    const labels = { recent: '最近更新', name: '模型名称', score: '最新作品评分' };
     async function verifyOrder(value) {
       assert.equal(await page.locator('#sort-label').textContent(), labels[value]);
       assert.deepEqual(await page.locator('.model-card .card-name').allTextContents(), [...groups].sort(comparators[value]).map(group => group.model));
@@ -72,8 +71,8 @@ try {
       assert.equal(await page.evaluate(() => document.activeElement?.id), 'sort');
     }
     await page.locator('#sort').click();
-    assert.equal(await page.getByRole('option').count(), 4);
-    assert.equal(await page.getByRole('option', { selected: true }).getAttribute('aria-label'), '最近更新');
+    assert.equal(await page.getByRole('option').count(), 3);
+    assert.equal(await page.getByRole('option', { selected: true }).getAttribute('aria-label'), '最新作品评分');
     assert.equal(await page.locator('#sort-options').evaluate(menu => getComputedStyle(menu).backgroundColor), 'rgb(255, 255, 255)');
     await page.locator('.browser-controls').screenshot({ path: fileURLToPath(new URL('desktop.png', output)), animations: 'disabled' });
     await page.screenshot({ path: fileURLToPath(new URL('desktop-menu.png', output)), animations: 'disabled' });

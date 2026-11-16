@@ -1,0 +1,522 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Sky and Ground Gradients -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a8edea" />
+      <stop offset="55%" stop-color="#fed6e3" />
+      <stop offset="100%" stop-color="#fff5f7" />
+    </linearGradient>
+    <linearGradient id="hillFar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7ec8a3" />
+      <stop offset="100%" stop-color="#56ab84" />
+    </linearGradient>
+    <linearGradient id="hillNear" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#52b788" />
+      <stop offset="100%" stop-color="#2d6a4f" />
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a4e69" />
+      <stop offset="100%" stop-color="#22223b" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b6b" />
+      <stop offset="100%" stop-color="#d62828" />
+    </linearGradient>
+    <linearGradient id="scarfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb703" />
+      <stop offset="100%" stop-color="#fb8500" />
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff3b0" />
+      <stop offset="70%" stop-color="#ffd166" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffd166" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1d3557" flood-opacity="0.18" />
+    </filter>
+
+    <!-- Wheel Spokes Template -->
+    <g id="wheel">
+      <circle cx="0" cy="0" r="68" fill="none" stroke="#2b2d42" stroke-width="11" />
+      <circle cx="0" cy="0" r="61" fill="none" stroke="#e5e5e5" stroke-width="3" />
+      <circle cx="0" cy="0" r="59" fill="none" stroke="#8d99ae" stroke-width="1.5" stroke-dasharray="6 6" />
+      <g stroke="#adb5bd" stroke-width="2" stroke-linecap="round">
+        <line x1="-59" y1="0" x2="59" y2="0" />
+        <line x1="0" y1="-59" x2="0" y2="59" />
+        <line x1="-41.7" y1="-41.7" x2="41.7" y2="41.7" />
+        <line x1="-41.7" y1="41.7" x2="41.7" y2="-41.7" />
+        <line x1="-54.5" y1="-22.5" x2="54.5" y2="22.5" />
+        <line x1="-22.5" y1="-54.5" x2="22.5" y2="54.5" />
+        <line x1="-54.5" y1="22.5" x2="54.5" y2="-22.5" />
+        <line x1="-22.5" y1="54.5" x2="22.5" y2="-54.5" />
+      </g>
+      <!-- Valve and Rim Reflection -->
+      <circle cx="46" cy="0" r="4" fill="#ffb703" />
+      <circle cx="0" cy="0" r="10" fill="#8d99ae" stroke="#2b2d42" stroke-width="3" />
+    </g>
+
+    <!-- Bamboo Stalk Template -->
+    <g id="bamboo">
+      <rect x="-4" y="-130" width="8" height="130" rx="3" fill="#40916c" />
+      <line x1="-5" y1="-100" x2="5" y2="-100" stroke="#1b4332" stroke-width="2" />
+      <line x1="-5" y1="-65" x2="5" y2="-65" stroke="#1b4332" stroke-width="2" />
+      <line x1="-5" y1="-30" x2="5" y2="-30" stroke="#1b4332" stroke-width="2" />
+      <path d="M 3,-100 Q 22,-112 30,-96 Q 15,-92 3,-100 Z" fill="#52b788" />
+      <path d="M -3,-65 Q -24,-78 -32,-62 Q -16,-57 -3,-65 Z" fill="#74c69d" />
+      <path d="M 3,-115 Q 18,-132 25,-120 Q 12,-112 3,-115 Z" fill="#74c69d" />
+    </g>
+
+    <!-- Cloud Template -->
+    <g id="cloud" fill="#ffffff" opacity="0.85">
+      <path d="M 0,0 Q 15,-22 38,-15 Q 55,-38 82,-20 Q 108,-25 118,-2 Q 135,5 128,22 Q 125,30 105,30 L -5,30 Q -22,28 -18,12 Q -15,0 0,0 Z" />
+    </g>
+  </defs>
+
+  <style>
+    /* Wheel and Crank Rotations (1.1s cycle, 360deg clockwise) */
+    .spin {
+      animation: spinCW 1.1s linear infinite;
+    }
+    .counter-spin {
+      animation: spinCCW 1.1s linear infinite;
+    }
+    @keyframes spinCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinCCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    /* Chassis and Body Suspension Bounce (2 beats per pedal cycle = 0.55s) */
+    .bike-bounce {
+      animation: bounce 0.55s ease-in-out infinite alternate;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-4.5px); }
+    }
+
+    /* Panda Torso and Head Ride Rhythm */
+    .torso-rock {
+      transform-origin: 332px 245px;
+      animation: torsoRock 0.55s ease-in-out infinite alternate;
+    }
+    @keyframes torsoRock {
+      0% { transform: rotate(18deg) translateY(0px); }
+      100% { transform: rotate(21deg) translateY(-5px); }
+    }
+
+    .head-bob {
+      transform-origin: 375px 155px;
+      animation: headBob 0.55s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes headBob {
+      0% { transform: rotate(-3deg) translateY(0px); }
+      100% { transform: rotate(3deg) translateY(-4px); }
+    }
+
+    .ear-wiggle {
+      transform-origin: 345px 110px;
+      animation: earWiggle 0.55s ease-in-out infinite alternate;
+    }
+    @keyframes earWiggle {
+      0% { transform: rotate(-6deg); }
+      100% { transform: rotate(6deg); }
+    }
+
+    /* Eye Blinking */
+    .eye-blink {
+      transform-origin: 405px 140px;
+      animation: blink 4.2s infinite;
+    }
+    @keyframes blink {
+      0%, 92%, 98%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.08); }
+    }
+
+    /* Flowing Scarf Wave */
+    .scarf-wave {
+      transform-origin: 350px 175px;
+      animation: scarfWave 0.45s ease-in-out infinite alternate;
+    }
+    @keyframes scarfWave {
+      0% { transform: rotate(-4deg) scaleX(1); }
+      100% { transform: rotate(6deg) scaleX(1.06); }
+    }
+
+    /* Leg Inverse Kinematics Approximation (Hip at 332, 245; Crank at 370, 360, R=26) */
+    .thigh-front {
+      transform-origin: 0px 0px;
+      animation: thighCycle 1.1s linear infinite;
+    }
+    .calf-front {
+      transform-origin: 0px 0px;
+      animation: calfCycle 1.1s linear infinite;
+    }
+    .thigh-back {
+      transform-origin: 0px 0px;
+      animation: thighCycle 1.1s linear infinite;
+      animation-delay: -0.55s;
+    }
+    .calf-back {
+      transform-origin: 0px 0px;
+      animation: calfCycle 1.1s linear infinite;
+      animation-delay: -0.55s;
+    }
+
+    /* 0%: Pedal Right (396,360) | 25%: Pedal Bottom (370,386) | 50%: Pedal Left (344,360) | 75%: Pedal Top (370,334) */
+    @keyframes thighCycle {
+      0%   { transform: rotate(-61deg); }
+      25%  { transform: rotate(-30deg); }
+      50%  { transform: rotate(-35deg); }
+      75%  { transform: rotate(-66deg); }
+      100% { transform: rotate(-61deg); }
+    }
+    @keyframes calfCycle {
+      0%   { transform: rotate(56deg); }
+      25%  { transform: rotate(24deg); }
+      50%  { transform: rotate(62deg); }
+      75%  { transform: rotate(93deg); }
+      100% { transform: rotate(56deg); }
+    }
+
+    /* Parallax Scenery Animations */
+    .road-scroll {
+      animation: scrollRoad 0.55s linear infinite;
+    }
+    @keyframes scrollRoad {
+      from { transform: translateX(0px); }
+      to { transform: translateX(-120px); }
+    }
+
+    .bamboo-scroll {
+      animation: scrollBamboo 4.5s linear infinite;
+    }
+    @keyframes scrollBamboo {
+      from { transform: translateX(0px); }
+      to { transform: translateX(-800px); }
+    }
+
+    .cloud-scroll-slow {
+      animation: scrollCloud 22s linear infinite;
+    }
+    .cloud-scroll-fast {
+      animation: scrollCloud 14s linear infinite;
+    }
+    @keyframes scrollCloud {
+      from { transform: translateX(0px); }
+      to { transform: translateX(-900px); }
+    }
+
+    .wind-line {
+      animation: windDash 0.9s linear infinite;
+    }
+    @keyframes windDash {
+      0% { stroke-dashoffset: 240; opacity: 0; }
+      25% { opacity: 0.65; }
+      80% { opacity: 0.65; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    .shadow-pulse {
+      transform-origin: 390px 432px;
+      animation: shadowScale 0.55s ease-in-out infinite alternate;
+    }
+    @keyframes shadowScale {
+      0% { transform: scaleX(1) scaleY(1); opacity: 0.35; }
+      100% { transform: scaleX(0.95) scaleY(0.85); opacity: 0.24; }
+    }
+
+    .butterfly-bob {
+      animation: butterflyFlight 2.2s ease-in-out infinite alternate;
+    }
+    @keyframes butterflyFlight {
+      0% { transform: translate(0px, 0px) rotate(-8deg); }
+      50% { transform: translate(12px, -18px) rotate(6deg); }
+      100% { transform: translate(-6px, -8px) rotate(-4deg); }
+    }
+  </style>
+
+  <!-- 1. BACKGROUND SKY AND SUN -->
+  <rect width="800" height="500" fill="url(#skyGrad)" />
+  <circle cx="650" cy="110" r="75" fill="url(#sunGrad)" />
+  <circle cx="650" cy="110" r="36" fill="#fff8d6" opacity="0.9" />
+
+  <!-- 2. MOVING CLOUDS -->
+  <g class="cloud-scroll-slow">
+    <use href="#cloud" x="120" y="75" transform="scale(0.85)" />
+    <use href="#cloud" x="560" y="55" transform="scale(1.1)" />
+    <use href="#cloud" x="1020" y="75" transform="scale(0.85)" />
+    <use href="#cloud" x="1460" y="55" transform="scale(1.1)" />
+  </g>
+  <g class="cloud-scroll-fast" opacity="0.7">
+    <use href="#cloud" x="320" y="135" transform="scale(0.65)" />
+    <use href="#cloud" x="780" y="110" transform="scale(0.75)" />
+    <use href="#cloud" x="1220" y="135" transform="scale(0.65)" />
+    <use href="#cloud" x="1680" y="110" transform="scale(0.75)" />
+  </g>
+
+  <!-- 3. DISTANT HILLS AND NEAR HILLS -->
+  <path d="M 0,370 Q 140,275 310,335 T 640,310 T 800,340 L 800,420 L 0,420 Z" fill="url(#hillFar)" opacity="0.75" />
+  <path d="M 0,385 Q 210,305 420,360 T 800,345 L 800,420 L 0,420 Z" fill="url(#hillNear)" />
+
+  <!-- 4. PARALLAX BAMBOO FOREST -->
+  <g class="bamboo-scroll">
+    <!-- Tile 1 (0 to 800) -->
+    <use href="#bamboo" x="90" y="388" />
+    <use href="#bamboo" x="125" y="392" transform="scale(0.8)" />
+    <use href="#bamboo" x="280" y="385" transform="scale(1.1)" />
+    <use href="#bamboo" x="470" y="390" transform="scale(0.9)" />
+    <use href="#bamboo" x="505" y="386" transform="scale(1.05)" />
+    <use href="#bamboo" x="690" y="388" transform="scale(0.95)" />
+    <use href="#bamboo" x="725" y="392" transform="scale(0.75)" />
+    <!-- Tile 2 (800 to 1600) -->
+    <use href="#bamboo" x="890" y="388" />
+    <use href="#bamboo" x="925" y="392" transform="scale(0.8)" />
+    <use href="#bamboo" x="1080" y="385" transform="scale(1.1)" />
+    <use href="#bamboo" x="1270" y="390" transform="scale(0.9)" />
+    <use href="#bamboo" x="1305" y="386" transform="scale(1.05)" />
+    <use href="#bamboo" x="1490" y="388" transform="scale(0.95)" />
+    <use href="#bamboo" x="1525" y="392" transform="scale(0.75)" />
+  </g>
+
+  <!-- 5. ROAD AND SCROLLING STRIPES -->
+  <rect x="0" y="385" width="800" height="115" fill="#74c69d" />
+  <rect x="0" y="398" width="800" height="82" fill="url(#roadGrad)" />
+  <line x1="0" y1="398" x2="800" y2="398" stroke="#e9ecef" stroke-width="3" opacity="0.6" />
+  <line x1="0" y1="480" x2="800" y2="480" stroke="#e9ecef" stroke-width="3" opacity="0.4" />
+
+  <g class="road-scroll" stroke="#ffd166" stroke-width="5" stroke-linecap="round" opacity="0.85">
+    <line x1="20" y1="438" x2="75" y2="438" />
+    <line x1="140" y1="438" x2="195" y2="438" />
+    <line x1="260" y1="438" x2="315" y2="438" />
+    <line x1="380" y1="438" x2="435" y2="438" />
+    <line x1="500" y1="438" x2="555" y2="438" />
+    <line x1="620" y1="438" x2="675" y2="438" />
+    <line x1="740" y1="438" x2="795" y2="438" />
+    <line x1="860" y1="438" x2="915" y2="438" />
+  </g>
+
+  <!-- Ground Shadow under Bike -->
+  <ellipse cx="390" cy="432" rx="185" ry="11" fill="#0b132b" class="shadow-pulse" />
+
+  <!-- ============================================================ -->
+  <!-- 6. MAIN CHARACTER: PANDA ON BICYCLE                          -->
+  <!-- ============================================================ -->
+  <g filter="url(#softShadow)">
+
+    <!-- A. BACK LIMBS (Behind Bicycle Frame) -->
+    <!-- Back Arm -->
+    <g class="bike-bounce">
+      <path d="M 368,188 Q 418,208 468,215" fill="none" stroke="#1f2421" stroke-width="24" stroke-linecap="round" />
+      <circle cx="470" cy="215" r="13" fill="#1f2421" />
+    </g>
+
+    <!-- Back Leg (Hip positioned at 332, 245; delayed by half cycle -0.55s) -->
+    <g transform="translate(332, 245)">
+      <g class="thigh-back">
+        <path d="M 0,0 L 0,68" stroke="#1f2421" stroke-width="32" stroke-linecap="round" />
+        <g transform="translate(0, 68)">
+          <g class="calf-back">
+            <path d="M 0,0 L 0,55" stroke="#1f2421" stroke-width="26" stroke-linecap="round" />
+            <!-- Back Foot and Sneaker Sole -->
+            <ellipse cx="10" cy="57" rx="19" ry="11" fill="#1f2421" />
+            <path d="M -6,63 L 27,63" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Back Crank and Pedal (Behind Frame) -->
+    <g transform="translate(370, 360)">
+      <g class="spin">
+        <line x1="0" y1="0" x2="-26" y2="0" stroke="#6c757d" stroke-width="6" stroke-linecap="round" />
+        <g transform="translate(-26, 0)">
+          <g class="counter-spin">
+            <rect x="-15" y="-5" width="30" height="10" rx="4" fill="#343a40" stroke="#adb5bd" stroke-width="1.5" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- B. BICYCLE WHEELS (Rotating around axles at Y=360) -->
+    <g transform="translate(260, 360)">
+      <g class="spin">
+        <use href="#wheel" />
+      </g>
+    </g>
+    <g transform="translate(520, 360)">
+      <g class="spin">
+        <use href="#wheel" />
+      </g>
+    </g>
+
+    <!-- C. BICYCLE FRAME, BASKET AND SEAT (With subtle suspension bounce) -->
+    <g class="bike-bounce">
+      <!-- Rear and Front Mudguards (Fenders) -->
+      <path d="M 186,355 A 74,74 0 0 1 322,315" fill="none" stroke="#ff6b6b" stroke-width="6" stroke-linecap="round" />
+      <path d="M 454,322 A 74,74 0 0 1 588,342" fill="none" stroke="#ff6b6b" stroke-width="6" stroke-linecap="round" />
+
+      <!-- Chain and Rear Cassette -->
+      <path d="M 260,350 L 370,342 L 370,378 L 260,370 Z" fill="none" stroke="#495057" stroke-width="3.5" stroke-dasharray="6 4" />
+      <circle cx="260" cy="360" r="12" fill="#495057" stroke="#2b2d42" stroke-width="3" />
+
+      <!-- Main Diamond Frame -->
+      <g stroke="url(#frameGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <!-- Chainstay and Seatstay -->
+        <line x1="260" y1="360" x2="370" y2="360" />
+        <line x1="260" y1="360" x2="335" y2="262" />
+        <!-- Seat Tube and Down Tube -->
+        <line x1="370" y1="360" x2="328" y2="248" />
+        <line x1="370" y1="360" x2="482" y2="255" />
+        <!-- Top Tube (Cruiser Curve) -->
+        <path d="M 334,262 Q 410,268 478,242" />
+        <!-- Front Fork -->
+        <line x1="476" y1="230" x2="520" y2="360" />
+      </g>
+
+      <!-- Head Tube and Handlebar Stem -->
+      <line x1="473" y1="224" x2="485" y2="262" stroke="#d62828" stroke-width="13" stroke-linecap="round" />
+      <path d="M 473,224 L 464,198 Q 460,188 446,195 L 432,205" fill="none" stroke="#ced4da" stroke-width="8" stroke-linecap="round" />
+      <!-- Golden Bike Bell -->
+      <circle cx="455" cy="186" r="7" fill="#ffb703" stroke="#fb8500" stroke-width="2" />
+
+      <!-- Front Wicker Basket with Fresh Bamboo Leaves -->
+      <g transform="translate(486, 202)">
+        <!-- Bamboo Sprigs in Basket -->
+        <path d="M 10,8 Q 22,-18 38,-14 Q 25,2 10,8 Z" fill="#52b788" />
+        <path d="M 22,10 Q 40,-10 52,0 Q 34,12 22,10 Z" fill="#40916c" />
+        <path d="M 4,10 Q 5,-15 18,-22 Q 20,-2 4,10 Z" fill="#74c69d" />
+        <!-- Basket Body -->
+        <path d="M 0,6 L 46,6 L 38,44 Q 36,50 30,50 L 8,50 Q 2,50 0,44 Z" fill="#e09f3e" stroke="#9e2a2b" stroke-width="2.5" />
+        <line x1="4" y1="18" x2="43" y2="18" stroke="#9e2a2b" stroke-width="2" opacity="0.5" />
+        <line x1="6" y1="30" x2="41" y2="30" stroke="#9e2a2b" stroke-width="2" opacity="0.5" />
+        <line x1="15" y1="6" x2="12" y2="50" stroke="#9e2a2b" stroke-width="2" opacity="0.5" />
+        <line x1="30" y1="6" x2="27" y2="50" stroke="#9e2a2b" stroke-width="2" opacity="0.5" />
+        <rect x="-3" y="2" width="52" height="7" rx="3.5" fill="#bc6c25" />
+      </g>
+
+      <!-- Saddle (Seat) -->
+      <path d="M 302,244 Q 328,236 355,244 Q 362,250 348,256 Q 325,258 305,254 Q 295,250 302,244 Z" fill="#2b2d42" />
+
+      <!-- Rear Red Flag / Reflector -->
+      <circle cx="295" cy="308" r="5" fill="#ffb703" stroke="#fff" stroke-width="1.5" />
+
+      <!-- D. PANDA TORSO, TAIL, HEAD AND SCARF -->
+      <g class="torso-rock">
+        <!-- Cute Fluffy White Tail -->
+        <circle cx="282" cy="242" r="15" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" />
+
+        <!-- Chubby Panda Body -->
+        <ellipse cx="338" cy="212" rx="46" ry="56" fill="#ffffff" stroke="#e9ecef" stroke-width="2" />
+
+        <!-- Black Shoulder Harness Patch -->
+        <path d="M 300,178 Q 340,152 382,175 Q 388,202 365,212 Q 332,205 298,198 Z" fill="#1f2421" />
+
+        <!-- Flowing Red-Gold Scarf -->
+        <g class="scarf-wave">
+          <path d="M 345,172 Q 285,160 235,182 Q 255,198 242,210 Q 295,192 348,186 Z" fill="url(#scarfGrad)" />
+          <path d="M 340,176 Q 295,175 260,198" fill="none" stroke="#fff3b0" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+        </g>
+        <!-- Scarf Neck Wrap -->
+        <path d="M 332,166 Q 362,178 392,168 Q 396,182 385,186 Q 358,192 330,180 Z" fill="url(#scarfGrad)" />
+
+        <!-- PANDA HEAD -->
+        <g class="head-bob">
+          <!-- Back Ear -->
+          <circle cx="398" cy="98" r="18" fill="#1f2421" />
+
+          <!-- Head Base -->
+          <ellipse cx="378" cy="138" rx="45" ry="41" fill="#ffffff" stroke="#e9ecef" stroke-width="2" />
+
+          <!-- Front Ear (With Wiggle) -->
+          <g class="ear-wiggle">
+            <circle cx="342" cy="102" r="19" fill="#1f2421" />
+            <circle cx="342" cy="102" r="9" fill="#343a40" />
+          </g>
+
+          <!-- Iconic Black Eye Patch and Blinking Eye -->
+          <g class="eye-blink">
+            <ellipse cx="402" cy="138" rx="16" ry="20" transform="rotate(-14 402 138)" fill="#1f2421" />
+            <circle cx="406" cy="135" r="6.5" fill="#ffffff" />
+            <circle cx="408" cy="134" r="3.5" fill="#0b090a" />
+            <circle cx="410" cy="132" r="1.8" fill="#ffffff" />
+          </g>
+
+          <!-- Rosy Cheek -->
+          <ellipse cx="395" cy="156" rx="10" ry="6" fill="#ff758f" opacity="0.65" />
+
+          <!-- Cute Button Nose and Happy Smile -->
+          <ellipse cx="422" cy="144" rx="6" ry="4.5" fill="#1f2421" />
+          <path d="M 412,155 Q 418,162 423,154" fill="none" stroke="#1f2421" stroke-width="2.8" stroke-linecap="round" />
+
+          <!-- Bamboo Twig Held in Mouth -->
+          <g transform="translate(420, 157) rotate(12)">
+            <line x1="0" y1="0" x2="36" y2="-6" stroke="#52b788" stroke-width="3" stroke-linecap="round" />
+            <path d="M 22,-4 Q 34,-18 44,-10 Q 32,0 22,-4 Z" fill="#40916c" />
+            <path d="M 30,-5 Q 44,-4 48,6 Q 35,6 30,-5 Z" fill="#74c69d" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- E. FRONT CRANK, PEDAL AND PANDA FRONT LIMBS (In Foreground) -->
+    <!-- Crankset Sprocket and Front Pedal Arm -->
+    <g transform="translate(370, 360)">
+      <circle cx="0" cy="0" r="20" fill="#e9ecef" stroke="#2b2d42" stroke-width="4" />
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#adb5bd" stroke-width="2" stroke-dasharray="5 4" />
+      <g class="spin">
+        <!-- Front Crank Arm (Starts at +26, 0) -->
+        <line x1="0" y1="0" x2="26" y2="0" stroke="#adb5bd" stroke-width="7" stroke-linecap="round" />
+        <circle cx="0" cy="0" r="6" fill="#2b2d42" />
+        <g transform="translate(26, 0)">
+          <g class="counter-spin">
+            <rect x="-16" y="-5" width="32" height="10" rx="4" fill="#2b2d42" stroke="#ffb703" stroke-width="2" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Front Leg (Hip positioned at 332, 245; synchronized with Front Pedal) -->
+    <g transform="translate(332, 245)">
+      <g class="thigh-front">
+        <path d="M 0,0 L 0,68" stroke="#1f2421" stroke-width="34" stroke-linecap="round" />
+        <g transform="translate(0, 68)">
+          <g class="calf-front">
+            <path d="M 0,0 L 0,55" stroke="#1f2421" stroke-width="28" stroke-linecap="round" />
+            <!-- Front Foot -->
+            <ellipse cx="10" cy="57" rx="20" ry="11.5" fill="#1f2421" />
+            <path d="M -7,63 L 28,63" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Front Arm and Handlebar Grip -->
+    <g class="bike-bounce">
+      <path d="M 355,192 Q 395,218 434,205" fill="none" stroke="#1f2421" stroke-width="26" stroke-linecap="round" />
+      <!-- Cute Panda Paw on Handlebar -->
+      <circle cx="436" cy="205" r="14" fill="#1f2421" />
+      <rect x="424" y="199" width="22" height="10" rx="5" fill="#ffb703" />
+    </g>
+  </g>
+
+  <!-- 7. FOREGROUND SPEED WIND LINES AND BUTTERFLY -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="90" y1="210" x2="210" y2="210" stroke-dasharray="120 120" class="wind-line" />
+    <line x1="55" y1="285" x2="165" y2="285" stroke-dasharray="110 130" class="wind-line" style="animation-delay: -0.35s;" />
+    <line x1="120" y1="355" x2="205" y2="355" stroke-dasharray="85 155" class="wind-line" style="animation-delay: -0.65s;" />
+  </g>
+
+  <!-- Playful Companion Butterfly -->
+  <g transform="translate(595, 195)">
+    <g class="butterfly-bob">
+      <path d="M 0,0 Q -12,-16 -22,-6 Q -18,6 0,2 Z" fill="#ffb703" />
+      <path d="M 0,0 Q 10,-18 20,-8 Q 16,4 0,2 Z" fill="#ffd166" />
+      <line x1="-2" y1="4" x2="2" y2="-4" stroke="#2b2d42" stroke-width="2" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>

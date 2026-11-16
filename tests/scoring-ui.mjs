@@ -64,15 +64,13 @@ try {
     assert.deepEqual(numbers, [...numbers].sort((a, b) => b - a));
     await page.locator('#works').screenshot({ path: fileURLToPath(new URL('gallery.png', output)) });
 
-    const groups = new Map();
-    for (const item of items) {
-      const key = `${item.family}|${item.model}`;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(item);
-    }
-    for (const entries of groups.values()) {
+    const groups = items.map(item => ({
+      model: item.name.replace(/\.svg$/i, ''),
+      entries: [item],
+    }));
+    for (const { model, entries } of groups) {
       signal.throwIfAborted();
-      await page.getByRole('button', { name: `查看 ${entries[0].model} 的 ${entries.length} 份作品`, exact: true }).click();
+      await page.getByRole('button', { name: `查看 ${model} 的 ${entries.length} 份作品`, exact: true }).click();
       for (const entry of entries) {
         await page.getByRole('button', { name: `预览 ${entry.name}`, exact: true }).click();
         const review = data.reviews[entry.name];
@@ -91,7 +89,7 @@ try {
     assert.equal(await page.locator('.model-card').count(), 1);
     await page.locator('#search-clear').click();
     await page.getByRole('button', { name: /^DeepSeek/ }).first().click();
-    assert.equal(await page.locator('.model-card').count(), 4);
+    assert.equal(await page.locator('.model-card').count(), items.filter(item => item.family === 'DeepSeek').length);
     await page.getByRole('button', { name: /^全部模型/ }).click();
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -99,7 +97,7 @@ try {
     await page.locator('.rubric-details summary').click();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.locator('.rubric-details summary').click();
-    await page.getByRole('button', { name: '查看 DeepSeek V4 Pro 的 4 份作品', exact: true }).click();
+    await page.getByRole('button', { name: '查看 DeepSeek V4 Pro Ultra 2 的 1 份作品', exact: true }).click();
     await page.getByRole('button', { name: '预览 DeepSeek V4 Pro Ultra 2.svg', exact: true }).click();
     await page.locator('#detail-score').scrollIntoViewIfNeeded();
     await page.screenshot({ path: fileURLToPath(new URL('mobile-detail.png', output)) });

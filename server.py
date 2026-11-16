@@ -16,7 +16,7 @@ DIRECTORY = Path(__file__).resolve().parent
 
 # These are generation settings, not model names. Match a complete tail only;
 # a new or unknown tail remains part of the model name to avoid false grouping.
-SETTINGS = ("Ultra", "Extra", "High", "Max", "最大", "极高", "默认", "高")
+SETTINGS = ("Ultra", "Extra", "High", "Medium", "Max", "最高", "超高", "最大", "极高", "默认", "高")
 SETTING_PATTERN = "|".join(re.escape(setting) for setting in SETTINGS)
 RUN_PATTERN = re.compile(r"^(.*?)([\s_-]+)([1-9]\d*)$")
 ATTACHED_RUN_PATTERN = re.compile(
@@ -89,13 +89,18 @@ def classify_stem(stem):
         ),
         (
             "Gemini",
-            r"^Gemini\s+(\d+(?:\.\d+)?)\s+(Pro|Flash)(.*)$",
+            r"^Gemini\s+(\d+(?:\.\d+)?)\s+(Pro|Flash|Argon|Hydrogen)(.*)$",
             lambda m: f"Gemini {m[1]} {m[2].title()}",
         ),
         (
             "Kimi",
-            r"^Kimi[\s-]+k(\d+)(.*)$",
-            lambda m: f"Kimi K{m[1]}",
+            r"^Kimi[\s-]+k(\d+(?:\.\d+)?)(?:[\s-]+(Pro))?(.*)$",
+            lambda m: f"Kimi K{m[1]}" + (" Pro" if m[2] else ""),
+        ),
+        (
+            "MiMo",
+            r"^MiMo[\s-]+V(\d+(?:\.\d+)?)[\s-]+(Flash|Pro)(.*)$",
+            lambda m: f"MiMo V{m[1]} {m[2].title()}",
         ),
         (
             "MiniMax",
@@ -124,7 +129,7 @@ def classify_stem(stem):
         ),
         (
             "Claude",
-            r"^(Sonnet|Opus|Haiku)[\s-]*(\d+(?:[.,]\d+)?)(.*)$",
+            r"^(?:Claude[\s-]+)?(Sonnet|Opus|Haiku)[\s-]*(\d+(?:[.,]\d+)?)(.*)$",
             lambda m: f"{m[1].title()} {m[2].replace(',', '.')}",
         ),
         (

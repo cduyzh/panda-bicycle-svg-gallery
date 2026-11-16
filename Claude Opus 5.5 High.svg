@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <title>Claude Opus 5.5 High — 熊猫骑自行车</title>
+  <desc>一只围着红围巾的熊猫骑着自行车穿过竹林，车轮、踏板、双腿联动的纯 SVG（SMIL）动画。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fd8ff"/>
+      <stop offset="0.7" stop-color="#e3f4ff"/>
+      <stop offset="1" stop-color="#fff4dc"/>
+    </linearGradient>
+    <radialGradient id="sunGlow">
+      <stop offset="0" stop-color="#fff2b0"/>
+      <stop offset="1" stop-color="#fff2b0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b727c"/>
+      <stop offset="1" stop-color="#545a63"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 天空与太阳 -->
+  <rect width="800" height="500" fill="url(#sky)"/>
+  <circle cx="680" cy="90" r="80" fill="url(#sunGlow)">
+    <animate attributeName="r" values="72;88;72" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="680" cy="90" r="38" fill="#ffd45e"/>
+
+  <!-- 云 -->
+  <g opacity="0.95">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-900 0" dur="60s" repeatCount="indefinite"/>
+    <g transform="translate(120 80) scale(1)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g><g transform="translate(420 55) scale(0.7)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g><g transform="translate(700 110) scale(0.9)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g>
+    <g transform="translate(900 0)"><g transform="translate(120 80) scale(1)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g><g transform="translate(420 55) scale(0.7)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g><g transform="translate(700 110) scale(0.9)" fill="#ffffff"><ellipse cx="0" cy="0" rx="46" ry="18"/><circle cx="-16" cy="-12" r="18"/><circle cx="12" cy="-18" r="22"/><circle cx="32" cy="-4" r="14"/></g></g>
+  </g>
+
+  <!-- 小鸟 -->
+  <g fill="none" stroke="#4a5563" stroke-width="2" stroke-linecap="round">
+    <path d="M300 120 q6 -6 12 0 q6 -6 12 0">
+      <animate attributeName="d" values="M300 120 q6 -6 12 0 q6 -6 12 0;M300 120 q6 4 12 0 q6 4 12 0;M300 120 q6 -6 12 0 q6 -6 12 0" dur="0.7s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;-30 -8;0 0" dur="9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M345 140 q5 -5 10 0 q5 -5 10 0">
+      <animate attributeName="d" values="M345 140 q5 4 10 0 q5 4 10 0;M345 140 q5 -5 10 0 q5 -5 10 0;M345 140 q5 4 10 0 q5 4 10 0" dur="0.6s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;-24 6;0 0" dur="8s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- 远山 / 近山 -->
+  <g fill="#c4e6bb">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="40s" repeatCount="indefinite"/>
+    <path d="M0 310 Q100 250 200 300 T400 290 T600 285 T800 310 V430 H0Z"/><path d="M0 310 Q100 250 200 300 T400 290 T600 285 T800 310 V430 H0Z" transform="translate(800 0)"/>
+  </g>
+  <g fill="#98d38f">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="16s" repeatCount="indefinite"/>
+    <path d="M0 350 Q120 300 240 345 T480 340 T720 335 Q760 340 800 350 V430 H0Z"/><path d="M0 350 Q120 300 240 345 T480 340 T720 335 Q760 340 800 350 V430 H0Z" transform="translate(800 0)"/>
+  </g>
+
+  <!-- 竹林 -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="5s" repeatCount="indefinite"/>
+    <g transform="translate(0 0)"><rect x="35" y="250" width="10" height="170" rx="4" fill="#7cc96b"/><rect x="33.5" y="276" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="306" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="336" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="366" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="396" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M40 280 q16 -14 34 -10 q-16 10 -34 10z M40 310 q-18 -12 -34 -6 q16 8 34 6z M40 258 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="63" y="285" width="10" height="135" rx="4" fill="#6dbb5d"/><rect x="61.5" y="311" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="341" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="371" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="401" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M68 315 q16 -14 34 -10 q-16 10 -34 10z M68 345 q-18 -12 -34 -6 q16 8 34 6z M68 293 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="245" y="270" width="10" height="150" rx="4" fill="#7cc96b"/><rect x="243.5" y="296" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M250 300 q16 -14 34 -10 q-16 10 -34 10z M250 330 q-18 -12 -34 -6 q16 8 34 6z M250 278 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="465" y="240" width="10" height="180" rx="4" fill="#6dbb5d"/><rect x="463.5" y="266" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="296" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M470 270 q16 -14 34 -10 q-16 10 -34 10z M470 300 q-18 -12 -34 -6 q16 8 34 6z M470 248 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="493" y="290" width="10" height="130" rx="4" fill="#7cc96b"/><rect x="491.5" y="316" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="346" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="376" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="406" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M498 320 q16 -14 34 -10 q-16 10 -34 10z M498 350 q-18 -12 -34 -6 q16 8 34 6z M498 298 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="685" y="260" width="10" height="160" rx="4" fill="#6dbb5d"/><rect x="683.5" y="286" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="316" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="346" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="376" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="406" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M690 290 q16 -14 34 -10 q-16 10 -34 10z M690 320 q-18 -12 -34 -6 q16 8 34 6z M690 268 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="715" y="300" width="10" height="120" rx="4" fill="#7cc96b"/><rect x="713.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="713.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="713.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M720 330 q16 -14 34 -10 q-16 10 -34 10z M720 360 q-18 -12 -34 -6 q16 8 34 6z M720 308 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/></g><g transform="translate(800 0)"><rect x="35" y="250" width="10" height="170" rx="4" fill="#7cc96b"/><rect x="33.5" y="276" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="306" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="336" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="366" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="33.5" y="396" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M40 280 q16 -14 34 -10 q-16 10 -34 10z M40 310 q-18 -12 -34 -6 q16 8 34 6z M40 258 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="63" y="285" width="10" height="135" rx="4" fill="#6dbb5d"/><rect x="61.5" y="311" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="341" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="371" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="61.5" y="401" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M68 315 q16 -14 34 -10 q-16 10 -34 10z M68 345 q-18 -12 -34 -6 q16 8 34 6z M68 293 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="245" y="270" width="10" height="150" rx="4" fill="#7cc96b"/><rect x="243.5" y="296" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="243.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M250 300 q16 -14 34 -10 q-16 10 -34 10z M250 330 q-18 -12 -34 -6 q16 8 34 6z M250 278 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="465" y="240" width="10" height="180" rx="4" fill="#6dbb5d"/><rect x="463.5" y="266" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="296" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="463.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M470 270 q16 -14 34 -10 q-16 10 -34 10z M470 300 q-18 -12 -34 -6 q16 8 34 6z M470 248 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="493" y="290" width="10" height="130" rx="4" fill="#7cc96b"/><rect x="491.5" y="316" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="346" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="376" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="491.5" y="406" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M498 320 q16 -14 34 -10 q-16 10 -34 10z M498 350 q-18 -12 -34 -6 q16 8 34 6z M498 298 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="685" y="260" width="10" height="160" rx="4" fill="#6dbb5d"/><rect x="683.5" y="286" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="316" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="346" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="376" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="683.5" y="406" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M690 290 q16 -14 34 -10 q-16 10 -34 10z M690 320 q-18 -12 -34 -6 q16 8 34 6z M690 268 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/><rect x="715" y="300" width="10" height="120" rx="4" fill="#7cc96b"/><rect x="713.5" y="326" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="713.5" y="356" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><rect x="713.5" y="386" width="13" height="3.5" rx="1.5" fill="#3f8a3a" opacity="0.75"/><path d="M720 330 q16 -14 34 -10 q-16 10 -34 10z M720 360 q-18 -12 -34 -6 q16 8 34 6z M720 308 q10 -18 26 -20 q-8 14 -26 20z" fill="#5fb150"/></g>
+  </g>
+
+  <!-- 草地与路 -->
+  <rect y="400" width="800" height="32" fill="#6cbf5d"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="2.122s" repeatCount="indefinite"/>
+    <g transform="translate(0 0)"><path d="M30 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M140 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M260 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M330 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M470 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M590 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M700 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M760 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/></g><g transform="translate(800 0)"><path d="M30 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M140 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M260 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M330 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M470 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M590 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M700 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/><path d="M760 432 l4 -12 l3 10 l4 -15 l3 15 l4 -10 l2 12z" fill="#4f9e45"/></g>
+  </g>
+  <rect y="430" width="800" height="70" fill="url(#road)"/>
+  <line x1="0" y1="432" x2="800" y2="432" stroke="#8a929c" stroke-width="3"/>
+  <line x1="-40" y1="472" x2="840" y2="472" stroke="#f5f1e6" stroke-width="5" stroke-dasharray="36 44" stroke-linecap="round">
+    <animate attributeName="stroke-dashoffset" from="0" to="80" dur="0.212s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- 影子 -->
+  <ellipse cx="392" cy="440" rx="210" ry="8" fill="#000" opacity="0.18">
+    <animate attributeName="rx" values="210;204;210" dur="0.6s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- 速度线 -->
+  <g stroke="#ffffff" stroke-width="4" stroke-linecap="round">
+    <line x1="150" y1="210" x2="215" y2="210" opacity="0">
+      <animate attributeName="opacity" values="0;0.8;0" dur="0.9s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" from="20 0" to="-70 0" dur="0.9s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="275" x2="200" y2="275" opacity="0">
+      <animate attributeName="opacity" values="0;0.7;0" dur="0.9s" begin="0.3s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" from="20 0" to="-70 0" dur="0.9s" begin="0.3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="140" y1="340" x2="190" y2="340" opacity="0">
+      <animate attributeName="opacity" values="0;0.7;0" dur="0.9s" begin="0.6s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" from="20 0" to="-70 0" dur="0.9s" begin="0.6s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- 自行车 + 熊猫 -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -1.5;0 0" dur="0.6s" repeatCount="indefinite"/>
+
+    <!-- 远侧腿 -->
+    <path fill="none" stroke="#3a3d42" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" d="M352 252 L394.5 315.0 L342.0 370.0 l11 0">
+      <animate attributeName="d" dur="2.4s" repeatCount="indefinite" values="M352 252 L394.5 315.0 L342.0 370.0 l11 0;M352 252 L397.6 312.8 L342.4 365.1 l11 0;M352 252 L400.8 310.3 L343.7 360.4 l11 0;M352 252 L404.1 307.3 L345.8 356.0 l11 0;M352 252 L407.5 304.0 L348.6 352.0 l11 0;M352 252 L410.7 300.3 L352.0 348.6 l11 0;M352 252 L413.7 296.3 L356.0 345.8 l11 0;M352 252 L416.4 292.3 L360.4 343.7 l11 0;M352 252 L418.7 288.5 L365.1 342.4 l11 0;M352 252 L420.4 285.1 L370.0 342.0 l11 0;M352 252 L421.6 282.5 L374.9 342.4 l11 0;M352 252 L422.3 280.8 L379.6 343.7 l11 0;M352 252 L422.6 280.3 L384.0 345.8 l11 0;M352 252 L422.3 280.8 L388.0 348.6 l11 0;M352 252 L421.7 282.3 L391.4 352.0 l11 0;M352 252 L420.6 284.7 L394.2 356.0 l11 0;M352 252 L419.0 287.9 L396.3 360.4 l11 0;M352 252 L416.9 291.6 L397.6 365.1 l11 0;M352 252 L414.2 295.7 L398.0 370.0 l11 0;M352 252 L410.9 300.0 L397.6 374.9 l11 0;M352 252 L407.1 304.3 L396.3 379.6 l11 0;M352 252 L402.8 308.5 L394.2 384.0 l11 0;M352 252 L398.3 312.3 L391.4 388.0 l11 0;M352 252 L393.5 315.7 L388.0 391.4 l11 0;M352 252 L389.0 318.4 L384.0 394.2 l11 0;M352 252 L384.9 320.5 L379.6 396.3 l11 0;M352 252 L381.8 321.9 L374.9 397.6 l11 0;M352 252 L380.0 322.7 L370.0 398.0 l11 0;M352 252 L379.3 322.9 L365.1 397.6 l11 0;M352 252 L379.7 322.8 L360.4 396.3 l11 0;M352 252 L380.7 322.4 L356.0 394.2 l11 0;M352 252 L382.2 321.7 L352.0 391.4 l11 0;M352 252 L384.2 320.9 L348.6 388.0 l11 0;M352 252 L386.4 319.8 L345.8 384.0 l11 0;M352 252 L388.9 318.5 L343.7 379.6 l11 0;M352 252 L391.6 316.9 L342.4 374.9 l11 0;M352 252 L394.5 315.0 L342.0 370.0 l11 0"/>
+    </path>
+
+    <!-- 远侧曲柄 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 370 370" to="360 370 370" dur="2.4s" repeatCount="indefinite"/>
+      <line x1="370" y1="370" x2="342" y2="370" stroke="#7d858e" stroke-width="5" stroke-linecap="round"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 342 370" to="-360 342 370" dur="2.4s" repeatCount="indefinite"/>
+        <rect x="333" y="373" width="18" height="5" rx="2" fill="#555b63"/>
+      </g>
+    </g>
+
+    <!-- 远侧手臂 -->
+    <path d="M410 162 Q462 186 506 236" fill="none" stroke="#3a3d42" stroke-width="19" stroke-linecap="round"/>
+
+    
+    <g>
+      <circle cx="250" cy="365" r="72" fill="none" stroke="#2b2d31" stroke-width="9"/>
+      <circle cx="250" cy="365" r="66" fill="none" stroke="#d4dbe1" stroke-width="3"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 250 365" to="360 250 365" dur="1.2s" repeatCount="indefinite"/>
+        <g stroke="#9aa4ad" stroke-width="1.6"><line x1="250" y1="365" x2="314.0" y2="365.0"/><line x1="250" y1="365" x2="305.4" y2="397.0"/><line x1="250" y1="365" x2="282.0" y2="420.4"/><line x1="250" y1="365" x2="250.0" y2="429.0"/><line x1="250" y1="365" x2="218.0" y2="420.4"/><line x1="250" y1="365" x2="194.6" y2="397.0"/><line x1="250" y1="365" x2="186.0" y2="365.0"/><line x1="250" y1="365" x2="194.6" y2="333.0"/><line x1="250" y1="365" x2="218.0" y2="309.6"/><line x1="250" y1="365" x2="250.0" y2="301.0"/><line x1="250" y1="365" x2="282.0" y2="309.6"/><line x1="250" y1="365" x2="305.4" y2="333.0"/></g>
+        <circle cx="316" cy="365" r="3.5" fill="#ffc83d"/>
+        <rect x="246" y="295" width="8" height="4" rx="1" fill="#ff6b5a"/>
+      </g>
+      <circle cx="250" cy="365" r="7" fill="#4a4f57"/>
+      <circle cx="250" cy="365" r="3" fill="#c9d0d6"/>
+    </g>
+    
+    <g>
+      <circle cx="530" cy="365" r="72" fill="none" stroke="#2b2d31" stroke-width="9"/>
+      <circle cx="530" cy="365" r="66" fill="none" stroke="#d4dbe1" stroke-width="3"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 530 365" to="360 530 365" dur="1.2s" repeatCount="indefinite"/>
+        <g stroke="#9aa4ad" stroke-width="1.6"><line x1="530" y1="365" x2="594.0" y2="365.0"/><line x1="530" y1="365" x2="585.4" y2="397.0"/><line x1="530" y1="365" x2="562.0" y2="420.4"/><line x1="530" y1="365" x2="530.0" y2="429.0"/><line x1="530" y1="365" x2="498.0" y2="420.4"/><line x1="530" y1="365" x2="474.6" y2="397.0"/><line x1="530" y1="365" x2="466.0" y2="365.0"/><line x1="530" y1="365" x2="474.6" y2="333.0"/><line x1="530" y1="365" x2="498.0" y2="309.6"/><line x1="530" y1="365" x2="530.0" y2="301.0"/><line x1="530" y1="365" x2="562.0" y2="309.6"/><line x1="530" y1="365" x2="585.4" y2="333.0"/></g>
+        <circle cx="596" cy="365" r="3.5" fill="#ffc83d"/>
+        <rect x="526" y="295" width="8" height="4" rx="1" fill="#ff6b5a"/>
+      </g>
+      <circle cx="530" cy="365" r="7" fill="#4a4f57"/>
+      <circle cx="530" cy="365" r="3" fill="#c9d0d6"/>
+    </g>
+
+    <!-- 链条与牙盘 -->
+    <g fill="none" stroke="#5b6168" stroke-width="2.5" stroke-dasharray="3 2.5">
+      <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="0.25s" repeatCount="indefinite"/>
+      <path d="M370 354 L250 358 M250 372 L370 386"/>
+    </g>
+    <circle cx="250" cy="365" r="8" fill="none" stroke="#5b6168" stroke-width="3"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 370 370" to="360 370 370" dur="2.4s" repeatCount="indefinite"/>
+      <circle cx="370" cy="370" r="16" fill="none" stroke="#5b6168" stroke-width="4" stroke-dasharray="4 2.3"/>
+    </g>
+
+    <!-- 车架 -->
+    <g fill="none" stroke="#1fa2a6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M250 365 L370 370 L350 275 Z"/>
+      <path d="M350 275 L495 262 L505 295 L370 370"/>
+      <path d="M505 295 L530 365" stroke-width="7"/>
+    </g>
+    <path d="M352 284 L490 272" stroke="#ffffff" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+    <!-- 车把与车篮 -->
+    <path d="M495 262 L488 240" stroke="#4a4f57" stroke-width="6" stroke-linecap="round"/>
+    <path d="M482 241 Q500 230 516 239" fill="none" stroke="#2b2d31" stroke-width="6" stroke-linecap="round"/>
+    <g>
+      <path d="M535 250 l4 -34 M548 250 l10 -40" stroke="#6dbb5d" stroke-width="5" stroke-linecap="round"/>
+      <path d="M538 230 h6 M553 226 h6" stroke="#3f8a3a" stroke-width="2"/>
+      <path d="M558 212 q14 -10 26 -4 q-12 8 -26 4z M540 220 q-14 -12 -26 -8 q12 8 26 8z" fill="#5fb150"/>
+      <rect x="516" y="248" width="50" height="34" rx="6" fill="#d39552" stroke="#8a5a2b" stroke-width="2.5"/>
+      <path d="M518 259 h46 M518 270 h46 M530 249 v32 M542 249 v32 M554 249 v32" stroke="#a86e35" stroke-width="1.6"/>
+    </g>
+    <!-- 车座 -->
+    <path d="M350 275 L348 262" stroke="#4a4f57" stroke-width="6"/>
+    <path d="M326 259 Q346 250 370 257 Q368 266 346 266 Q331 266 326 259Z" fill="#2b2d31"/>
+
+    <!-- 上半身（随踏频轻微起伏） -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 2;0 0;0 2;0 0" dur="2.4s" repeatCount="indefinite"/>
+      <ellipse cx="392" cy="200" rx="50" ry="62" transform="rotate(25 392 200)" fill="#ffffff" stroke="#22252a" stroke-width="3"/>
+      <ellipse cx="396" cy="212" rx="30" ry="38" transform="rotate(25 396 212)" fill="#eef2f5"/>
+      <ellipse cx="414" cy="162" rx="36" ry="24" transform="rotate(25 414 162)" fill="#22252a"/>
+    </g>
+
+    <!-- 近侧曲柄 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 370 370" to="360 370 370" dur="2.4s" repeatCount="indefinite"/>
+      <line x1="370" y1="370" x2="398" y2="370" stroke="#aab2ba" stroke-width="6" stroke-linecap="round"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 398 370" to="-360 398 370" dur="2.4s" repeatCount="indefinite"/>
+        <rect x="388" y="373" width="20" height="6" rx="2" fill="#6b727c"/>
+      </g>
+    </g>
+    <circle cx="370" cy="370" r="5" fill="#c9d0d6"/>
+
+    <!-- 近侧腿 -->
+    <path fill="none" stroke="#22252a" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" d="M352 252 L414.2 295.7 L398.0 370.0 l11 0">
+      <animate attributeName="d" dur="2.4s" repeatCount="indefinite" values="M352 252 L414.2 295.7 L398.0 370.0 l11 0;M352 252 L410.9 300.0 L397.6 374.9 l11 0;M352 252 L407.1 304.3 L396.3 379.6 l11 0;M352 252 L402.8 308.5 L394.2 384.0 l11 0;M352 252 L398.3 312.3 L391.4 388.0 l11 0;M352 252 L393.5 315.7 L388.0 391.4 l11 0;M352 252 L389.0 318.4 L384.0 394.2 l11 0;M352 252 L384.9 320.5 L379.6 396.3 l11 0;M352 252 L381.8 321.9 L374.9 397.6 l11 0;M352 252 L380.0 322.7 L370.0 398.0 l11 0;M352 252 L379.3 322.9 L365.1 397.6 l11 0;M352 252 L379.7 322.8 L360.4 396.3 l11 0;M352 252 L380.7 322.4 L356.0 394.2 l11 0;M352 252 L382.2 321.7 L352.0 391.4 l11 0;M352 252 L384.2 320.9 L348.6 388.0 l11 0;M352 252 L386.4 319.8 L345.8 384.0 l11 0;M352 252 L388.9 318.5 L343.7 379.6 l11 0;M352 252 L391.6 316.9 L342.4 374.9 l11 0;M352 252 L394.5 315.0 L342.0 370.0 l11 0;M352 252 L397.6 312.8 L342.4 365.1 l11 0;M352 252 L400.8 310.3 L343.7 360.4 l11 0;M352 252 L404.1 307.3 L345.8 356.0 l11 0;M352 252 L407.5 304.0 L348.6 352.0 l11 0;M352 252 L410.7 300.3 L352.0 348.6 l11 0;M352 252 L413.7 296.3 L356.0 345.8 l11 0;M352 252 L416.4 292.3 L360.4 343.7 l11 0;M352 252 L418.7 288.5 L365.1 342.4 l11 0;M352 252 L420.4 285.1 L370.0 342.0 l11 0;M352 252 L421.6 282.5 L374.9 342.4 l11 0;M352 252 L422.3 280.8 L379.6 343.7 l11 0;M352 252 L422.6 280.3 L384.0 345.8 l11 0;M352 252 L422.3 280.8 L388.0 348.6 l11 0;M352 252 L421.7 282.3 L391.4 352.0 l11 0;M352 252 L420.6 284.7 L394.2 356.0 l11 0;M352 252 L419.0 287.9 L396.3 360.4 l11 0;M352 252 L416.9 291.6 L397.6 365.1 l11 0;M352 252 L414.2 295.7 L398.0 370.0 l11 0"/>
+    </path>
+
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 2;0 0;0 2;0 0" dur="2.4s" repeatCount="indefinite"/>
+      <!-- 近侧手臂 -->
+      <path d="M418 166 Q468 192 510 238" fill="none" stroke="#22252a" stroke-width="21" stroke-linecap="round"/>
+
+      <!-- 围巾 -->
+      <path fill="#e8473c" d="M408 154 C380 150 360 140 330 146 L334 158 C360 154 382 164 408 166 Z">
+        <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+          values="M408 154 C380 150 360 140 330 146 L334 158 C360 154 382 164 408 166 Z;M408 154 C382 144 358 156 328 138 L332 152 C358 166 384 158 408 166 Z;M408 154 C380 156 360 132 330 152 L333 162 C360 144 382 168 408 166 Z;M408 154 C380 150 360 140 330 146 L334 158 C360 154 382 164 408 166 Z"/>
+      </path>
+      <path d="M402 150 Q430 168 460 154 L462 166 Q430 182 400 163 Z" fill="#e8473c"/>
+      <path d="M404 158 Q430 172 460 160" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6" stroke-dasharray="4 4"/>
+
+      <!-- 头 -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-3 440 140;3 440 140;-3 440 140" dur="2.4s" repeatCount="indefinite"/>
+        <circle cx="410" cy="80" r="15" fill="#22252a"/>
+        <circle cx="466" cy="76" r="15" fill="#22252a"/>
+        <circle cx="410" cy="80" r="6" fill="#4a4f57"/>
+        <circle cx="466" cy="76" r="6" fill="#4a4f57"/>
+        <circle cx="440" cy="118" r="46" fill="#ffffff" stroke="#22252a" stroke-width="3"/>
+        <ellipse cx="430" cy="117" rx="11" ry="15" transform="rotate(28 430 117)" fill="#22252a"/>
+        <ellipse cx="463" cy="115" rx="11" ry="15" transform="rotate(-28 463 115)" fill="#22252a"/>
+        <ellipse cx="432" cy="114" rx="4.6" ry="4.6" fill="#ffffff">
+          <animate attributeName="ry" values="4.6;4.6;0.4;4.6;4.6" keyTimes="0;0.9;0.94;0.98;1" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="462" cy="112" rx="4.6" ry="4.6" fill="#ffffff">
+          <animate attributeName="ry" values="4.6;4.6;0.4;4.6;4.6" keyTimes="0;0.9;0.94;0.98;1" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="433.5" cy="114" rx="2.6" ry="2.8" fill="#111">
+          <animate attributeName="ry" values="2.8;2.8;0.3;2.8;2.8" keyTimes="0;0.9;0.94;0.98;1" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="463.5" cy="112" rx="2.6" ry="2.8" fill="#111">
+          <animate attributeName="ry" values="2.8;2.8;0.3;2.8;2.8" keyTimes="0;0.9;0.94;0.98;1" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="451" cy="130" rx="6.5" ry="4.5" fill="#22252a"/>
+        <path d="M451 134 v4 M443 138 q4 5 8 0 q4 5 8 0" fill="none" stroke="#22252a" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="422" cy="134" r="6" fill="#ff9aa8" opacity="0.55"/>
+        <circle cx="476" cy="131" r="6" fill="#ff9aa8" opacity="0.55"/>
+      </g>
+      <!-- 握把的爪子 -->
+      <circle cx="511" cy="238" r="11" fill="#22252a"/>
+    </g>
+  </g>
+</svg>
