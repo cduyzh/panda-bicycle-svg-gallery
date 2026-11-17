@@ -1135,15 +1135,15 @@
           font-size: 21px;
         }
         .hero-visual {
-          min-height: 145px;
-          height: 145px;
+          min-height: 160px;
+          height: auto;
           justify-content: flex-end;
           padding-right: 10px;
-          overflow: hidden;
+          overflow: visible;
         }
         .hero-art {
           width: 240px;
-          transform: translateY(-14px);
+          transform: translateY(0);
         }
         .intro-line {
           align-items: start;
@@ -1348,134 +1348,629 @@
           <div
             class="hero-visual"
             aria-hidden="true">
-            <svg
-              class="hero-art"
-              viewBox="0 0 470 300"
-              fill="none">
-              <path
-                d="M49 243h384"
-                stroke="#99c8a2"
-                stroke-opacity=".45"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-dasharray="3 11" />
-              <g
-                class="hero-wheel"
-                stroke="#ddf5e4"
-                stroke-width="3">
-                <circle
-                  cx="119"
-                  cy="207"
-                  r="70" />
-                <path
-                  d="M119 138v138M50 207h138M69 157l100 100M169 157 69 257"
-                  stroke-opacity=".23" />
-              </g>
-              <g
-                class="hero-wheel"
-                stroke="#ddf5e4"
-                stroke-width="3">
-                <circle
-                  cx="350"
-                  cy="207"
-                  r="70" />
-                <path
-                  d="M350 138v138M281 207h138M300 157l100 100M400 157 300 257"
-                  stroke-opacity=".23" />
-              </g>
-              <path
-                d="m119 207 76-106 70 106H119l77-105 58 19 96 86-68-117h-41"
-                stroke="#c3ed90"
-                stroke-width="11"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path
-                d="M187 91h46M271 82h34"
-                stroke="#f6fff8"
-                stroke-width="9"
-                stroke-linecap="round" />
-              <path
-                d="M264 207h30"
-                stroke="#ddf5e4"
-                stroke-width="9"
-                stroke-linecap="round" />
-              <path
-                d="m197 111 45 44-24 43"
-                stroke="#f6fff8"
-                stroke-width="13"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path
-                d="m249 155 33 29-17 34"
-                stroke="#f6fff8"
-                stroke-width="12"
-                stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path
-                d="M170 124c14-29 42-47 75-43 27 3 40 20 46 37l-28 24-76 17-17-35Z"
-                fill="#f6fff8" />
-              <path
-                d="m178 137-36 40M273 127l31 17"
-                stroke="#263e35"
-                stroke-width="18"
-                stroke-linecap="round" />
-              <circle
-                cx="225"
-                cy="69"
-                r="48"
-                fill="#f6fff8" />
-              <circle
-                cx="188"
-                cy="34"
-                r="19"
-                fill="#263e35" />
-              <circle
-                cx="262"
-                cy="34"
-                r="19"
-                fill="#263e35" />
-              <ellipse
-                cx="208"
-                cy="64"
-                rx="14"
-                ry="19"
-                fill="#263e35"
-                transform="rotate(20 208 64)" />
-              <ellipse
-                cx="242"
-                cy="64"
-                rx="14"
-                ry="19"
-                fill="#263e35"
-                transform="rotate(-20 242 64)" />
-              <circle
-                cx="210"
-                cy="65"
-                r="4"
-                fill="#f6fff8" />
-              <circle
-                cx="240"
-                cy="65"
-                r="4"
-                fill="#f6fff8" />
-              <ellipse
-                cx="225"
-                cy="91"
-                rx="8"
-                ry="6"
-                fill="#263e35" />
-              <path
-                d="M284 113c17-5 24-16 26-26"
-                stroke="#c3ed90"
-                stroke-width="6"
-                stroke-linecap="round" />
-              <path
-                d="M330 49h25M343 36v26M382 94h17M390 86v17"
-                stroke="#c3ed90"
-                stroke-width="3"
-                stroke-linecap="round"
-                opacity=".72" />
-            </svg>
+            <svg class="hero-art" viewBox="0 0 470 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 复古青瓷绿车架金属渐变 -->
+    <linearGradient id="hero-celadon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38C4B4" />
+      <stop offset="55%" stop-color="#1A8B82" />
+      <stop offset="100%" stop-color="#105953" />
+    </linearGradient>
+
+    <!-- 镀铬合金高光渐变 -->
+    <linearGradient id="hero-chrome" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DCE9EE" />
+      <stop offset="40%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#A5B9C2" />
+      <stop offset="100%" stop-color="#657780" />
+    </linearGradient>
+
+    <!-- 珊瑚红波浪围巾渐变 -->
+    <linearGradient id="hero-scarf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B6B" />
+      <stop offset="60%" stop-color="#EE5253" />
+      <stop offset="100%" stop-color="#C0392B" />
+    </linearGradient>
+
+    <!-- 手工编织藤篮金驼渐变 -->
+    <linearGradient id="hero-wicker" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E5BE7A" />
+      <stop offset="50%" stop-color="#C89D52" />
+      <stop offset="100%" stop-color="#936829" />
+    </linearGradient>
+
+    <!-- 复古真皮鞍座深褐渐变 -->
+    <linearGradient id="hero-leather" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A3D18" />
+      <stop offset="70%" stop-color="#4E230B" />
+      <stop offset="100%" stop-color="#2E1203" />
+    </linearGradient>
+
+    <!-- 车头大灯柔和光锥 -->
+    <radialGradient id="hero-light-beam" cx="0%" cy="50%" r="100%">
+      <stop offset="0%" stop-color="#FFEAA7" stop-opacity="0.45" />
+      <stop offset="60%" stop-color="#FFEAA7" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#FFEAA7" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- 旋转车轮单元 -->
+    <g id="hero-wheel-rotor">
+      <!-- 轮圈金属底 -->
+      <circle cx="0" cy="0" r="37" stroke="#7A8F98" stroke-width="2.5" fill="none" />
+      <circle cx="0" cy="0" r="35.5" stroke="#E2EFF3" stroke-width="1.2" stroke-opacity="0.8" fill="none" />
+      <!-- 12 根放射状钢丝辐条 -->
+      <g stroke="#C6D8DE" stroke-width="1.1" stroke-linecap="round" opacity="0.85">
+        <line x1="0" y1="-35" x2="0" y2="35" />
+        <line x1="-35" y1="0" x2="35" y2="0" />
+        <line x1="-24.7" y1="-24.7" x2="24.7" y2="24.7" />
+        <line x1="-24.7" y1="24.7" x2="24.7" y2="-24.7" />
+        <line x1="-30.3" y1="-17.5" x2="30.3" y2="17.5" />
+        <line x1="-17.5" y1="-30.3" x2="17.5" y2="30.3" />
+        <line x1="-30.3" y1="17.5" x2="30.3" y2="-17.5" />
+        <line x1="-17.5" y1="30.3" x2="17.5" y2="-30.3" />
+      </g>
+      <!-- 轮毂轴心 -->
+      <circle cx="0" cy="0" r="8" fill="#58676E" />
+      <circle cx="0" cy="0" r="6" fill="url(#hero-chrome)" />
+      <circle cx="0" cy="0" r="2.5" fill="#2C3539" />
+    </g>
+
+    <style>
+      .hero-spin-cw {
+        animation: hero-spin 1.0s linear infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .hero-crank-cycle {
+        animation: hero-spin 1.35s linear infinite;
+        transform-origin: 222px 212px;
+      }
+      .hero-pedal-level {
+        animation: hero-spin-ccw 1.35s linear infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .hero-leg-near-hip {
+        animation: hero-near-thigh 1.35s linear infinite;
+        transform-origin: 0 0;
+      }
+      .hero-leg-near-knee {
+        animation: hero-near-shin 1.35s linear infinite;
+        transform-origin: 0 0;
+      }
+      .hero-leg-far-hip {
+        animation: hero-far-thigh 1.35s linear infinite;
+        transform-origin: 0 0;
+      }
+      .hero-leg-far-knee {
+        animation: hero-far-shin 1.35s linear infinite;
+        transform-origin: 0 0;
+      }
+      .hero-panda-bob {
+        animation: hero-panda-ride 0.68s ease-in-out infinite alternate;
+      }
+      .hero-head-bob {
+        animation: hero-head-motion 0.68s ease-in-out infinite alternate;
+        transform-origin: 226px 94px;
+      }
+      .hero-ear-motion {
+        animation: hero-ear-wiggle 0.68s ease-in-out infinite alternate;
+        transform-origin: bottom center;
+      }
+      .hero-scarf-wave-a {
+        animation: hero-scarf-flap-a 0.58s ease-in-out infinite alternate;
+        transform-origin: 212px 88px;
+      }
+      .hero-scarf-wave-b {
+        animation: hero-scarf-flap-b 0.72s ease-in-out infinite alternate;
+        transform-origin: 212px 92px;
+      }
+      .hero-basket-sway {
+        animation: hero-bamboo-sway 1.35s ease-in-out infinite alternate;
+        transform-origin: 350px 115px;
+      }
+      .hero-eyes-blink {
+        animation: hero-blink 3.8s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .hero-dust-1 {
+        animation: hero-puff 0.75s ease-out infinite;
+      }
+      .hero-dust-2 {
+        animation: hero-puff 0.75s ease-out 0.38s infinite;
+      }
+      .hero-wind-line {
+        animation: hero-wind 1.1s ease-in-out infinite;
+      }
+      .hero-shadow-motion {
+        animation: hero-shadow-breath 0.68s ease-in-out infinite alternate;
+        transform-origin: 230px 254px;
+      }
+
+      @keyframes hero-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes hero-spin-ccw {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(-360deg); }
+      }
+      @keyframes hero-panda-ride {
+        0% { transform: translateY(0px) rotate(0deg); }
+        100% { transform: translateY(-2.2px) rotate(-0.4deg); }
+      }
+      @keyframes hero-head-motion {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(2.2deg); }
+      }
+      @keyframes hero-ear-wiggle {
+        0% { transform: rotate(-3deg); }
+        100% { transform: rotate(3deg); }
+      }
+      @keyframes hero-scarf-flap-a {
+        0% { transform: rotate(-3deg) scaleY(0.96); }
+        100% { transform: rotate(7deg) scaleY(1.04); }
+      }
+      @keyframes hero-scarf-flap-b {
+        0% { transform: rotate(6deg) scaleY(1.05); }
+        100% { transform: rotate(-6deg) scaleY(0.92); }
+      }
+      @keyframes hero-bamboo-sway {
+        0% { transform: rotate(-3deg); }
+        100% { transform: rotate(4deg); }
+      }
+      @keyframes hero-blink {
+        0%, 88%, 95%, 100% { transform: scaleY(1); }
+        91.5% { transform: scaleY(0.1); }
+      }
+      @keyframes hero-puff {
+        0% { transform: translate(0, 0) scale(0.6); opacity: 0.55; }
+        100% { transform: translate(-26px, -10px) scale(1.4); opacity: 0; }
+      }
+      @keyframes hero-wind {
+        0% { transform: translateX(20px); opacity: 0; }
+        30% { opacity: 0.55; }
+        80% { opacity: 0.55; }
+        100% { transform: translateX(-35px); opacity: 0; }
+      }
+      @keyframes hero-shadow-breath {
+        0% { transform: scaleX(1); opacity: 0.30; }
+        100% { transform: scaleX(0.94); opacity: 0.20; }
+      }
+
+@keyframes hero-near-thigh {
+   0.00% { transform: rotate(32.81deg); }
+   4.17% { transform: rotate(40.45deg); }
+   8.33% { transform: rotate(49.06deg); }
+  12.50% { transform: rotate(62.58deg); }
+  16.67% { transform: rotate(65.27deg); }
+  20.83% { transform: rotate(68.01deg); }
+  25.00% { transform: rotate(67.10deg); }
+  29.17% { transform: rotate(61.29deg); }
+  33.33% { transform: rotate(57.35deg); }
+  37.50% { transform: rotate(53.57deg); }
+  41.67% { transform: rotate(49.66deg); }
+  45.83% { transform: rotate(45.47deg); }
+  50.00% { transform: rotate(40.93deg); }
+  54.17% { transform: rotate(36.00deg); }
+  58.33% { transform: rotate(30.73deg); }
+  62.50% { transform: rotate(25.35deg); }
+  66.67% { transform: rotate(20.28deg); }
+  70.83% { transform: rotate(16.07deg); }
+  75.00% { transform: rotate(13.30deg); }
+  79.17% { transform: rotate(12.34deg); }
+  83.33% { transform: rotate(13.31deg); }
+  87.50% { transform: rotate(16.09deg); }
+  91.67% { transform: rotate(20.44deg); }
+  95.83% { transform: rotate(26.09deg); }
+  100.00% { transform: rotate(32.81deg); }
+}
+@keyframes hero-near-shin {
+   0.00% { transform: rotate(47.45deg); }
+   4.17% { transform: rotate(35.64deg); }
+   8.33% { transform: rotate(22.60deg); }
+  12.50% { transform: rotate(0.00deg); }
+  16.67% { transform: rotate(0.00deg); }
+  20.83% { transform: rotate(0.00deg); }
+  25.00% { transform: rotate(7.39deg); }
+  29.17% { transform: rotate(24.56deg); }
+  33.33% { transform: rotate(37.36deg); }
+  37.50% { transform: rotate(49.04deg); }
+  41.67% { transform: rotate(59.94deg); }
+  45.83% { transform: rotate(70.02deg); }
+  50.00% { transform: rotate(79.12deg); }
+  54.17% { transform: rotate(87.01deg); }
+  58.33% { transform: rotate(93.34deg); }
+  62.50% { transform: rotate(97.78deg); }
+  66.67% { transform: rotate(100.01deg); }
+  70.83% { transform: rotate(99.84deg); }
+  75.00% { transform: rotate(97.28deg); }
+  79.17% { transform: rotate(92.56deg); }
+  83.33% { transform: rotate(85.98deg); }
+  87.50% { transform: rotate(77.91deg); }
+  91.67% { transform: rotate(68.66deg); }
+  95.83% { transform: rotate(58.45deg); }
+  100.00% { transform: rotate(47.45deg); }
+}
+@keyframes hero-far-thigh {
+   0.00% { transform: rotate(40.93deg); }
+   4.17% { transform: rotate(36.00deg); }
+   8.33% { transform: rotate(30.73deg); }
+  12.50% { transform: rotate(25.35deg); }
+  16.67% { transform: rotate(20.28deg); }
+  20.83% { transform: rotate(16.07deg); }
+  25.00% { transform: rotate(13.30deg); }
+  29.17% { transform: rotate(12.34deg); }
+  33.33% { transform: rotate(13.31deg); }
+  37.50% { transform: rotate(16.09deg); }
+  41.67% { transform: rotate(20.44deg); }
+  45.83% { transform: rotate(26.09deg); }
+  50.00% { transform: rotate(32.81deg); }
+  54.17% { transform: rotate(40.45deg); }
+  58.33% { transform: rotate(49.06deg); }
+  62.50% { transform: rotate(62.58deg); }
+  66.67% { transform: rotate(65.27deg); }
+  70.83% { transform: rotate(68.01deg); }
+  75.00% { transform: rotate(67.10deg); }
+  79.17% { transform: rotate(61.29deg); }
+  83.33% { transform: rotate(57.35deg); }
+  87.50% { transform: rotate(53.57deg); }
+  91.67% { transform: rotate(49.66deg); }
+  95.83% { transform: rotate(45.47deg); }
+  100.00% { transform: rotate(40.93deg); }
+}
+@keyframes hero-far-shin {
+   0.00% { transform: rotate(79.12deg); }
+   4.17% { transform: rotate(87.01deg); }
+   8.33% { transform: rotate(93.34deg); }
+  12.50% { transform: rotate(97.78deg); }
+  16.67% { transform: rotate(100.01deg); }
+  20.83% { transform: rotate(99.84deg); }
+  25.00% { transform: rotate(97.28deg); }
+  29.17% { transform: rotate(92.56deg); }
+  33.33% { transform: rotate(85.98deg); }
+  37.50% { transform: rotate(77.91deg); }
+  41.67% { transform: rotate(68.66deg); }
+  45.83% { transform: rotate(58.45deg); }
+  50.00% { transform: rotate(47.45deg); }
+  54.17% { transform: rotate(35.64deg); }
+  58.33% { transform: rotate(22.60deg); }
+  62.50% { transform: rotate(0.00deg); }
+  66.67% { transform: rotate(0.00deg); }
+  70.83% { transform: rotate(0.00deg); }
+  75.00% { transform: rotate(7.39deg); }
+  79.17% { transform: rotate(24.56deg); }
+  83.33% { transform: rotate(37.36deg); }
+  87.50% { transform: rotate(49.04deg); }
+  91.67% { transform: rotate(59.94deg); }
+  95.83% { transform: rotate(70.02deg); }
+  100.00% { transform: rotate(79.12deg); }
+}
+    </style>
+  </defs>
+
+  <!-- ==================== 1. 地面、阴影与行进微尘 ==================== -->
+  <g class="hero-shadow-motion">
+    <ellipse cx="230" cy="254" rx="145" ry="7.5" fill="#0C1412" />
+  </g>
+  <ellipse cx="110" cy="253" rx="34" ry="4" fill="#0C1412" opacity="0.35" />
+  <ellipse cx="350" cy="253" rx="34" ry="4" fill="#0C1412" opacity="0.35" />
+
+  <!-- 速度感地面流动虚线 -->
+  <path d="M35 253h405" stroke="#99C8A2" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 14" />
+
+  <!-- 后轮扬起的欢快微尘 -->
+  <g fill="#D6E8DB">
+    <circle cx="68" cy="248" r="3.2" class="hero-dust-1" />
+    <circle cx="60" cy="245" r="2.4" class="hero-dust-2" />
+  </g>
+
+  <!-- 空中掠过的破风微风线 -->
+  <g stroke="#FFFFFF" stroke-linecap="round" opacity="0.4" class="hero-wind-line">
+    <line x1="45" y1="185" x2="80" y2="185" stroke-width="1.8" />
+    <line x1="395" y1="92" x2="435" y2="92" stroke-width="1.8" />
+  </g>
+
+  <!-- ==================== 2. 车头大灯柔和光锥 ==================== -->
+  <polygon points="334,142 455,108 455,182" fill="url(#hero-light-beam)" pointer-events="none" />
+
+  <!-- ==================== 3. 远侧腿部与远侧曲柄踏板 ==================== -->
+  <!-- 远侧踩踏腿 (Far Leg at Hip 188, 134) -->
+  <g transform="translate(188 134)">
+    <g class="hero-leg-far-hip" opacity="0.65">
+      <path d="M -5 -9 C 14 -11, 38 -9, 53 -5 C 58 -4, 58 4, 53 5 C 38 9, 14 11, -5 9 C -10 8, -10 -8, -5 -9 Z" fill="#14181B" />
+      <g transform="translate(53, 0)">
+        <circle cx="0" cy="0" r="7.5" fill="#14181B" />
+        <g class="hero-leg-far-knee">
+          <path d="M 0 -7 C 16 -7.5, 36 -6, 50 -4 C 55 -3.5, 55 3.5, 50 4 C 36 6, 16 7.5, 0 7 C -6 6, -6 -6, 0 -7 Z" fill="#101315" />
+          <ellipse cx="50" cy="0" rx="7.5" ry="5" fill="#0C0E10" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 远侧曲柄与踏板 -->
+  <g class="hero-crank-cycle">
+    <g transform="rotate(180 222 212)">
+      <line x1="222" y1="212" x2="241" y2="212" stroke="#6F7E86" stroke-width="4.8" stroke-linecap="round" />
+      <g transform="translate(241 212)">
+        <g class="hero-pedal-level">
+          <rect x="-8.5" y="-3" width="17" height="6" rx="2" fill="#1E2428" stroke="#526067" stroke-width="0.9" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 远侧手臂（抓在把手远端） -->
+  <path d="M224 94 Q256 98 280 100" stroke="#161B1E" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.8" />
+
+  <!-- ==================== 4. 后轮与前轮（实心外胎 + 旋转内圈） ==================== -->
+  <!-- 后轮组 (110, 210) -->
+  <g>
+    <circle cx="110" cy="210" r="41" stroke="#22272B" stroke-width="7" fill="none" />
+    <circle cx="110" cy="210" r="43.8" stroke="#3A4349" stroke-width="0.8" stroke-opacity="0.6" fill="none" />
+    <g transform="translate(110 210)">
+      <g class="hero-spin-cw">
+        <use href="#hero-wheel-rotor" />
+      </g>
+    </g>
+    <!-- 后挡泥板与支架 -->
+    <path d="M68 206 A45 45 0 0 1 146 178" stroke="url(#hero-celadon)" stroke-width="6.5" stroke-linecap="round" fill="none" />
+    <path d="M69 205 A45 45 0 0 1 145 177" stroke="#7EE7E0" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.65" fill="none" />
+    <line x1="110" y1="210" x2="72" y2="200" stroke="#96AAB2" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="110" y1="210" x2="134" y2="175" stroke="#96AAB2" stroke-width="1.6" stroke-linecap="round" />
+    <rect x="66" y="196" width="4.5" height="7.5" rx="2" fill="#E74C3C" stroke="#922B21" stroke-width="0.8" />
+  </g>
+
+  <!-- 前轮组 (350, 210) -->
+  <g>
+    <circle cx="350" cy="210" r="41" stroke="#22272B" stroke-width="7" fill="none" />
+    <circle cx="350" cy="210" r="43.8" stroke="#3A4349" stroke-width="0.8" stroke-opacity="0.6" fill="none" />
+    <g transform="translate(350 210)">
+      <g class="hero-spin-cw">
+        <use href="#hero-wheel-rotor" />
+      </g>
+    </g>
+    <!-- 前挡泥板与支架 -->
+    <path d="M308 190 A45 45 0 0 1 378 174" stroke="url(#hero-celadon)" stroke-width="6.5" stroke-linecap="round" fill="none" />
+    <path d="M309 189 A45 45 0 0 1 377 173" stroke="#7EE7E0" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.65" fill="none" />
+    <line x1="350" y1="210" x2="313" y2="186" stroke="#96AAB2" stroke-width="1.6" stroke-linecap="round" />
+    <line x1="350" y1="210" x2="370" y2="172" stroke="#96AAB2" stroke-width="1.6" stroke-linecap="round" />
+  </g>
+
+  <!-- ==================== 5. 机械传动与车架 ==================== -->
+  <!-- 传动链条 -->
+  <path d="M110 206 L218 206 A16 16 0 0 1 224 224 L110 214 Z" stroke="#38434B" stroke-width="3" stroke-linejoin="round" fill="none" />
+  <path d="M110 206 L218 206 A16 16 0 0 1 224 224 L110 214 Z" stroke="#90A4AE" stroke-width="1.2" stroke-dasharray="2 2" stroke-linejoin="round" fill="none" />
+
+  <!-- 复古青瓷绿车架主结构 (Celadon Frame) -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 后下叉 (Chainstay) -->
+    <line x1="110" y1="210" x2="222" y2="212" stroke="#125E57" stroke-width="6" />
+    <line x1="110" y1="209" x2="222" y2="211" stroke="#52D1C5" stroke-width="1.8" stroke-opacity="0.75" />
+
+    <!-- 后上叉 (Seatstay) -->
+    <line x1="110" y1="210" x2="180" y2="145" stroke="#156B63" stroke-width="5" />
+    <line x1="110" y1="209" x2="180" y2="144" stroke="#68DDD3" stroke-width="1.6" stroke-opacity="0.7" />
+
+    <!-- 粗壮立管 (Seat Tube) -->
+    <line x1="222" y1="212" x2="180" y2="142" stroke="url(#hero-celadon)" stroke-width="7.5" />
+    <line x1="220" y1="211" x2="178" y2="142" stroke="#84EFE6" stroke-width="1.8" stroke-opacity="0.6" />
+
+    <!-- 主下管 (Downtube) -->
+    <line x1="222" y1="212" x2="318" y2="152" stroke="url(#hero-celadon)" stroke-width="8" />
+    <line x1="221" y1="210" x2="317" y2="150" stroke="#84EFE6" stroke-width="2" stroke-opacity="0.65" />
+
+    <!-- 优雅复古双巡航上管 (Cruiser Dual Curved Top Tubes) -->
+    <path d="M180 144 Q248 147 310 128" stroke="url(#hero-celadon)" stroke-width="6.5" />
+    <path d="M180 142 Q248 145 310 126" stroke="#84EFE6" stroke-width="1.6" stroke-opacity="0.7" />
+    <!-- 次级弧线加强管 -->
+    <path d="M180 156 Q246 159 312 140" stroke="url(#hero-celadon)" stroke-width="4.5" />
+    <path d="M180 154 Q246 157 312 138" stroke="#84EFE6" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- 头管 (Head Tube) -->
+    <line x1="307" y1="120" x2="320" y2="158" stroke="url(#hero-celadon)" stroke-width="9" />
+    <line x1="305" y1="122" x2="318" y2="156" stroke="#A6F6EE" stroke-width="2" stroke-opacity="0.8" />
+    <rect x="303" y="117" width="10" height="4" rx="1.5" transform="rotate(-18 308 119)" fill="#CFDEE4" />
+    <rect x="315" y="156" width="10" height="4" rx="1.5" transform="rotate(-18 320 158)" fill="#CFDEE4" />
+
+    <!-- 前叉 (Front Fork) -->
+    <path d="M320 158 Q332 184 350 210" stroke="url(#hero-celadon)" stroke-width="6" />
+    <path d="M318 159 Q330 184 348 210" stroke="#82ECE3" stroke-width="1.6" stroke-opacity="0.75" />
+  </g>
+
+  <!-- 轴心镀铬盖帽 -->
+  <circle cx="110" cy="210" r="4.2" fill="#CFDEE4" stroke="#485960" stroke-width="1" />
+  <circle cx="350" cy="210" r="4.2" fill="#CFDEE4" stroke="#485960" stroke-width="1" />
+
+  <!-- 坐管与复古皮质坐垫 (Brooks Saddle) - 完美托在熊猫臀下并向后延伸 -->
+  <line x1="180" y1="142" x2="172" y2="128" stroke="url(#hero-chrome)" stroke-width="5" stroke-linecap="round" />
+  <path d="M144 136 Q142 142 148 142 M150 136 Q148 142 154 142" stroke="#81939C" stroke-width="1.8" stroke-linecap="round" fill="none" />
+  <!-- 鞍座皮面向后优雅伸出 -->
+  <path d="M138 126 C137 120 150 120 166 124 C184 128 200 127 202 133 C203 137 190 139 174 138 C154 137 139 135 138 126 Z" fill="url(#hero-leather)" stroke="#301305" stroke-width="1.2" />
+  <circle cx="144" cy="126" r="1.1" fill="#F4D03F" />
+  <circle cx="152" cy="127" r="1.1" fill="#F4D03F" />
+  <circle cx="160" cy="128" r="1.1" fill="#F4D03F" />
+
+  <!-- 复古车头子弹灯 -->
+  <g transform="translate(325 146)">
+    <path d="M-8 -6 C-8 -10 6 -10 8 -5 L8 5 C6 10 -8 10 -8 6 Z" fill="url(#hero-chrome)" stroke="#4A5B63" stroke-width="1" />
+    <ellipse cx="8" cy="0" rx="2.5" ry="6.5" fill="#FFF6BD" stroke="#B89736" stroke-width="0.8" />
+  </g>
+
+  <!-- 车把龙头与复古弯把 -->
+  <line x1="307" y1="120" x2="298" y2="98" stroke="url(#hero-chrome)" stroke-width="5.5" stroke-linecap="round" />
+  <path d="M298 98 C294 90 284 92 274 96" stroke="url(#hero-chrome)" stroke-width="5" stroke-linecap="round" fill="none" />
+  <rect x="267" y="92" width="12" height="6.5" rx="3" transform="rotate(-15 273 95)" fill="#8D4C1E" stroke="#522709" stroke-width="0.8" />
+
+  <!-- 车篮支撑杆连接至前轮轴 -->
+  <line x1="350" y1="210" x2="352" y2="140" stroke="#96AAB2" stroke-width="1.8" stroke-linecap="round" />
+  <line x1="318" y1="152" x2="336" y2="136" stroke="#96AAB2" stroke-width="1.8" stroke-linecap="round" />
+
+  <!-- 车前编织竹篮与青翠竹子 -->
+  <g class="hero-basket-sway">
+    <!-- 竹篮里的竹竿与摇曳竹叶 -->
+    <g transform="translate(352 110)">
+      <!-- 左竹竿 -->
+      <path d="M-10 6 L-10 -22 L-4 -25 L-4 6 Z" fill="#589E62" stroke="#37683F" stroke-width="0.8" />
+      <rect x="-11" y="-12" width="8" height="1.8" rx="0.8" fill="#2E5C35" />
+      <!-- 右竹竿 -->
+      <path d="M-1 6 L-1 -30 L6 -33 L6 6 Z" fill="#69B875" stroke="#3D7747" stroke-width="0.8" />
+      <rect x="-2" y="-18" width="9" height="1.8" rx="0.8" fill="#32633A" />
+      <rect x="-2" y="-6" width="9" height="1.8" rx="0.8" fill="#32633A" />
+      <!-- 青翠竹叶簇 -->
+      <path d="M3 -24 Q18 -38 32 -28 Q18 -18 3 -24 Z" fill="#4CAF50" />
+      <path d="M5 -22 Q16 -30 28 -20 Q14 -14 5 -22 Z" fill="#81C784" />
+      <path d="M-8 -18 Q-24 -32 -32 -20 Q-18 -14 -8 -18 Z" fill="#66BB6A" />
+      <path d="M-2 -28 Q8 -45 22 -40 Q10 -28 -2 -28 Z" fill="#388E3C" />
+    </g>
+  </g>
+
+  <!-- 编织藤条车篮主体 (Wicker Basket) -->
+  <g transform="translate(330 102)">
+    <path d="M0 0 L45 0 L39 34 Q37 38 32 38 L12 38 Q7 38 5 34 Z" fill="url(#hero-wicker)" stroke="#664115" stroke-width="1.2" />
+    <g stroke="#7C521F" stroke-width="1" opacity="0.65">
+      <line x1="2" y1="9" x2="43" y2="9" />
+      <line x1="3" y1="18" x2="41" y2="18" />
+      <line x1="5" y1="27" x2="39" y2="27" />
+      <line x1="12" y1="2" x2="13" y2="36" />
+      <line x1="22" y1="2" x2="22" y2="36" />
+      <line x1="32" y1="2" x2="31" y2="36" />
+    </g>
+    <rect x="-2" y="-3" width="49" height="6.5" rx="3" fill="#E8C587" stroke="#664115" stroke-width="1" />
+  </g>
+
+  <!-- ==================== 6. 核心主角：萌态大熊猫（头与躯干） ==================== -->
+  <g class="hero-panda-bob">
+
+    <!-- 迎风展动的珊瑚红双尾围巾 -->
+    <g transform="translate(210 88)">
+      <!-- 下层围巾尾波浪 -->
+      <g class="hero-scarf-wave-b">
+        <path d="M0 2 C-22 0 -44 14 -70 8 C-82 5 -90 11 -86 17 C-74 21 -50 22 -28 15 C-14 10 -4 8 2 10 Z" fill="#C0392B" stroke="#871A10" stroke-width="0.8" />
+      </g>
+      <!-- 上层围巾尾波浪 -->
+      <g class="hero-scarf-wave-a">
+        <path d="M0 -1 C-24 -10 -52 4 -80 -3 C-90 -6 -96 1 -90 7 C-68 13 -42 7 -16 8 C-8 9 -2 5 2 5 Z" fill="url(#hero-scarf)" stroke="#96281B" stroke-width="0.9" />
+        <path d="M-78 -1 L-75 7 M-70 0 L-68 8" stroke="#FFEAA7" stroke-width="1.8" stroke-linecap="round" />
+      </g>
+    </g>
+
+    <!-- 可爱圆球尾巴 -->
+    <circle cx="152" cy="124" r="10.5" fill="#1C2125" />
+
+    <!-- 饱满软萌的奶白身躯 (Plump Torso) -->
+    <path d="M154 126 C148 102 166 64 195 50 C214 40 242 46 248 68 C255 92 245 124 224 138 C204 149 164 146 154 126 Z" fill="#FBFBF9" stroke="#E0D7C5" stroke-width="1" />
+
+    <!-- 标志性黑色马鞍斑块 (Black Saddle Patch) -->
+    <path d="M174 62 C186 44 230 42 242 58 C248 66 246 80 238 84 C224 76 208 77 192 86 C176 92 166 76 174 62 Z" fill="#202529" />
+
+    <!-- 围巾领口温暖裹住脖子 -->
+    <path d="M192 46 C208 38 232 41 241 52 C244 57 236 65 224 65 C208 65 190 59 189 52 Z" fill="url(#hero-scarf)" stroke="#96281B" stroke-width="1" />
+    <path d="M198 50 Q218 58 234 53" stroke="#FF9F89" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7" />
+
+    <!-- 熊猫圆脑袋与灵动五官 (Head & Facial Rig) -->
+    <g class="hero-head-bob">
+      <!-- 远侧毛绒黑耳朵 -->
+      <g transform="translate(254 10)">
+        <circle cx="0" cy="0" r="12" fill="#181C1F" />
+        <ellipse cx="1" cy="1" rx="5.5" ry="6.5" fill="#2D353B" opacity="0.75" />
+      </g>
+
+      <!-- 近侧毛绒黑耳朵（带轻快摆动） -->
+      <g transform="translate(196 12)">
+        <g class="hero-ear-motion">
+          <circle cx="0" cy="0" r="13.5" fill="#202529" />
+          <ellipse cx="1.5" cy="1.5" rx="6" ry="7" fill="#343C42" opacity="0.75" />
+        </g>
+      </g>
+
+      <!-- 蓬松圆圆的脸盘 (充分留在 ViewBox 内部，完全不切边！) -->
+      <path d="M188 42 C186 16 210 2 238 4 C266 6 282 24 279 48 C276 68 258 78 232 78 C204 78 189 64 188 42 Z" fill="#FFFFFF" stroke="#E0D7C5" stroke-width="1" />
+
+      <!-- 粉嫩腮红 (Blush) -->
+      <ellipse cx="218" cy="54" rx="8" ry="4.5" fill="#FF8A80" opacity="0.65" />
+      <ellipse cx="270" cy="50" rx="6.5" ry="4" fill="#FF8A80" opacity="0.6" />
+
+      <!-- 远侧黑眼圈与眼睛 -->
+      <g transform="translate(260 34) rotate(10)">
+        <ellipse cx="0" cy="0" rx="9" ry="11" fill="#202529" />
+        <g class="hero-eyes-blink">
+          <circle cx="0" cy="0" r="4" fill="#0E1113" />
+          <circle cx="1.4" cy="-1.4" r="1.6" fill="#FFFFFF" />
+          <circle cx="-0.8" cy="1.2" r="0.7" fill="#FFFFFF" opacity="0.8" />
+        </g>
+      </g>
+
+      <!-- 近侧黑眼圈与眼睛 -->
+      <g transform="translate(228 38) rotate(-14)">
+        <ellipse cx="0" cy="0" rx="10.5" ry="13" fill="#202529" />
+        <g class="hero-eyes-blink">
+          <circle cx="0" cy="0" r="4.6" fill="#0E1113" />
+          <circle cx="1.6" cy="-1.6" r="1.8" fill="#FFFFFF" />
+          <circle cx="-1" cy="1.4" r="0.8" fill="#FFFFFF" opacity="0.8" />
+        </g>
+      </g>
+
+      <!-- 软萌小鼻吻部与微笑嘴角 -->
+      <g transform="translate(250 48)">
+        <path d="M-5 -2 C-5 -5 5 -5 5 -2 C5 1 2 4 0 4 C-2 4 -5 1 -5 -2 Z" fill="#181B1E" />
+        <ellipse cx="-1.5" cy="-2.5" rx="2" ry="0.8" fill="#6A7580" opacity="0.6" />
+        <path d="M0 4 L0 7 M-7 8 Q-3 12 0 7 Q3 12 7 7" stroke="#22272B" stroke-width="1.6" stroke-linecap="round" fill="none" />
+        <path d="M-3 9 Q0 15 3 9 Z" fill="#FF6B6B" stroke="#22272B" stroke-width="0.8" />
+      </g>
+    </g>
+
+    <!-- 近侧手臂（紧握车把套） -->
+    <g>
+      <path d="M214 74 C236 80 258 84 272 94" stroke="#202529" stroke-width="13" stroke-linecap="round" fill="none" />
+      <ellipse cx="272" cy="94" rx="7.5" ry="6" fill="#181B1E" />
+    </g>
+  </g>
+
+  <!-- ==================== 7. 近侧传动机构与踏板 ==================== -->
+  <g class="hero-crank-cycle">
+    <!-- 大牙盘 (Chainring at 222, 212) -->
+    <circle cx="222" cy="212" r="17" fill="#7E8F96" />
+    <circle cx="222" cy="212" r="15" fill="url(#hero-chrome)" />
+    <!-- 镂空花纹 -->
+    <circle cx="216" cy="208" r="2.8" fill="#3C484E" />
+    <circle cx="228" cy="208" r="2.8" fill="#3C484E" />
+    <circle cx="222" cy="218" r="2.8" fill="#3C484E" />
+    <circle cx="222" cy="212" r="5" fill="#4B5860" />
+
+    <!-- 近侧镀铬曲柄臂 -->
+    <line x1="222" y1="212" x2="241" y2="212" stroke="url(#hero-chrome)" stroke-width="6" stroke-linecap="round" />
+    <circle cx="222" cy="212" r="3" fill="#2E373B" />
+
+    <!-- 近侧水平脚踏板 -->
+    <g transform="translate(241 212)">
+      <g class="hero-pedal-level">
+        <rect x="-10" y="-3.5" width="20" height="7" rx="2.5" fill="#202529" stroke="#687880" stroke-width="1" />
+        <rect x="-4" y="-1" width="8" height="2.5" rx="1" fill="#F39C12" />
+        <circle cx="0" cy="0" r="2" fill="#D6E4E9" />
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== 8. 近侧两段式联动大腿与小腿 (Near Leg IK at Hip 188, 134) ==================== -->
+  <g transform="translate(188 134)">
+    <g class="hero-leg-near-hip">
+      <!-- 近侧大腿 -->
+      <path d="M -5 -9.5 C 18 -11, 40 -9, 53 -6 C 58 -5, 58 5, 53 6 C 40 9, 18 11, -5 9.5 C -10 8.5, -10 -8.5, -5 -9.5 Z" fill="#202529" />
+      <!-- 膝关节与小腿 -->
+      <g transform="translate(53, 0)">
+        <circle cx="0" cy="0" r="8.5" fill="#202529" />
+        <g class="hero-leg-near-knee">
+          <path d="M 0 -7.5 C 18 -8, 38 -6.5, 50 -5 C 55 -4.5, 55 4.5, 50 5 C 38 6.5, 18 8, 0 7.5 C -7 7, -7 -7, 0 -7.5 Z" fill="#1C2125" />
+          <!-- 可爱的小黑熊掌爪（踩在脚踏上） -->
+          <ellipse cx="50" cy="0" rx="8" ry="6" fill="#14171A" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
           </div>
         </section>
 
