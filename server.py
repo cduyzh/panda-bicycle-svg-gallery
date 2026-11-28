@@ -69,7 +69,7 @@ def classify_stem(stem):
     patterns = (
         (
             "GPT",
-            r"^(\d+(?:\.\d+)?)\s+(Sol|Luna|Astra)(.*)$",
+            r"^(?:GPT[\s-]+)?(\d+(?:\.\d+)?)\s+(Sol|Luna|Astra)(.*)$",
             lambda m: f"{m[1]} {m[2].title()}",
         ),
         (

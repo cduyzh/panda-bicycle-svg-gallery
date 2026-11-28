@@ -40,6 +40,15 @@ class ScoringTests(unittest.TestCase):
             self.assertEqual(score["level"], label)
             self.assertEqual(score["total"], total)
 
+    def test_gpt_prefixed_names_classify_under_gpt_family(self):
+        for stem in ("GPT-6.2 Astra Ultra", "GPT-6.2 Sol Ultra", "6 Astra Ultra", "6.1 Sol高"):
+            family, _, _ = server.classify_stem(stem)
+            self.assertEqual(family, "GPT")
+        self.assertEqual(
+            server.classify_stem("GPT-6.2 Astra Ultra"),
+            ("GPT", "6.2 Astra", "Ultra"),
+        )
+
     def test_new_file_and_changed_content_do_not_inherit_scores(self):
         with tempfile.TemporaryDirectory() as directory:
             file = Path(directory) / self.name
